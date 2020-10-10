@@ -1,5 +1,5 @@
 public class Room extends Structure{
-    void Room(String s){
+    Room(String s){
         System.out.println("Room");
     }
 

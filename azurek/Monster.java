@@ -1,5 +1,5 @@
 public class Monster extends Creature{
-    void Monster(){
+    Monster(){
         System.out.println("Monster")
     }
 

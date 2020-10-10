@@ -1,5 +1,5 @@
 public class Passage extends Structure{
-    void Passage(){
+    Passage(){
         System.out.println("Passage");
     }
 

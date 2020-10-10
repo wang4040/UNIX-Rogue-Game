@@ -1,5 +1,5 @@
 public class Displayable{
-    void Displayable(){
+    Displayable(){
         System.out.println("Displayable");
     }
     void setInvisible(){

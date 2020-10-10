@@ -1,5 +1,5 @@
 public class Creature{
-    void Creature(){
+    Creature(){
         System.out.println("Creature");
     }
 
