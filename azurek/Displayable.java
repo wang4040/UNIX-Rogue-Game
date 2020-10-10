@@ -27,7 +27,7 @@ public class Displayable{
     }
 
     void setIntValue(int v){
-        System.out.println("setIntValue")
+        System.out.println("setIntValue");
     }
 
     void SetPosX(int x){

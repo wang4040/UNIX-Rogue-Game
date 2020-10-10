@@ -1,4 +1,4 @@
-public class Creature{
+public class Creature extends Displayable{
     Creature(){
         System.out.println("Creature");
     }
@@ -16,6 +16,6 @@ public class Creature{
     }
 
     void setHitAction(CreatureAction ha){
-        System.out.println("setHitAction Creature")
+        System.out.println("setHitAction Creature");
     }
 }
