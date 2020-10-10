@@ -4,6 +4,6 @@ public class Player extends Creature{
     }
 
     void setArmor(Item armor){
-        System.out.println("setArmor Player")
+        System.out.println("setArmor Player");
     }
 }

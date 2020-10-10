@@ -1,6 +1,6 @@
 public class Monster extends Creature{
     Monster(){
-        System.out.println("Monster")
+        System.out.println("Monster");
     }
 
     void setName(String s){
