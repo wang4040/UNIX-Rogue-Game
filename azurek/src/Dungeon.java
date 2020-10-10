@@ -1,3 +1,4 @@
+package src;
 public class Dungeon{
 
     void getDungeon(String name, int width, int gameHeight){

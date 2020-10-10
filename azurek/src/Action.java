@@ -1,3 +1,4 @@
+package src;
 public class Action {
     void setMessage(String msg){
         System.out.println("setMessage Action");

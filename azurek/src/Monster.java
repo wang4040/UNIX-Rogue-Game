@@ -1,3 +1,4 @@
+package src;
 public class Monster extends Creature{
     Monster(){
         System.out.println("Monster");

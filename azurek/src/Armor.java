@@ -1,3 +1,4 @@
+package src;
 public class Armor extends Item{
     Armor(String name){
         System.out.println("Armor");

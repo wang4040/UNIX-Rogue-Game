@@ -1,3 +1,4 @@
+package src;
 public class Creature extends Displayable{
     Creature(){
         System.out.println("Creature");

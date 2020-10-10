@@ -1,3 +1,4 @@
+package src;
 public class Passage extends Structure{
     Passage(){
         System.out.println("Passage");

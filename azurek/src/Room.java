@@ -1,3 +1,4 @@
+package src;
 public class Room extends Structure{
     Room(String s){
         System.out.println("Room");
