@@ -1,4 +1,7 @@
 public class Displayable{
+    void Displayable(){
+        System.out.println("Displayable");
+    }
     void setInvisible(){
         System.out.println("setInvisible");
     }
@@ -12,11 +15,11 @@ public class Displayable{
     }
 
     void setHpMove(int hpMoves){
-        System.out.println("setHpMove");
+        System.out.println("setHpMove Displayable");
     }
 
     void setHp(int Hp){
-        System.out.println("setHp");
+        System.out.println("setHp Displayable");
     }
 
     void setType(char t){
