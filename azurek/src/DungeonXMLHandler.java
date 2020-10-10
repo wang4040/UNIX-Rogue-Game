@@ -2,12 +2,13 @@ package src;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
+import java.util.*;
 
 public class DungeonXMLHandler extends DefaultHandler {
 	
 	private StringBuilder data = null;
 	
-	ArrayList<Dungeon> dungeons;
+	List<Dungeon> dungeons = new ArrayList<Dungeon>();
 	
 	//implicit call to DefaultHandler
 	public DungeonXMLHandler() {
