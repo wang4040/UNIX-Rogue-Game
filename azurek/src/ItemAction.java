@@ -1,14 +1,17 @@
 package src;
 public class ItemAction extends Action{
-    ItemAction(Item owner){
-        System.out.println("ItemAction");
+	Item owner;
+	
+    public ItemAction(Item _owner){
+		owner = _owner;
+        System.out.println("construct ItemAction with item" + owner);
     }
 
     void BlessCurseOwner(Creature owner){
-        System.out.println("BlessCurseOwner ItemAction");
+        System.out.println("ItemAction BlessCurseOwner " + owner);
     }
 
     void Hallucinate(Creature owner){
-        System.out.println("Hallucinate ItemAction");
+        System.out.println("ItemAction Hallucinate " + owner);
     }
 }
