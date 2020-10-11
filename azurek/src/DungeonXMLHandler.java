@@ -13,9 +13,19 @@ public class DungeonXMLHandler extends DefaultHandler {
 	private Dungeon dungeonBeingParsed = null;
 	private Room roomBeingParsed = null;
 	private Monster monsterBeingParsed = null;
+	private Player playerBeingParsed = null;
 	
 	//booleans to determine which one is parsing
-	private boolean bRoom = false;
+	private boolean bPosX = false;
+	private boolean bPosY = false;
+	private boolean bType = false;
+	private boolean bHp = false;
+	private boolean bMaxHit = false;
+	private boolean bVisible = false;
+	private boolean bHpMoves = false;
+	private boolean bWidth = false;
+	private boolean bHeight = false;
+	
 	
 	public ArrayList<Room> getRooms() {
         return rooms;
@@ -35,13 +45,13 @@ public class DungeonXMLHandler extends DefaultHandler {
 			roomBeingParsed = newRoom;
 			rooms.add(room);
 		}else if(qName.equalsIgnoreCase("posX") {
-			
+			b
 		}
 	}
 	
 	@Override
     public void endElement(String uri, String localName, String qName) throws SAXException {
-	
+		if (
 	}
 }
 
