@@ -1,4 +1,4 @@
-//package src;
+package src;
 public class Creature extends Displayable{
 	
 	int hp;

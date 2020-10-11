@@ -1,4 +1,4 @@
-//package src;
+package src;
 public class Player extends Creature{
 	
 	String name;
