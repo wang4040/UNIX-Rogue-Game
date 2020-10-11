@@ -12,38 +12,38 @@ public class Displayable{
     }
 
     void setMaxHit(int maxHit){
-        System.out.println("setMaxHit");
+        System.out.println("setMaxHit maxHit: " + maxHit);
     }
 
     void setHpMove(int hpMoves){
-        System.out.println("setHpMove Displayable");
+        System.out.println("setHpMove Displayable hpMoves: " + hpMoves);
     }
 
     void setHp(int Hp){
-        System.out.println("setHp Displayable");
+        System.out.println("setHp Displayable Hp: " + Hp);
     }
 
     void setType(char t){
-        System.out.println("setType");
+        System.out.println("setType t: " + t);
     }
 
     void setIntValue(int v){
-        System.out.println("setIntValue");
+        System.out.println("setIntValue v: " + v);
     }
 
     void SetPosX(int x){
-        System.out.println("SetPosX");
+        System.out.println("SetPosX x: " + x);
     }
 
     void setPosY(int y){
-        System.out.println("setPosY");
+        System.out.println("setPosY y: " + y);
     }
 
     void SetWidth(int x){
-        System.out.println("SetWidth");
+        System.out.println("SetWidth x: " + x);
     }
 
     void setHeight(int y){
-        System.out.println("setHeight");
+        System.out.println("setHeight y: " + y);
     }
 }

@@ -5,11 +5,11 @@ public class Creature extends Displayable{
     }
 
     void setHp(int h){
-        System.out.println("setHp Creature");
+        System.out.println("setHp Creature h: " + h);
     }
 
     void setHpMoves(int hpm){
-        System.out.println("setHpMoves Creature");
+        System.out.println("setHpMoves Creature hmp: " + hpm);
     }
 
     void setDeathAction(CreatureAction da){
