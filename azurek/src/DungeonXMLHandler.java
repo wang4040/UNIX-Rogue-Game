@@ -1,4 +1,4 @@
-package src;
+//package src;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
@@ -9,7 +9,7 @@ public class DungeonXMLHandler extends DefaultHandler {
 	private StringBuilder data = null;
 	
 	ArrayList<Room> rooms = new ArrayList<Room>();
-	ArrayList<Monster> monsters = new ArrayList<Monsters>();
+	ArrayList<Monster> monsters = new ArrayList<Monster>();
 
 	private Dungeon dungeonBeingParsed = null;
 	private Room roomBeingParsed = null;
@@ -47,7 +47,16 @@ public class DungeonXMLHandler extends DefaultHandler {
 	//implicit call to DefaultHandler
 	public DungeonXMLHandler() {
 	}
-	
+	Dungeon newDungeon;
+	Room newRoom;
+	Monster newMonster;
+	Player newPlayer;
+	CreatureAction newCrtAction;
+	Scroll newScroll;
+	Armor newArmor;
+	Sword newSword;
+	ItemAction newItmAction;
+
 	@Override
     public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
 		if (qName.equalsIgnoreCase("Dungeon")) {
@@ -58,11 +67,11 @@ public class DungeonXMLHandler extends DefaultHandler {
 			roomBeingParsed = newRoom;
 			rooms.add(newRoom);
 		}else if(qName.equalsIgnoreCase("Monster")) {
-			newMonster = new Monster(attribute.getValue("name"), Integer.parseInt(attributes.getValue("room")), Integer.parseInt(attributes.getValue("serial")));
+			newMonster = new Monster(attributes.getValue("name"), Integer.parseInt(attributes.getValue("room")), Integer.parseInt(attributes.getValue("serial")));
 			monsterBeingParsed = newMonster;
 			monsters.add(newMonster);
 		}else if(qName.equalsIgnoreCase("Player")) {	
-			newPlayer = new Player(attribute.getValue("name"), Integer.parseInt(attributes.getValue("room")), Integer.parseInt(attributes.getValue("serial")));
+			newPlayer = new Player(attributes.getValue("name"), Integer.parseInt(attributes.getValue("room")), Integer.parseInt(attributes.getValue("serial")));
 			playerBeingParsed = newPlayer;
 		}else if(qName.equalsIgnoreCase("CreatureAction")) {
 			if(monsterBeingParsed != null) {
@@ -73,11 +82,11 @@ public class DungeonXMLHandler extends DefaultHandler {
 				crtactBeingParsed = newCrtAction;
 			}
 		}else if(qName.equalsIgnoreCase("Scroll")) {
-			newScroll = new Scroll(attribute.getValue("name"));
+			newScroll = new Scroll(attributes.getValue("name"));
 			newScroll.setID(Integer.parseInt(attributes.getValue("room")), Integer.parseInt(attributes.getValue("serial")));
 			itemBeingParsed = newScroll;
 		}else if(qName.equalsIgnoreCase("Armor")) {
-			newArmor = new Armor(attribute.getValue("name"));
+			newArmor = new Armor(attributes.getValue("name"));
 			newArmor.setID(Integer.parseInt(attributes.getValue("room")), Integer.parseInt(attributes.getValue("serial")));
 			if(playerBeingParsed != null) {
 				playerBeingParsed.setArmor(newArmor);
@@ -85,7 +94,7 @@ public class DungeonXMLHandler extends DefaultHandler {
 			}
 			itemBeingParsed = newArmor;
 		}else if(qName.equalsIgnoreCase("Sword")) {
-			newSword = new Sword(attribute.getValue("name"));
+			newSword = new Sword(attributes.getValue("name"));
 			newSword.setID(Integer.parseInt(attributes.getValue("room")), Integer.parseInt(attributes.getValue("serial")));
 			if(playerBeingParsed != null) {
 				playerBeingParsed.setWeapon(newSword);
@@ -95,7 +104,6 @@ public class DungeonXMLHandler extends DefaultHandler {
 		}else if(qName.equalsIgnoreCase("ItemAction")) {
 			newItmAction = new ItemAction(itemBeingParsed);
 			itmactBeingParsed = newItmAction;
-		}
 		}else if(qName.equalsIgnoreCase("posX")) {
 			bPosX = true;
 		}else if(qName.equalsIgnoreCase("posY")) {
@@ -123,6 +131,7 @@ public class DungeonXMLHandler extends DefaultHandler {
 		}else if(qName.equalsIgnoreCase("actionMessage")) {
 			bActionMessage = true;
 		}
+		data = new StringBuilder();
 	}
 	
 	@Override
@@ -133,7 +142,7 @@ public class DungeonXMLHandler extends DefaultHandler {
 		if (bPosX){
 			if (itemBeingParsed != null){
 				itemBeingParsed.SetPosX(Integer.parseInt(data.toString()));
-				bPosx = null;
+				bPosX = false;
 			}else if (playerBeingParsed != null){
 				playerBeingParsed.SetPosX(Integer.parseInt(data.toString()));
 				bPosX = false;
@@ -146,16 +155,16 @@ public class DungeonXMLHandler extends DefaultHandler {
 			}
 		}else if (bPosY){
 			if (itemBeingParsed != null){
-				itemBeingParsed.SetPosY(Integer.parseInt(data.toString()));
-				bPosY = null;
+				itemBeingParsed.setPosY(Integer.parseInt(data.toString()));
+				bPosY = false;
 			}else if (playerBeingParsed != null){
-				playerBeingParsed.SetPosY(Integer.parseInt(data.toString()));
+				playerBeingParsed.setPosY(Integer.parseInt(data.toString()));
 				bPosY = false;
 			}else if (monsterBeingParsed != null){
-				monsterBeingParsed.SetPosY(Integer.parseInt(data.toString()));
+				monsterBeingParsed.setPosY(Integer.parseInt(data.toString()));
 				bPosY = false;
 			}else if (roomBeingParsed != null) {
-				roomBeingParsed.SetPosY(Integer.parseInt(data.toString()));
+				roomBeingParsed.setPosY(Integer.parseInt(data.toString()));
 				bPosY = false;
 			}
 		}
@@ -182,7 +191,7 @@ public class DungeonXMLHandler extends DefaultHandler {
 			if (playerBeingParsed != null){
 				playerBeingParsed.setHp(Integer.parseInt(data.toString()));
 				bHp = false;
-			}else if (monsterBeingParsed){
+			}else if (monsterBeingParsed != null){
 				monsterBeingParsed.setHp(Integer.parseInt(data.toString()));
 				bHp = false;
 			}
@@ -215,7 +224,7 @@ public class DungeonXMLHandler extends DefaultHandler {
 		}
 		else if (bInvisible){
 			if (itemBeingParsed != null){
-				itemBeingParsed.setinVisible();
+				itemBeingParsed.setInvisible();
 				bInvisible = false;
 			}else if (itemBeingParsed != null){
 				playerBeingParsed.setInvisible();
@@ -230,17 +239,17 @@ public class DungeonXMLHandler extends DefaultHandler {
 		}
 		else if (bHpMoves){
 			if (itemBeingParsed != null){
-				itemBeingParsed.setHpMoves(Integer.parseInt(data.toString()));
-				bHpMoves = null;
+				itemBeingParsed.setHpMove(Integer.parseInt(data.toString()));
+				bHpMoves = false;
 			}else if (playerBeingParsed != null){
-				playerBeingParsed.setHpMoves(Integer.parseInt(data.toString()));
-				bHpMoves = null;
+				playerBeingParsed.setHpMove(Integer.parseInt(data.toString()));
+				bHpMoves = false;
 			}else if (monsterBeingParsed != null){
-				monsterBeingParsed.setHpMoves(Integer.parseInt(data.toString()));
-				bHpMoves = null;
+				monsterBeingParsed.setHpMove(Integer.parseInt(data.toString()));
+				bHpMoves = false;
 			}else if (roomBeingParsed != null){
-				roomBeingParsed.setHpMoves(Integer.parseInt(data.toString()));
-				bHpMoves = null;
+				roomBeingParsed.setHpMove(Integer.parseInt(data.toString()));
+				bHpMoves = false;
 			}
 		}
 		else if (bWidth){
@@ -261,51 +270,51 @@ public class DungeonXMLHandler extends DefaultHandler {
 		else if (bHeight){
 			if (itemBeingParsed != null){
 				itemBeingParsed.setHeight(Integer.parseInt(data.toString()));
-				bHeight = null;
+				bHeight = false;
 			}else if (playerBeingParsed != null){
 				playerBeingParsed.setHeight(Integer.parseInt(data.toString()));
-				bHeight = null;
+				bHeight = false;
 			}else if (monsterBeingParsed != null){
 				monsterBeingParsed.setHeight(Integer.parseInt(data.toString()));
-				bHeight = null;
-			}else if (roomBeingParsed){
+				bHeight = false;
+			}else if (roomBeingParsed != null){
 				roomBeingParsed.setHeight(Integer.parseInt(data.toString()));
-				bHeight = null;
+				bHeight = false;
 			}
 		}
 		else if (bActionCharVal){
 			if (itmactBeingParsed != null){
 				String str = data.toString();
 				itmactBeingParsed.setCharValue(str.charAt(0));
-				bActionCharVal = null;
+				bActionCharVal = false;
 			}else if (crtactBeingParsed != null){
 				String str = data.toString();
-				ctractBeingParsed.setCharValue(str.charAt(0));
-				bActionCharVal = null;
+				crtactBeingParsed.setCharValue(str.charAt(0));
+				bActionCharVal = false;
 			}
 		}
 		else if (bActionMessage){
 			if (itmactBeingParsed != null){
 				itmactBeingParsed.setMessage(data.toString());
-				bActionMessage = null;
+				bActionMessage = false;
 			}else if (crtactBeingParsed != null){
-				ctractBeingParsed.setMessage(data.toString());
-				bActionMessage = null;
+				crtactBeingParsed.setMessage(data.toString());
+				bActionMessage = false;
 			}
 		}
 		else if (bActionIntVal){
 			if (itmactBeingParsed != null){
-				itmactBeingParsed.setIntVal(Integer.parseInt(data.toString()));
-				bActionIntVal = null;
+				itmactBeingParsed.setIntValue(Integer.parseInt(data.toString()));
+				bActionIntVal = false;
 			}else if (crtactBeingParsed != null){
-				ctractBeingParsed.setIntVal(Integer.parseInt(data.toString()));
-				bActionIntVal = null;
+				crtactBeingParsed.setIntValue(Integer.parseInt(data.toString()));
+				bActionIntVal = false;
 			}
 		}
 		else if (bItemIntVal){
 			if (itemBeingParsed != null){
 				itemBeingParsed.setIntValue(Integer.parseInt(data.toString()));
-				bItemIntVal = null;
+				bItemIntVal = false;
 			}
 		}
 

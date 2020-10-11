@@ -1,10 +1,10 @@
-package src;
+//package src;
 public class CreatureAction extends Action{
     CreatureAction(Creature owner){
         System.out.println("CreatureAction");
     }
 
-    void Remove(String name, Creature owner){
+    /*void Remove(String name, Creature owner){
         System.out.println("Remove CreatureAction name: " + name);
     }
 
@@ -30,5 +30,5 @@ public class CreatureAction extends Action{
 
     void DropPack(String name, Creature owner){
         System.out.println("DropPack CreatureAction name: " + name);
-    }
+    } */
 }
