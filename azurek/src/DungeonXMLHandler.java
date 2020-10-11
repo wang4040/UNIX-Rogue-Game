@@ -332,6 +332,10 @@ public class DungeonXMLHandler extends DefaultHandler {
 			crtactBeingParsed = null;
 		}
 	}
+	@Override
+    public void characters(char ch[], int start, int length) throws SAXException {
+        data.append(new String(ch, start, length));
+    }
 }
 
 
