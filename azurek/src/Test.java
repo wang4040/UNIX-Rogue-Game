@@ -4,7 +4,7 @@ import java.io.IOException;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
-import java.util.*
+import java.util.*;
 
 import org.xml.sax.SAXException;
 
@@ -40,7 +40,7 @@ public class Test {
 	    // just copy this.  This will parse the xml file given by fileName
             saxParser.parse(new File(fileName), handler);
 	    // This will change depending on what kind of XML we are parsing
-            List<Room> rooms = handler.getRooms();
+            ArrayList<Room> rooms = handler.getRooms();
 	    // print out all of the students.  This will change depending on 
 	    // what kind of XML we are parsing
             for (Room room : rooms) {

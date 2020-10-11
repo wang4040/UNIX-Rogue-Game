@@ -8,7 +8,7 @@ public class DungeonXMLHandler extends DefaultHandler {
 	
 	private StringBuilder data = null;
 	
-	List<Room> rooms = new ArrayList<Room>();
+	ArrayList<Room> rooms = new ArrayList<Room>();
 
 	private Dungeon dungeonBeingParsed = null;
 	private Room roomBeingParsed = null;
