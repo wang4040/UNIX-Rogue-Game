@@ -1,6 +1,17 @@
 package src;
 public class Dungeon{
 
+    String name;
+    int width;
+    int gameHeight;
+
+    public Dungeon(String _name, int _width, int _gameHeight){
+        name = _name;
+	width = _width;
+	gameHeight = _gameHeight;
+	System.out.println("construct Dungeon with name: " + name + " width: " + width + " gameHeight: " + gameHeight);
+    }
+
     void getDungeon(String name, int width, int gameHeight){
         System.out.println("getDungeon name: " + name + " width: " + width + " gameHeight: " + gameHeight);
     }
