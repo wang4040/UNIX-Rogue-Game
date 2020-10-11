@@ -79,10 +79,18 @@ public class DungeonXMLHandler extends DefaultHandler {
 		}else if(qName.equalsIgnoreCase("Armor")) {
 			newArmor = new Armor(attribute.getValue("name"));
 			newArmor.setID(Integer.parseInt(attributes.getValue("room")), Integer.parseInt(attributes.getValue("serial")));
+			if(playerBeingParsed != null) {
+				playerBeingParsed.setArmor(newArmor);
+				newArmor.setOwner(playerBeingParsed);
+			}
 			itemBeingParsed = newArmor;
 		}else if(qName.equalsIgnoreCase("Sword")) {
 			newSword = new Sword(attribute.getValue("name"));
 			newSword.setID(Integer.parseInt(attributes.getValue("room")), Integer.parseInt(attributes.getValue("serial")));
+			if(playerBeingParsed != null) {
+				playerBeingParsed.setWeapon(newSword);
+				newSword.setOwner(playerBeingParsed);
+			}
 			itemBeingParsed = newSword;
 		}else if(qName.equalsIgnoreCase("ItemAction")) {
 			newItmAction = new ItemAction(itemBeingParsed);
@@ -301,8 +309,6 @@ public class DungeonXMLHandler extends DefaultHandler {
 			}
 		}
 
-		
-		
 		if (qName.equalsIgnoreCase("Room")) {
 			roomBeingParsed = null;
 		}else if (qName.equalsIgnoreCase("Monster")) {
