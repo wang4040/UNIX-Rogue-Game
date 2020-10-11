@@ -8,7 +8,7 @@ import javax.xml.parsers.SAXParserFactory;
 import org.xml.sax.SAXException;
 
 public class Test {
-
+    n
     public static void main(String[] args) {
 
 	// check if a filename is passed in.  If not, print a usage message.
@@ -36,15 +36,15 @@ public class Test {
 	    // just copy this
             SAXParser saxParser = saxParserFactory.newSAXParser();
 	    // just copy this
-            StudentXMLHandler handler = new StudentXMLHandler();
+            DungeonXMLHandler handler = new DungeonXMLHandler();
 	    // just copy this.  This will parse the xml file given by fileName
             saxParser.parse(new File(fileName), handler);
 	    // This will change depending on what kind of XML we are parsing
-            Student[ ] students = handler.getStudents();
+            Dungeon[ ] dungeons = handler.getDungeons();
 	    // print out all of the students.  This will change depending on 
 	    // what kind of XML we are parsing
-            for (Student student : students) {
-                System.out.println(student);
+            for (Dungeon dungeon : dungeons) {
+                System.out.println(dungeon);
             }
             /*
              * the above is a different form of 
