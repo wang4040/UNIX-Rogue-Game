@@ -8,7 +8,6 @@ import javax.xml.parsers.SAXParserFactory;
 import org.xml.sax.SAXException;
 
 public class Test {
-    n
     public static void main(String[] args) {
 
 	// check if a filename is passed in.  If not, print a usage message.
