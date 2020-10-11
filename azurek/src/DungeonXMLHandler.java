@@ -33,7 +33,7 @@ public class DungeonXMLHandler extends DefaultHandler {
 	private boolean bActionCharVal = false;
 	private boolean bActionMessage = false;
 	private boolean bActionIntVal = false;
-	private boolean bItemIntVal = false
+	private boolean bItemIntVal = false;
 	
 	
 	public ArrayList<Room> getRooms() {
@@ -123,7 +123,10 @@ public class DungeonXMLHandler extends DefaultHandler {
 		//Scrolls aren't set for anyone
 		
 		if (bPosX){
-			if (playerBeingParsed != null){
+			if (itemBeingParsed != null){
+				itemBeingParsed.SetPosX(Integer.parseInt(data.toString()));
+				bPosx = null;
+			}else if (playerBeingParsed != null){
 				playerBeingParsed.SetPosX(Integer.parseInt(data.toString()));
 				bPosX = false;
 			}else if (monsterBeingParsed != null){
@@ -134,70 +137,184 @@ public class DungeonXMLHandler extends DefaultHandler {
 				bPosX = false;
 			}
 		}else if (bPosY){
-			if (playerBeingParsed != null){
+			if (itemBeingParsed != null){
+				itemBeingParsed.SetPosY(Integer.parseInt(data.toString()));
+				bPosY = null;
+			}else if (playerBeingParsed != null){
 				playerBeingParsed.SetPosY(Integer.parseInt(data.toString()));
-				bPosX = false;
+				bPosY = false;
 			}else if (monsterBeingParsed != null){
 				monsterBeingParsed.SetPosY(Integer.parseInt(data.toString()));
-				bPosX = false;
+				bPosY = false;
 			}else if (roomBeingParsed != null) {
 				roomBeingParsed.SetPosY(Integer.parseInt(data.toString()));
-				bPosX = false;
+				bPosY = false;
 			}
 		}
 		else if (bType){
-			String str = data.toString();
-			playerBeingParsed.setType(str.charAt(0));
-			bType = false;
+			if (itemBeingParsed != null){
+				String str = data.toString();
+				itemBeingParsed.setType(str.charAt(0));
+				bType = false;
+			}else if (playerBeingParsed != null){
+				String str = data.toString();
+				playerBeingParsed.setType(str.charAt(0));
+				bType = false;
+			}else if (monsterBeingParsed != null){
+				String str = data.toString();
+				monsterBeingParsed.setType(str.charAt(0));
+				bType = false;
+			}else if (roomBeingParsed != null){
+				String str = data.toString();
+				roomBeingParsed.setType(str.charAt(0));
+				bType = false;
+			}
 		}
 		else if (bHp){
-			playerBeingParsed.setHp(Integer.parseInt(data.toString()));
-			bHp = false;
+			if (playerBeingParsed != null){
+				playerBeingParsed.setHp(Integer.parseInt(data.toString()));
+				bHp = false;
+			}else if (monsterBeingParsed){
+				monsterBeingParsed.setHp(Integer.parseInt(data.toString()));
+				bHp = false;
+			}
+
 		}
 		else if (bMaxHit){
-			playerBeingParsed.setMaxHit(Integer.parseInt(data.toString()));
-			bMaxHit = false;
+			if (playerBeingParsed != null){
+				playerBeingParsed.setMaxHit(Integer.parseInt(data.toString()));
+				bMaxHit = false;
+			}else if (monsterBeingParsed != null){
+				monsterBeingParsed.setMaxHit(Integer.parseInt(data.toString()));
+				bMaxHit = false;
+			}
+
 		}
 		else if (bVisible){
-			playerBeingParsed.setVisible();
-			bVisible = false;
+			if (itemBeingParsed != null){
+				itemBeingParsed.setVisible();
+				bVisible = false;
+			}else if (itemBeingParsed != null){
+				playerBeingParsed.setVisible();
+				bVisible = false;
+			}else if (monsterBeingParsed != null){
+				monsterBeingParsed.setVisible();
+				bVisible = false;
+			}else if (roomBeingParsed != null){
+				roomBeingParsed.setVisible();
+				bVisible = false;
+			}
 		}
 		else if (bInvisible){
-			playerBeingParsed.setInvisible();
-			bInvisible = false;
+			if (itemBeingParsed != null){
+				itemBeingParsed.setinVisible();
+				bInvisible = false;
+			}else if (itemBeingParsed != null){
+				playerBeingParsed.setInvisible();
+				bInvisible = false;
+			}else if (monsterBeingParsed != null){
+				monsterBeingParsed.setInvisible();
+				bInvisible = false;
+			}else if (roomBeingParsed != null){
+				roomBeingParsed.setInvisible();
+				bInvisible = false;
+			}
 		}
 		else if (bHpMoves){
-			playerBeingParsed.setHpMoves(Integer.parseInt(data.toString()));
+			if (itemBeingParsed != null){
+				itemBeingParsed.setHpMoves(Integer.parseInt(data.toString()));
+				bHpMoves = null;
+			}else if (playerBeingParsed != null){
+				playerBeingParsed.setHpMoves(Integer.parseInt(data.toString()));
+				bHpMoves = null;
+			}else if (monsterBeingParsed != null){
+				monsterBeingParsed.setHpMoves(Integer.parseInt(data.toString()));
+				bHpMoves = null;
+			}else if (roomBeingParsed != null){
+				roomBeingParsed.setHpMoves(Integer.parseInt(data.toString()));
+				bHpMoves = null;
+			}
 		}
 		else if (bWidth){
-			playerBeingParsed.SetWidth(Integer.parseInt(data.toString()));
+			if (itemBeingParsed != null){
+				itemBeingParsed.SetWidth(Integer.parseInt(data.toString()));
+				bWidth = false;
+			}else if (playerBeingParsed != null){
+				playerBeingParsed.SetWidth(Integer.parseInt(data.toString()));
+				bWidth = false;
+			}else if (monsterBeingParsed != null){
+				monsterBeingParsed.SetWidth(Integer.parseInt(data.toString()));
+				bWidth = false;
+			}else if (roomBeingParsed != null){
+				roomBeingParsed.SetWidth(Integer.parseInt(data.toString()));
+				bWidth = false;
+			}
 		}
 		else if (bHeight){
-			playerBeingParsed.setHeight(Integer.parseInt(data.toString()));
+			if (itemBeingParsed != null){
+				itemBeingParsed.setHeight(Integer.parseInt(data.toString()));
+				bHeight = null;
+			}else if (playerBeingParsed != null){
+				playerBeingParsed.setHeight(Integer.parseInt(data.toString()));
+				bHeight = null;
+			}else if (monsterBeingParsed != null){
+				monsterBeingParsed.setHeight(Integer.parseInt(data.toString()));
+				bHeight = null;
+			}else if (roomBeingParsed){
+				roomBeingParsed.setHeight(Integer.parseInt(data.toString()));
+				bHeight = null;
+			}
 		}
-		else if (bHeight){
-			playerBeingParsed.setHeight(Integer.parseInt(data.toString()));
+		else if (bActionCharVal){
+			if (itmactBeingParsed != null){
+				String str = data.toString();
+				itmactBeingParsed.setCharValue(str.charAt(0));
+				bActionCharVal = null;
+			}else if (crtactBeingParsed != null){
+				String str = data.toString();
+				ctractBeingParsed.setCharValue(str.charAt(0));
+				bActionCharVal = null;
+			}
 		}
-		else if (bHeight){
-			playerBeingParsed.setHeight(Integer.parseInt(data.toString()));
+		else if (bActionMessage){
+			if (itmactBeingParsed != null){
+				itmactBeingParsed.setMessage(data.toString());
+				bActionMessage = null;
+			}else if (crtactBeingParsed != null){
+				ctractBeingParsed.setMessage(data.toString());
+				bActionMessage = null;
+			}
 		}
-		else if (bHeight){
-			playerBeingParsed.setHeight(Integer.parseInt(data.toString()));
+		else if (bActionIntVal){
+			if (itmactBeingParsed != null){
+				itmactBeingParsed.setIntVal(Integer.parseInt(data.toString()));
+				bActionIntVal = null;
+			}else if (crtactBeingParsed != null){
+				ctractBeingParsed.setIntVal(Integer.parseInt(data.toString()));
+				bActionIntVal = null;
+			}
 		}
-		else if (bHeight){
-			playerBeingParsed.setHeight(Integer.parseInt(data.toString()));
+		else if (bItemIntVal){
+			if (itemBeingParsed != null){
+				itemBeingParsed.setIntValue(Integer.parseInt(data.toString()));
+				bItemIntVal = null;
+			}
 		}
-		else if (bHeight){
-			playerBeingParsed.setHeight(Integer.parseInt(data.toString()));
-		}	
+
 		
 		
 		if (qName.equalsIgnoreCase("Room")) {
 			roomBeingParsed = null;
-		}else if (qName.equalsIgnoreCase("Monster") {
+		}else if (qName.equalsIgnoreCase("Monster")) {
 			monsterBeingParsed = null;
-		}else if (qName.equalsIgnoreCase("Player") {
+		}else if (qName.equalsIgnoreCase("Player")) {
 			playerBeingParsed = null;
+		}else if (qName.equalsIgnoreCase("Item")){
+			itemBeingParsed = null;
+		}else if (qName.equalsIgnoreCase("ItemAction")){
+			itmactBeingParsed = null;
+		}else if (qName.equalsIgnoreCase("CreatureAction")){
+			crtactBeingParsed = null;
 		}
 	}
 }
