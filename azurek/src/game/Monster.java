@@ -3,9 +3,9 @@ public class Monster extends Creature{
 	
 	String name;
 	int room;
-	int serial;
+    int serial;
 	
-    public Monster(String _name, int _room, int _serial){
+    public Monster(String _name, int _room, int _serial, ){
 		name = _name;
 		room = _room;
 		serial = _serial;

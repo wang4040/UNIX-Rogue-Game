@@ -1,5 +1,9 @@
 package src;
 public class Displayable{
+    int Posx;
+    int Posy;
+    char Type;
+
     Displayable(){
         System.out.println("Displayable");
     }
@@ -24,6 +28,7 @@ public class Displayable{
     }
 
     void setType(char t){
+        Type = t;
         System.out.println("setType t: " + t);
     }
 
@@ -32,10 +37,12 @@ public class Displayable{
     }
 
     void SetPosX(int x){
+        Posx = x;
         System.out.println("SetPosX x: " + x);
     }
 
     void setPosY(int y){
+        Posy = y;
         System.out.println("setPosY y: " + y);
     }
 
