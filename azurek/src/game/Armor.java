@@ -1,12 +1,12 @@
 package game;
 public class Armor extends Item{
 	
-	String name;
 	int room;
 	int serial;
 	
     public Armor(String _name){
 		name = _name;
+		type = 'A';
         System.out.println("Construct Armor name is:" + name);
     }
 

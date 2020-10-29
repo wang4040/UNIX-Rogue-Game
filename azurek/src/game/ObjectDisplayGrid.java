@@ -12,6 +12,7 @@ public class ObjectDisplayGrid extends JFrame implements KeyListener, InputSubje
 	int topHeight;
 	int gameHeight;
     int bottomHeight;
+	int height;
     private static AsciiPanel terminal;
     private Char[][] objectGrid = null;
     private List<InputObserver> inputObservers = null;
@@ -21,16 +22,17 @@ public class ObjectDisplayGrid extends JFrame implements KeyListener, InputSubje
 		topHeight = _topHeight;
 		gameHeight = _gameHeight;
         bottomHeight = _bottomHeight;
-        int height = _gameHeight + _topHeight + _bottomHeight;
+        height = _gameHeight + _topHeight + _bottomHeight;
 
         terminal = new AsciiPanel(width, height);
 
+		//need to change to stack later *********************IMPORTANT****************************
         objectGrid = new Char[width][height];
 
         initializeDisplay();
 
         super.add(terminal);
-        super.setSize(width * 9, height * 16);
+        super.setSize(width, height);
         super.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         // super.repaint();
         // terminal.repaint( );
@@ -40,6 +42,15 @@ public class ObjectDisplayGrid extends JFrame implements KeyListener, InputSubje
         inputObservers = new ArrayList<>();
         super.repaint();
 	}
+	
+	public final void initializeDisplay() {
+        Char dash = new Char('-');
+		for (int i = 0; i < width; i++) {
+			addObjectToDisplay(dash, i, topHeight - 1);
+			addObjectToDisplay(dash, i, height - bottomHeight);
+		}
+        terminal.repaint();
+    }
 	
 	public void addObjectToDisplay(Char ch, int x, int y) {
         if ((0 <= x) && (x < objectGrid.length)) {

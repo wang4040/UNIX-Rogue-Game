@@ -9,12 +9,28 @@ public class Dungeon{
 
     public Dungeon(String _name, int _width, int _gameHeight, int _topHeight, int _bottomHeight){
         name = _name;
-	width = _width;
-    gameHeight = _gameHeight;
-    bottomHeight = _bottomHeight;
-    topHeight = _topHeight;
-	System.out.println("construct Dungeon with name: " + name + " width: " + width + " gameHeight: " + gameHeight);
+		width = _width;
+		gameHeight = _gameHeight;
+		bottomHeight = _bottomHeight;
+		topHeight = _topHeight;
+		System.out.println("construct Dungeon with name: " + name + " width: " + width + " gameHeight: " + gameHeight);
     }
+
+	int getWidth( ) {
+		return width;
+	}
+	
+	int getGameHeight( ) {
+		return gameHeight;
+	}
+	
+	int getTopHeight( ) {
+		return topHeight;
+	}
+	
+	int getBottomHeight( ) {
+		return bottomHeight;
+	}
 
     void getDungeon(String name, int width, int gameHeight){
         System.out.println("getDungeon name: " + name + " width: " + width + " gameHeight: " + gameHeight);

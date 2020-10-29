@@ -2,7 +2,10 @@ package game;
 public class Displayable{
     int Posx;
     int Posy;
+	int width;
+	int height;
     char Type;
+	String name;
 
     Displayable(){
         System.out.println("Displayable");
@@ -47,10 +50,43 @@ public class Displayable{
     }
 
     void SetWidth(int x){
+		width = x;
         System.out.println("SetWidth x: " + x);
     }
 
     void setHeight(int y){
+		height = y;
         System.out.println("setHeight y: " + y);
     }
+	
+	String getName( ) {
+		return name;
+	}
+	
+	void getPosX( ){
+        return Posx;
+    }
+
+    void getPosY( ){
+        return Posy;
+    }
+
+    void getWidth( ){
+		return width;
+    }
+
+    void getHeight( ){
+		return height;
+    }
+	
+	char getType( ) {
+		return Type;
+	}
+	
+	
+	
+	
+	
+	
+	
 }
