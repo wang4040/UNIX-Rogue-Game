@@ -48,17 +48,10 @@ public class Rogue implements Runnable{
             saxParser.parse(new File(fileName), handler);
         // This will change depending on what kind of XML we are parsing
             ArrayList<Room> rooms = handler.getRooms();
-        // print out all of the students.  This will change depending on 
-        // what kind of XML we are parsing
-            for (Room room : rooms) {
-                System.out.println(room);
-            }
-            /*
-            * the above is a different form of 
-            for (int i = 0; i < students.length; i++) {
-                System.out.println(students[i]);
-            }
-            */
+            ArrayList<Dungeon> dungeons = handler.getDungeons();
+            ArrayList<Item> items = hander.getItems();
+            ArrayList<Monster> monsters = handler.getMonsters();
+
     // these lines should be copied exactly.
         } catch (ParserConfigurationException | SAXException | IOException e) {
             e.printStackTrace(System.out);
