@@ -23,7 +23,7 @@ public class ObjectDisplayGrid extends JFrame implements KeyListener, InputSubje
         bottomHeight = _bottomHeight;
         int height = _gameHeight + _topHeight + _bottomHeight;
 
-        terminal = new AsciiPanel(width, height;
+        terminal = new AsciiPanel(width, height);
 
         objectGrid = new Char[width][height];
 
