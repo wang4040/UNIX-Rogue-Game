@@ -60,7 +60,7 @@ public class DungeonXMLHandler extends DefaultHandler {
 	@Override
     public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
 		if (qName.equalsIgnoreCase("Dungeon")) {
-			newDungeon = new Dungeon(attributes.getValue("name"), Integer.parseInt(attributes.getValue("width")), Integer.parseInt(attributes.getValue("gameHeight")));
+			newDungeon = new Dungeon(attributes.getValue("name"), Integer.parseInt(attributes.getValue("width")), Integer.parseInt(attributes.getValue("gameHeight")), Integer.parseInt(attributes.getValue("topHeight")), Integer.parseInt(attributes.getValue("bottomHeight")));
 			dungeonBeingParsed = newDungeon;
 		}else if(qName.equalsIgnoreCase("Room")) {
 			newRoom = new Room(attributes.getValue("room"));

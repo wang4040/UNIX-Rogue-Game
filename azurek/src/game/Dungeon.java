@@ -4,11 +4,15 @@ public class Dungeon{
     String name;
     int width;
     int gameHeight;
+    int bottomHeight;
+    int topHeight;
 
-    public Dungeon(String _name, int _width, int _gameHeight){
+    public Dungeon(String _name, int _width, int _gameHeight, int _topHeight, int _bottomHeight){
         name = _name;
 	width = _width;
-	gameHeight = _gameHeight;
+    gameHeight = _gameHeight;
+    bottomHeight = _bottomHeight;
+    topHeight = _topHeight;
 	System.out.println("construct Dungeon with name: " + name + " width: " + width + " gameHeight: " + gameHeight);
     }
 
