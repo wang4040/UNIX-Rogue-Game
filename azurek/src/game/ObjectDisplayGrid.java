@@ -1,6 +1,44 @@
+import asciiPanel.AsciiPanel;
+import javax.swing.*;
+import java.awt.event.*;
+import java.util.ArrayList;
+import java.util.List;
+
 package src;
-public class ObjectDisplayGrid{
-    void getObjectDisplayGrid(int gameHeight, int width, int topHeight){
+
+public class ObjectDisplayGrid extends JFrame implements KeyListener, InputSubject {
+	
+	int width;
+	int topHeight;
+	int gameHeight;
+	int bottomHeight;
+	
+	public ObjectDisplayGrid(int _width, int _topHeight, int _gameHeight, int _bottomHeight){
+        width = _width;
+		topHeight = _topHeight;
+		gameHeight = _gameHeight;
+		bottomHeight = _bottomHeight;
+
+        erminal = new AsciiPanel(width, height);
+
+        objectGrid = new Char[width][height];
+
+        initializeDisplay();
+
+        super.add(terminal);
+        super.setSize(width * 9, height * 16);
+        super.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        // super.repaint();
+        // terminal.repaint( );
+        super.setVisible(true);
+        terminal.setVisible(true);
+        super.addKeyListener(this);
+        inputObservers = new ArrayList<>();
+        super.repaint();
+	}
+	
+    void getObjectDisplayGrid(int _width, int _topHeight, int _gameHeight, int _bottomHeight){
+		
         System.out.println("getObjectDisplayGrid gameHeight: " + gameHeight + " width: " + width + " topHeight: " + topHeight);
     }
 
