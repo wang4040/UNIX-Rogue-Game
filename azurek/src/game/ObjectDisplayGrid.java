@@ -20,9 +20,10 @@ public class ObjectDisplayGrid extends JFrame implements KeyListener, InputSubje
         width = _width;
 		topHeight = _topHeight;
 		gameHeight = _gameHeight;
-		bottomHeight = _bottomHeight;
+        bottomHeight = _bottomHeight;
+        int height = _gameHeight + _topHeight + _bottomHeight;
 
-        terminal = new AsciiPanel(width, _gameHeight + _topHeight + _bottomHeight);
+        terminal = new AsciiPanel(width, height;
 
         objectGrid = new Char[width][height];
 
@@ -45,8 +46,21 @@ public class ObjectDisplayGrid extends JFrame implements KeyListener, InputSubje
         System.out.println("getObjectDisplayGrid gameHeight: " + gameHeight + " width: " + width + " topHeight: " + topHeight);
     }
 
-    void setTopMessageHeight(int topHeight){
-        System.out.println("setTopMessageHeight topHeight: " + topHeight);
+    void setTopMessageHeight(int _topHeight){
+        topHeight = _topHeight;
+        //System.out.println("setTopMessageHeight topHeight: " + topHeight);
+    }
+
+    void setBottomMessageHeight(int _bottomHeight){
+        bottomHeight = _bottomHeight;
+    }
+
+    void setGameHeight(int _gameHeight){
+        gameHeight = _gameHeight;
+    }
+
+    void setWidth(int _width){
+        width = _width;
     }
 
     public void keyTyped(KeyEvent e){
@@ -57,7 +71,7 @@ public class ObjectDisplayGrid extends JFrame implements KeyListener, InputSubje
 
     }
 
-    public void keyReleased(Keyevent e){
+    public void keyReleased(KeyEvent e){
 
     }
 
