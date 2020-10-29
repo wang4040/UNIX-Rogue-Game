@@ -1,4 +1,4 @@
-package src;
+package game;
 public class Scroll extends Item{
 	
 	String name;

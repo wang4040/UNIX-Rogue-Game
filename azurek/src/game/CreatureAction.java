@@ -1,4 +1,4 @@
-package src;
+package game;
 public class CreatureAction extends Action{
     CreatureAction(Creature owner){
         System.out.println("CreatureAction");

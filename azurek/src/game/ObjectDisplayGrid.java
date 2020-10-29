@@ -4,7 +4,7 @@ import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.List;
 
-package src;
+package game;
 
 public class ObjectDisplayGrid extends JFrame implements KeyListener, InputSubject {
 	

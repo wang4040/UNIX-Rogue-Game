@@ -1,4 +1,4 @@
-package src;
+package game;
 public class Room extends Structure{
     Room(String s){
         System.out.println("Room s: " + s);

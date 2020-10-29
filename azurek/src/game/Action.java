@@ -1,4 +1,4 @@
-package src;
+package game;
 public class Action {
     void setMessage(String msg){
         System.out.println("setMessage Action msg is: " + msg);

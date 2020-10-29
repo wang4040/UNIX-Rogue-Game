@@ -1,4 +1,4 @@
-package src;
+package game;
 public class Passage extends Structure{
     Passage(){
         System.out.println("Passage");

@@ -1,4 +1,4 @@
-package src;
+package game;
 public class Creature extends Displayable{
 	
 	int hp;
