@@ -22,7 +22,7 @@ public class ObjectDisplayGrid extends JFrame implements KeyListener, InputSubje
 		gameHeight = _gameHeight;
 		bottomHeight = _bottomHeight;
 
-        terminal = new AsciiPanel(width, height);
+        terminal = new AsciiPanel(width, _gameHeight); //not too sure about gameheight
 
         objectGrid = new Char[width][height];
 
@@ -48,4 +48,17 @@ public class ObjectDisplayGrid extends JFrame implements KeyListener, InputSubje
     void setTopMessageHeight(int topHeight){
         System.out.println("setTopMessageHeight topHeight: " + topHeight);
     }
+
+    public void keyTyped(KeyEvent e){
+
+    }
+
+    public void keyPressed(KeyEvent e){
+
+    }
+
+    public void keyReleased(Keyevent e){
+        
+    }
+
 }
