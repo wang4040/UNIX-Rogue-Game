@@ -14,7 +14,7 @@ public class ObjectDisplayGrid extends JFrame implements KeyListener, InputSubje
     int bottomHeight;
 	int height;
     private static AsciiPanel terminal;
-    private Char[][] objectGrid = null;
+    private Stack<Char>[][] objectGrid = null;
     private List<InputObserver> inputObservers = null;
 	
 	public ObjectDisplayGrid(int _width, int _topHeight, int _gameHeight, int _bottomHeight){
@@ -26,8 +26,8 @@ public class ObjectDisplayGrid extends JFrame implements KeyListener, InputSubje
 
         terminal = new AsciiPanel(width, height);
 
-		//need to change to stack later *********************IMPORTANT****************************
-        objectGrid = new Char[width][height];
+		//changed to 2D grid of stacks
+        objectGrid = (Stack<Char>[][]) new Stack[width][height];
 
         initializeDisplay();
 
@@ -55,14 +55,16 @@ public class ObjectDisplayGrid extends JFrame implements KeyListener, InputSubje
 	public void addObjectToDisplay(Char ch, int x, int y) {
         if ((0 <= x) && (x < objectGrid.length)) {
             if ((0 <= y) && (y < objectGrid[0].length)) {
-                objectGrid[x][y] = ch;
+                objectGrid[x][y].push(ch);
                 writeToTerminal(x, y);
             }
         }
     }
 
+	//simply changed to printing the topmost element in stack
     private void writeToTerminal(int x, int y) {
-        char ch = objectGrid[x][y].getChar();
+		Char chObject = objectGrid[x][y].peek();
+        char ch = chObject.getChar();
         terminal.write(ch, x, y);
         terminal.repaint();
     }
