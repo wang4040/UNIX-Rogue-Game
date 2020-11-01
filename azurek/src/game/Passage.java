@@ -10,8 +10,8 @@ public class Passage extends Structure{
 	
     Passage( ){
 		System.out.println("new Passage");
-		room1 = new Room("Room1");
-		room2 = new Room("Room2");
+		room1 = new Room("1");
+		room2 = new Room("2");
     }
 
     void setName(String s){
