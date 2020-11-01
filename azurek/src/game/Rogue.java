@@ -37,7 +37,7 @@ public class Rogue implements Runnable{
 		// using.  This worked for NetBeans.
         case 1: fileName = "xmlfiles/" + args[0];
 			break;
-        default: System.out.println("java Test <xmlfilename>");
+        default: System.out.println("java Rogue <xmlfilename>");
 			return;
         }
 
@@ -50,94 +50,98 @@ public class Rogue implements Runnable{
             DungeonXMLHandler handler = new DungeonXMLHandler();
             saxParser.parse(new File(fileName), handler);
 			// This will change depending on what kind of XML we are parsing
-            ArrayList<Room> rooms = handler.getRooms();
-            ArrayList<Dungeon> dungeons = handler.getDungeons();
-            ArrayList<Item> items = handler.getItems();
-            ArrayList<Monster> monsters = handler.getMonsters();
-			ArrayList<Player> players = handler.getPlayers();
-        } catch (ParserConfigurationException | SAXException | IOException e) {
-            e.printStackTrace(System.out);
-        }
-		
-		int width = dungeons[0].getwidth();
-		int gameHeight = dungeons[0].getGameHeight();
-		int topHeight = dungeons[0].getTopHeight();
-		int bottomHeight = dungeons[0].getBottomHeight();
-		
-		Rogue rogue = new Rogue(width, topHeight, gameHeight, bottomHeight);
-		//ObjectDisplayGrid gameGrid = rogue.getDisplayGrid();
-		
-		//Below used to read inputs
-		//test.keyStrokePrinter = new Thread(new KeyStrokePrinter(displayGrid));
-        //test.keyStrokePrinter.start();
-		
-		
-		
-		
-		//BELOW IS TEST CODE TO DISPLAY EVERYTHING
-		displayGrid.initializeDisplay();
-		int i, j, m, n;
-		Char dash = new Char('-');
-		Char wall = new Char('|');
-		Char hash = new Char('#');
-		Char plus = new Char('+');
-		
-		//print all rooms
-		for (i = 0; i < rooms.size(); i++) {
-			//basically just for loop across to print '-', and for loop down to print '|', super easy
-			for(m = rooms[i].getPosX(); m < (rooms[i].getPosX() + rooms[i].getWidth); m++) {
-				displayGrid.addObjectToDisplay(dash, m, rooms[i].getPosY());
-				displayGrid.addObjectToDisplay(dash, m, rooms[i].getPosY() + rooms[i].getHeight);
-			}
-			for(n = rooms[i].getPosY(); n < (rooms[i].getPosY() + rooms[i].getHeight); n++) {
-				displayGrid.addObjectToDisplay(dash, rooms[i].getPosX(), n);
-				displayGrid.addObjectToDisplay(dash, rooms[i].getPosX() + rooms[i].getWidth, n);
-			}
-		}
-		//print all items
-		for (i = 0; i < items.size(); i++) {
-			Char ch = new Char(items[i].getType());
-			displayGrid.addObjectToDisplay(ch, items[i].getPosX(), items[i].getPosY());
-		}
-		//print all monsters
-		for (i = 0; i < monsters.size(); i++) {
-			Char ch = new Char(monsters[i].getType());
-			displayGrid.addObjectToDisplay(ch, monsters[i].getPosX(), monsters[i].getPosY());
-		}
-		//print all passages
-		for (i = 0; i < passages.size(); i++) {
-			ArrayList<int> cornersPosX = passages[i].getCornerPosX();
-			ArrayList<int> cornerPosY = passages[i].getCornerPosY();
-			numCorners = cornerPosX.size();
 
-			//Use for loop to display passage such that beginning and end are +, and everything in between is #, connecting all the corners
-			displayGrid.addObjectToDisplay(plus, cornersPosX[0], cornersPosY[0]); //prints first corner as plus
-			for (j = 0; j < (numCorners - 1); j++) { //for loop that doesn't print current corner, but the next corner and the path towards it
-				if (cornersPosX[j] < cornersPosX[j + 1]) {
-					for (m = cornersPosX[j] + 1; m < cornersPosX[j + 1]; m++) {
-						displayGrid.addObjectToDisplay(hash, m, cornersPosY[j]);
-					}
-				}else if (cornersPosX[j] > cornersPosX[j + 1]) {
-					for (m = cornersPosX[j] - 1; m > cornersPosX[j + 1]; m--) {
-						displayGrid.addObjectToDisplay(hash, m, cornersPosY[j]);
-					}
-				}else if (cornersPosY[j] < cornersPosY[j + 1]) {
-					for (n = cornersPosY[j] + 1; n < cornersPosY[j + 1]; n++) {
-						displayGrid.addObjectToDisplay(hash, cornersPosX[j], n);
-					}
-				}else if (cornersPosY[j] > cornersPosY[j + 1]) {
-					for (n = cornersPosY[j] - 1; n > cornersPosY[j + 1]; n--) {
-						displayGrid.addObjectToDisplay(hash, cornersPosX[j], n);
-					}
+
+
+			// This will change depending on what kind of XML we are parsing
+			ArrayList<Room> rooms = handler.getRooms();
+			ArrayList<Dungeon> dungeons = handler.getDungeons();
+			ArrayList<Item> items = handler.getItems();
+			ArrayList<Monster> monsters = handler.getMonsters();
+			ArrayList<Player> players = handler.getPlayers();	
+			ArrayList<Passage> passages = handler.getPassages();	
+			int width = dungeons.get(0).getWidth();
+			int gameHeight = dungeons.get(0).getGameHeight();
+			int topHeight = dungeons.get(0).getTopHeight();
+			int bottomHeight = dungeons.get(0).getBottomHeight();
+			
+			Rogue rogue = new Rogue(width, topHeight, gameHeight, bottomHeight);
+			//ObjectDisplayGrid gameGrid = rogue.getDisplayGrid();
+			
+			//Below used to read inputs
+			//test.keyStrokePrinter = new Thread(new KeyStrokePrinter(displayGrid));
+			//test.keyStrokePrinter.start();
+			
+			
+			
+			
+			//BELOW IS TEST CODE TO DISPLAY EVERYTHING
+			displayGrid.initializeDisplay();
+			int i, j, m, n;
+			Char dash = new Char('-');
+			Char wall = new Char('|');
+			Char hash = new Char('#');
+			Char plus = new Char('+');
+			
+			//print all rooms
+			for (i = 0; i < rooms.size(); i++) {
+				//basically just for loop across to print '-', and for loop down to print '|', super easy
+				for(m = rooms.get(i).getPosX(); m < (rooms.get(i).getPosX() + rooms.get(i).getWidth()); m++) {
+					displayGrid.addObjectToDisplay(dash, m, rooms.get(i).getPosY());
+					displayGrid.addObjectToDisplay(dash, m, rooms.get(i).getPosY() + rooms.get(i).getHeight());
 				}
-				if (j == (numCorners - 2)) { //if the next corner is the final one, print plus instead
-					displayGrid.addObjectToDisplay(plus, cornersPosX[j + 1], cornersPosY[j + 1]);
-				}else {
-					displayGrid.addObjectToDisplay(hash, cornersPosX[j + 1], cornersPosY[j + 1]);
+				for(n = rooms.get(i).getPosY(); n < (rooms.get(i).getPosY() + rooms.get(i).getHeight()); n++) {
+					displayGrid.addObjectToDisplay(dash, rooms.get(i).getPosX(), n);
+					displayGrid.addObjectToDisplay(dash, rooms.get(i).getPosX() + rooms.get(i).getWidth(), n);
 				}
 			}
-		}
-		//Finally, print player
-		displayGrid.addObjectToDisplay(new Char('@'), player[0].getPosX(), player[0].getPosY());
+			//print all items
+			for (i = 0; i < items.size(); i++) {
+				Char ch = new Char(items.get(i).getType());
+				displayGrid.addObjectToDisplay(ch, items.get(i).getPosX(), items.get(i).getPosY());
+			}
+			//print all monsters
+			for (i = 0; i < monsters.size(); i++) {
+				Char ch = new Char(monsters.get(i).getType());
+				displayGrid.addObjectToDisplay(ch, monsters.get(i).getPosX(), monsters.get(i).getPosY());
+			}
+			//print all passages
+			for (i = 0; i < passages.size(); i++) {
+				ArrayList<Integer> cornersPosX = passages.get(i).getCornerPosX();
+				ArrayList<Integer> cornersPosY = passages.get(i).getCornerPosY();
+				int numCorners = cornersPosX.size();
+
+				//Use for loop to display passage such that beginning and end are +, and everything in between is #, connecting all the corners
+				displayGrid.addObjectToDisplay(plus, cornersPosX.get(0), cornersPosY.get(0)); //prints first corner as plus
+				for (j = 0; j < (numCorners - 1); j++) { //for loop that doesn't print current corner, but the next corner and the path towards it
+					if (cornersPosX.get(j) < cornersPosX.get(j + 1)) {
+						for (m = cornersPosX.get(j) + 1; m < cornersPosX.get(j + 1); m++) {
+							displayGrid.addObjectToDisplay(hash, m, cornersPosY.get(j));
+						}
+					}else if (cornersPosX.get(j) > cornersPosX.get(j + 1)) {
+						for (m = cornersPosX.get(j) - 1; m > cornersPosX.get(j + 1); m--) {
+							displayGrid.addObjectToDisplay(hash, m, cornersPosY.get(j));
+						}
+					}else if (cornersPosY.get(j) < cornersPosY.get(j + 1)) {
+						for (n = cornersPosY.get(j) + 1; n < cornersPosY.get(j + 1); n++) {
+							displayGrid.addObjectToDisplay(hash, cornersPosX.get(j), n);
+						}
+					}else if (cornersPosY.get(j) > cornersPosY.get(j + 1)) {
+						for (n = cornersPosY.get(j) - 1; n > cornersPosY.get(j + 1); n--) {
+							displayGrid.addObjectToDisplay(hash, cornersPosX.get(j), n);
+						}
+					}
+					if (j == (numCorners - 2)) { //if the next corner is the final one, print plus instead
+						displayGrid.addObjectToDisplay(plus, cornersPosX.get(j + 1), cornersPosY.get(j + 1));
+					}else {
+						displayGrid.addObjectToDisplay(hash, cornersPosX.get(j + 1), cornersPosY.get(j + 1));
+					}
+				}
+			}
+			//Finally, print player
+			displayGrid.addObjectToDisplay(new Char('@'), players.get(0).getPosX(), players.get(0).getPosY());
+	} catch (ParserConfigurationException | SAXException | IOException e) {
+		e.printStackTrace(System.out);
+	}
     }
 }

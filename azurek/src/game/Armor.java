@@ -2,7 +2,8 @@
 public class Armor extends Item{
 	
 	int room;
-	int serial;
+    int serial;
+    char type;
 	
     public Armor(String _name){
 		name = _name;

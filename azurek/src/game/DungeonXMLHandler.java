@@ -260,7 +260,7 @@ public class DungeonXMLHandler extends DefaultHandler {
 				roomBeingParsed.setVisible();
 				bVisible = false;
 			}else if (passageBeingParsed != null) {
-				passageBoingParsed.setVisible();
+				passageBeingParsed.setVisible();
 				bVisible = false;
 			}
 		}

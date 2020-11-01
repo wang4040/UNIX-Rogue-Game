@@ -2,7 +2,8 @@
 public class Sword extends Item{
 	
 	int room;
-	int serial;
+    int serial;
+    char type;
 	
     public Sword(String _name){
 		name = _name;

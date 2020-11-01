@@ -63,19 +63,19 @@ public class Displayable{
 		return name;
 	}
 	
-	void getPosX( ){
+	int getPosX( ){
         return Posx;
     }
 
-    void getPosY( ){
+    int getPosY( ){
         return Posy;
     }
 
-    void getWidth( ){
+    int getWidth( ){
 		return width;
     }
 
-    void getHeight( ){
+    int getHeight( ){
 		return height;
     }
 	

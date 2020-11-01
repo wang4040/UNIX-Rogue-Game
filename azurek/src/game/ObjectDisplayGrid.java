@@ -24,7 +24,7 @@ public class ObjectDisplayGrid extends JFrame implements KeyListener, InputSubje
 		gameHeight = _gameHeight;
         bottomHeight = _bottomHeight;
         height = _gameHeight + _topHeight + _bottomHeight;
-
+        System.out.println(height);
         terminal = new AsciiPanel(width, height);
 
 		//changed to 2D grid of stacks
@@ -103,12 +103,11 @@ public class ObjectDisplayGrid extends JFrame implements KeyListener, InputSubje
     public void keyReleased(KeyEvent e){
 
     }
-
 	@Override
     public void registerInputObserver(InputObserver observer) {
-        if (DEBUG > 0) {
+        /*if (DEBUG > 0) {
             System.out.println(CLASSID + ".registerInputObserver " + observer.toString());
-        }
+        }*/
         inputObservers.add(observer);
     }
 
