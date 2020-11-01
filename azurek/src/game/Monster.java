@@ -18,4 +18,8 @@ public class Monster extends Creature{
     void setID(int room, int serial){
         System.out.println("setID Monster room: " + room + " serial: " + serial);
     }
+
+    int getRoom(){
+        return room;
+    }
 }

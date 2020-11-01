@@ -77,33 +77,53 @@ public class Rogue implements Runnable{
 			
 			//BELOW IS TEST CODE TO DISPLAY EVERYTHING
 			displayGrid.initializeDisplay();
-			int i, j, m, n;
+			int i, j, m, n, k;
 			Char dash = new Char('X');
-			Char wall = new Char('.');
+			Char dot = new Char('.');
 			Char hash = new Char('#');
 			Char plus = new Char('+');
 			
 			//print all rooms
 			for (i = 0; i < rooms.size(); i++) {
 				//basically just for loop across to print '-', and for loop down to print '|', super easy
-				for(m = rooms.get(i).getPosX(); m < (rooms.get(i).getPosX() + rooms.get(i).getWidth()); m++) {
+				for(m = rooms.get(i).getPosX(); m < (rooms.get(i).getPosX() + rooms.get(i).getWidth() - 1); m++) {
 					displayGrid.addObjectToDisplay(dash, m, rooms.get(i).getPosY());
-					displayGrid.addObjectToDisplay(dash, m, rooms.get(i).getPosY() + rooms.get(i).getHeight());
+					displayGrid.addObjectToDisplay(dash, m, rooms.get(i).getPosY() + rooms.get(i).getHeight() - 1);
 				}
-				for(n = rooms.get(i).getPosY(); n < (rooms.get(i).getPosY() + rooms.get(i).getHeight()); n++) {
+				for(n = rooms.get(i).getPosY(); n <= (rooms.get(i).getPosY() + rooms.get(i).getHeight() - 1); n++) {
 					displayGrid.addObjectToDisplay(dash, rooms.get(i).getPosX(), n);
-					displayGrid.addObjectToDisplay(dash, rooms.get(i).getPosX() + rooms.get(i).getWidth(), n);
+					displayGrid.addObjectToDisplay(dash, rooms.get(i).getPosX() + rooms.get(i).getWidth() - 1, n);
+				}
+				for(j = rooms.get(i).getPosX() + 1; j < (rooms.get(i).getPosX() + rooms.get(i).getWidth() - 1); j++) {
+					for(k = rooms.get(i).getPosY() + 1; k < (rooms.get(i).getPosY() + rooms.get(i).getHeight() - 1); k++){
+						displayGrid.addObjectToDisplay(dot, j, k);
+					}
 				}
 			}
+
 			//print all items
+			int roomX = 0;
+			int roomY = 0;
 			for (i = 0; i < items.size(); i++) {
 				Char ch = new Char(items.get(i).getType());
-				displayGrid.addObjectToDisplay(ch, items.get(i).getPosX(), items.get(i).getPosY());
+				for (j = 0; j < rooms.size(); j++){
+					if (rooms.get(j).getId() == monsters.get(i).getRoom()){
+						roomX = rooms.get(j).getPosX();
+						roomY = rooms.get(j).getPosY(); 
+					}
+				}
+				displayGrid.addObjectToDisplay(ch, items.get(i).getPosX() + roomX, items.get(i).getPosY() + roomY);
 			}
 			//print all monsters
 			for (i = 0; i < monsters.size(); i++) {
 				Char ch = new Char(monsters.get(i).getType());
-				displayGrid.addObjectToDisplay(ch, monsters.get(i).getPosX(), monsters.get(i).getPosY());
+				for (j = 0; j < rooms.size(); j++){
+					if (rooms.get(j).getId() == monsters.get(i).getRoom()){
+						roomX = rooms.get(j).getPosX();
+						roomY = rooms.get(j).getPosY(); 
+					}
+				}
+				displayGrid.addObjectToDisplay(ch, monsters.get(i).getPosX() + roomX, monsters.get(i).getPosY() + roomY);
 			}
 			//print all passages
 			for (i = 0; i < passages.size(); i++) {
@@ -139,7 +159,13 @@ public class Rogue implements Runnable{
 				}
 			}
 			//Finally, print player
-			displayGrid.addObjectToDisplay(new Char('@'), players.get(0).getPosX(), players.get(0).getPosY());
+			for (j = 0; j < rooms.size(); j++){
+				if (rooms.get(j).getId() == monsters.get(i).getRoom()){
+					roomX = rooms.get(j).getPosX();
+					roomY = rooms.get(j).getPosY(); 
+				}
+			}
+			displayGrid.addObjectToDisplay(new Char('@'), players.get(0).getPosX() + roomX, players.get(0).getPosY() + roomY);
 	} catch (ParserConfigurationException | SAXException | IOException e) {
 		e.printStackTrace(System.out);
 	}
