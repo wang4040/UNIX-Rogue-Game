@@ -3,8 +3,9 @@ import javax.swing.*;
 import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
-package game;
+//package game;
 
 public class ObjectDisplayGrid extends JFrame implements KeyListener, InputSubject {
 	
@@ -101,6 +102,14 @@ public class ObjectDisplayGrid extends JFrame implements KeyListener, InputSubje
 
     public void keyReleased(KeyEvent e){
 
+    }
+
+	@Override
+    public void registerInputObserver(InputObserver observer) {
+        if (DEBUG > 0) {
+            System.out.println(CLASSID + ".registerInputObserver " + observer.toString());
+        }
+        inputObservers.add(observer);
     }
 
 }

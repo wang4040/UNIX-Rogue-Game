@@ -1,4 +1,4 @@
-package game;
+//package game;
 import java.io.File;
 import java.io.IOException;
 import javax.xml.parsers.ParserConfigurationException;
@@ -52,7 +52,7 @@ public class Rogue implements Runnable{
 			// This will change depending on what kind of XML we are parsing
             ArrayList<Room> rooms = handler.getRooms();
             ArrayList<Dungeon> dungeons = handler.getDungeons();
-            ArrayList<Item> items = hander.getItems();
+            ArrayList<Item> items = handler.getItems();
             ArrayList<Monster> monsters = handler.getMonsters();
 			ArrayList<Player> players = handler.getPlayers();
         } catch (ParserConfigurationException | SAXException | IOException e) {

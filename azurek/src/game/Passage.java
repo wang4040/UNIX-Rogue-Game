@@ -1,10 +1,12 @@
-package game;
+//package game;
+import java.util.ArrayList;
+
 public class Passage extends Structure{
 	
 	Room room1;
 	Room room2;
-	ArrayList<int> cornersPosX = new ArrayList<int>; //List of corners' PosX coordinates
-	ArrayList<int> cornersPosY = new ArrayList<int>; //List of corners' PosY coordinates
+	ArrayList<Integer> cornersPosX = new ArrayList<>(); //List of corners' PosX coordinates
+	ArrayList<Integer> cornersPosY = new ArrayList<>(); //List of corners' PosY coordinates
 	
     Passage( ){
         System.out.println("new Passage");
@@ -28,11 +30,11 @@ public class Passage extends Structure{
 		cornersPosY.add(PosY);
 	}
 	
-	public ArrayList<int> getCornerPosX( ) {
+	public ArrayList<Integer> getCornerPosX( ) {
 		return cornersPosX;
 	}
 	
-	public ArrayList<int> getCornerPosY( ) {
+	public ArrayList<Integer> getCornerPosY( ) {
 		return cornersPosY;
 	}
 }

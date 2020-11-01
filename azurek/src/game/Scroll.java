@@ -1,4 +1,4 @@
-package game;
+//package game;
 public class Scroll extends Item{
 	int room;
 	int serial;

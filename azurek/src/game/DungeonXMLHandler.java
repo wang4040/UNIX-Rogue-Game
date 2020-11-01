@@ -1,4 +1,4 @@
-package game;
+//package game;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
@@ -68,6 +68,7 @@ public class DungeonXMLHandler extends DefaultHandler {
 	//implicit call to DefaultHandler
 	public DungeonXMLHandler() {
 	}
+	
 	Dungeon newDungeon;
 	Room newRoom;
 	Monster newMonster;
@@ -77,6 +78,7 @@ public class DungeonXMLHandler extends DefaultHandler {
 	Armor newArmor;
 	Sword newSword;
 	ItemAction newItmAction;
+	Passage newPassage;
 
 	@Override
     public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
