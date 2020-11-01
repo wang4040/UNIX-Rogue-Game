@@ -9,7 +9,9 @@ public class Passage extends Structure{
 	ArrayList<Integer> cornersPosY = new ArrayList<>(); //List of corners' PosY coordinates
 	
     Passage( ){
-        System.out.println("new Passage");
+		System.out.println("new Passage");
+		room1 = new Room("Room1");
+		room2 = new Room("Room2");
     }
 
     void setName(String s){

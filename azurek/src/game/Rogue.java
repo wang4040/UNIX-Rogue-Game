@@ -78,8 +78,8 @@ public class Rogue implements Runnable{
 			//BELOW IS TEST CODE TO DISPLAY EVERYTHING
 			displayGrid.initializeDisplay();
 			int i, j, m, n;
-			Char dash = new Char('-');
-			Char wall = new Char('|');
+			Char dash = new Char('X');
+			Char wall = new Char('.');
 			Char hash = new Char('#');
 			Char plus = new Char('+');
 			

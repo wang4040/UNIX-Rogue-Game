@@ -49,7 +49,7 @@ public class ObjectDisplayGrid extends JFrame implements KeyListener, InputSubje
 	}
 	
 	public final void initializeDisplay() {
-        Char dash = new Char('-');
+        Char dash = new Char(' ');
 		for (int i = 0; i < width; i++) {
 			addObjectToDisplay(dash, i, topHeight - 1);
 			addObjectToDisplay(dash, i, height - bottomHeight);
