@@ -24,11 +24,15 @@ public class ObjectDisplayGrid extends JFrame implements KeyListener, InputSubje
 		gameHeight = _gameHeight;
         bottomHeight = _bottomHeight;
         height = _gameHeight + _topHeight + _bottomHeight;
-        System.out.println(height);
         terminal = new AsciiPanel(width, height);
 
 		//changed to 2D grid of stacks
         objectGrid = (Stack<Char>[][]) new Stack[width][height];
+        for (int i = 0; i < width; i++){
+            for (int j = 0; j < height; j++){
+                objectGrid[i][j] = new Stack<Char>();
+            }
+        }
 
         initializeDisplay();
 
@@ -56,7 +60,7 @@ public class ObjectDisplayGrid extends JFrame implements KeyListener, InputSubje
 	public void addObjectToDisplay(Char ch, int x, int y) {
         if ((0 <= x) && (x < objectGrid.length)) {
             if ((0 <= y) && (y < objectGrid[0].length)) {
-                objectGrid[x][y].push(ch);
+                objectGrid[x][y].add(ch);
                 writeToTerminal(x, y);
             }
         }
