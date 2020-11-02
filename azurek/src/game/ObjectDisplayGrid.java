@@ -20,6 +20,7 @@ public class ObjectDisplayGrid extends JFrame implements KeyListener, InputSubje
     int height;
     int PosX;
     int PosY;
+    int isfirst;
     private static AsciiPanel terminal;
     private Stack<Char>[][] objectGrid = null;
     private List<InputObserver> inputObservers = null;
@@ -80,7 +81,7 @@ public class ObjectDisplayGrid extends JFrame implements KeyListener, InputSubje
         if ((0 <= x) && (x < objectGrid.length)) {
             if ((0 <= y) && (y < objectGrid[0].length)) {
                 objectGrid[x][y].pop();
-                if (objectGrid[x][y].peek() == null){
+                if (objectGrid[x][y].empty() == true){
                     objectGrid[x][y].add(new Char(' '));
                 }
                 writeToTerminal(x, y);

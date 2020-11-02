@@ -16,20 +16,20 @@ public class Rogue implements Runnable{
     private static ObjectDisplayGrid displayGrid = null;
     private Thread keyStrokePrinter;
 
-	SAXParserFactory saxParserFactory;
-	SAXParser saxParser;
-    DungeonXMLHandler handler;
+	static SAXParserFactory saxParserFactory;
+	static SAXParser saxParser;
+    static DungeonXMLHandler handler;
 	
-	ArrayList<Room> rooms;
-	ArrayList<Dungeon> dungeons;
-	ArrayList<Item> items;
-	ArrayList<Monster> monsters;
-	ArrayList<Player> players;
-	ArrayList<Passage> passages;
-	int width;
-	int gameHeight;
-	int topHeight;
-	int bottomHeight;	
+	static ArrayList<Room> rooms;
+	static ArrayList<Dungeon> dungeons;
+	static ArrayList<Item> items;
+	static ArrayList<Monster> monsters;
+	static ArrayList<Player> players;
+	static ArrayList<Passage> passages;
+	static int width;
+	static int gameHeight;
+	static int topHeight;
+	static int bottomHeight;	
 
 
     public Rogue(int width, int topHeight, int gameHeight, int bottomHeight){
@@ -44,7 +44,7 @@ public class Rogue implements Runnable{
 		
     }
 
-    public static void main(String[] args){
+    public static void main(String[] args) throws Exception{
         // check if a filename is passed in.  If not, print a usage message.
         // If it is, open the file
         String fileName = null;
@@ -83,6 +83,7 @@ public class Rogue implements Runnable{
 			e.printStackTrace(System.out);
 		}
 		
+		Rogue rogue = new Rogue(width, topHeight, gameHeight, bottomHeight);
 		displayGrid.initializeDisplay();
 		int i, j, m, n, k;
 		Char dash = new Char('X');
@@ -167,10 +168,10 @@ public class Rogue implements Runnable{
 			}
 		}
 		displayGrid.addObjectToDisplay(new Char('@'), players.get(0).getPosX() + roomX, topHeight + players.get(0).getPosY() + roomY);
-		displayGrid.setPlayerX(players.get(0).getPosX() + roomX)
+		displayGrid.setPlayerX(players.get(0).getPosX() + roomX);
 		displayGrid.setPlayerY(topHeight + players.get(0).getPosY() + roomY);
 		
-		Rogue rogue = new Rogue(width, topHeight, gameHeight, bottomHeight);
+		
         Thread rogueThread = new Thread(rogue);
         rogueThread.start();
 
