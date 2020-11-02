@@ -16,6 +16,7 @@ public class Rogue implements Runnable{
     private static ObjectDisplayGrid displayGrid = null;
     private Thread keyStrokePrinter;
 
+	SAXParserFactory saxParserFactory;
 	SAXParser saxParser;
     DungeonXMLHandler handler;
 	
@@ -40,6 +41,48 @@ public class Rogue implements Runnable{
 	}
 
     public void run(){ //This is used when threads are used and inputs are read
+		
+    }
+
+    public static void main(String[] args){
+        // check if a filename is passed in.  If not, print a usage message.
+        // If it is, open the file
+        String fileName = null;
+        switch (args.length) {
+        // note that the relative file path may depend on what IDE you are
+		// using.  This worked for NetBeans.
+        case 1: fileName = "xmlfiles/" + args[0];
+			break;
+        default: System.out.println("java Rogue <xmlfilename>");
+			return;
+        }
+
+		// Create a saxParserFactory, that will allow use to create a parser
+		// Use this line unchanged
+        saxParserFactory = SAXParserFactory.newInstance();
+
+        try {
+            saxParser = saxParserFactory.newSAXParser();
+            handler = new DungeonXMLHandler();
+            saxParser.parse(new File(fileName), handler);
+			// This will change depending on what kind of XML we are parsing
+
+			// This will change depending on what kind of XML we are parsing
+			rooms = handler.getRooms();
+			dungeons = handler.getDungeons();
+			items = handler.getItems();
+			monsters = handler.getMonsters();
+			players = handler.getPlayers();	
+			passages = handler.getPassages();	
+			width = dungeons.get(0).getWidth();
+			gameHeight = dungeons.get(0).getGameHeight();
+			topHeight = dungeons.get(0).getTopHeight();
+			bottomHeight = dungeons.get(0).getBottomHeight();
+			
+		}catch (ParserConfigurationException | SAXException | IOException e) {
+			e.printStackTrace(System.out);
+		}
+		
 		displayGrid.initializeDisplay();
 		int i, j, m, n, k;
 		Char dash = new Char('X');
@@ -123,57 +166,19 @@ public class Rogue implements Runnable{
 				roomY = rooms.get(j).getPosY();
 			}
 		}
-		if (displayGrid.getIsFirst == 1) {
-			displayGrid.addObjectToDisplay(new Char('@'), players.get(0).getPosX() + roomX, topHeight + players.get(0).getPosY() + roomY);
-			displayGrid.setPlayerX(players.get(0).getPosX() + roomX, topHeight + players.get(0).getPosY() + roomY);
-			displayGrid.setIsFirst();
-		}
-    }
+		displayGrid.addObjectToDisplay(new Char('@'), players.get(0).getPosX() + roomX, topHeight + players.get(0).getPosY() + roomY);
+		displayGrid.setPlayerX(players.get(0).getPosX() + roomX)
+		displayGrid.setPlayerY(topHeight + players.get(0).getPosY() + roomY);
+		
+		Rogue rogue = new Rogue(width, topHeight, gameHeight, bottomHeight);
+        Thread rogueThread = new Thread(rogue);
+        rogueThread.start();
 
-    public static void main(String[] args){
-        // check if a filename is passed in.  If not, print a usage message.
-        // If it is, open the file
-        String fileName = null;
-        switch (args.length) {
-        // note that the relative file path may depend on what IDE you are
-		// using.  This worked for NetBeans.
-        case 1: fileName = "xmlfiles/" + args[0];
-			break;
-        default: System.out.println("java Rogue <xmlfilename>");
-			return;
-        }
+        rogue.keyStrokePrinter = new Thread(new KeyStrokePrinter(displayGrid));
+        rogue.keyStrokePrinter.start();
 
-		// Create a saxParserFactory, that will allow use to create a parser
-		// Use this line unchanged
-        SAXParserFactory saxParserFactory = SAXParserFactory.newInstance();
-
-        try {
-            saxParser = saxParserFactory.newSAXParser();
-            handler = new DungeonXMLHandler();
-            saxParser.parse(new File(fileName), handler);
-			// This will change depending on what kind of XML we are parsing
-
-			// This will change depending on what kind of XML we are parsing
-			rooms = handler.getRooms();
-			dungeons = handler.getDungeons();
-			items = handler.getItems();
-			monsters = handler.getMonsters();
-			players = handler.getPlayers();	
-			passages = handler.getPassages();	
-			width = dungeons.get(0).getWidth();
-			gameHeight = dungeons.get(0).getGameHeight();
-			topHeight = dungeons.get(0).getTopHeight();
-			bottomHeight = dungeons.get(0).getBottomHeight();
-			
-			Rogue rogue = new Rogue(width, topHeight, gameHeight, bottomHeight);
-			//ObjectDisplayGrid gameGrid = rogue.getDisplayGrid();
-			
-			//Below used to read inputs
-			//test.keyStrokePrinter = new Thread(new KeyStrokePrinter(displayGrid));
-			//test.keyStrokePrinter.start();
-			
-		}catch (ParserConfigurationException | SAXException | IOException e) {
-			e.printStackTrace(System.out);
-		}
+        rogueThread.join();
+        rogue.keyStrokePrinter.join();
+		
     }
 }

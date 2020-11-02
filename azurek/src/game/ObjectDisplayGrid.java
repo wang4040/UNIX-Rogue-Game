@@ -20,7 +20,6 @@ public class ObjectDisplayGrid extends JFrame implements KeyListener, InputSubje
     int height;
     int PosX;
     int PosY;
-	int isfirst;
     private static AsciiPanel terminal;
     private Stack<Char>[][] objectGrid = null;
     private List<InputObserver> inputObservers = null;
@@ -164,13 +163,5 @@ public class ObjectDisplayGrid extends JFrame implements KeyListener, InputSubje
     int getPlayerY(){
         return PosY;
     }
-
-	int getIsFirst(){
-		return isfirst;
-	}
-
-	int setIsFirst(){
-		isfirst = 0;
-	}
 
 }
