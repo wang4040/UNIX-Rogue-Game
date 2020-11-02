@@ -134,9 +134,10 @@ public class DungeonXMLHandler extends DefaultHandler {
 				newArmor.setOwner(playerBeingParsed);
 			}
 			else {
-				itemBeingParsed = newArmor;
+				
 				armors.add(newArmor);
 			}
+			itemBeingParsed = newArmor;
 		}else if(qName.equalsIgnoreCase("Sword")) {
 			newSword = new Sword(attributes.getValue("name"));
 			newSword.setID(Integer.parseInt(attributes.getValue("room")), Integer.parseInt(attributes.getValue("serial")));
@@ -145,9 +146,10 @@ public class DungeonXMLHandler extends DefaultHandler {
 				newSword.setOwner(playerBeingParsed);
 			}
 			else {
-				itemBeingParsed = newSword;
+				
 				swords.add(newSword);
 			}
+			itemBeingParsed = newSword;
 		}else if(qName.equalsIgnoreCase("ItemAction")) {
 			newItmAction = new ItemAction(itemBeingParsed);
 			itmactBeingParsed = newItmAction;
