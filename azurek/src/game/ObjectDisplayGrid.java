@@ -94,9 +94,9 @@ public class ObjectDisplayGrid extends JFrame implements KeyListener, InputSubje
         terminal.repaint();
     }
 	
-    void getObjectDisplayGrid(int _width, int _topHeight, int _gameHeight, int _bottomHeight){
+    Stack<Char>[][] getObjectGrid(){
 		
-        System.out.println("getObjectDisplayGrid gameHeight: " + gameHeight + " width: " + width + " topHeight: " + topHeight);
+        return objectGrid;
     }
 
     void setTopMessageHeight(int _topHeight){
