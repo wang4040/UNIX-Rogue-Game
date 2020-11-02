@@ -1,4 +1,4 @@
-package src;
+//package game;
 public class ItemAction extends Action{
 	Item owner;
 	

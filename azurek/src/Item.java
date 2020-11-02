@@ -1,4 +1,4 @@
-package src;
+//package game;
 public class Item extends Displayable{
 	
     void setOwner(Creature owner){

@@ -1,4 +1,4 @@
-//package game;
+package game;
 import java.util.ArrayList;
 
 public class Passage extends Structure{

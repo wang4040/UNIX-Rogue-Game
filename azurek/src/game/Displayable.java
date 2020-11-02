@@ -1,4 +1,4 @@
-//package game;
+package game;
 public class Displayable{
     int Posx;
     int Posy;

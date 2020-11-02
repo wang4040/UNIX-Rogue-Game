@@ -1,12 +1,13 @@
-package src;
+//package game;
 public class Sword extends Item{
 	
-	String name;
 	int room;
-	int serial;
+    int serial;
+    char type;
 	
     public Sword(String _name){
 		name = _name;
+		type = 'W';
         System.out.println("Construct Sword name: " + name);
     }
 

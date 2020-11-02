@@ -1,12 +1,12 @@
-package src;
+//package game;
 public class Scroll extends Item{
-	
-	String name;
 	int room;
-	int serial;
+    int serial;
+    char type;
 	
     public Scroll(String _name){
 		name = _name;
+		type = 'R';
         System.out.println("Construct Scroll name: " + name);
     }
 

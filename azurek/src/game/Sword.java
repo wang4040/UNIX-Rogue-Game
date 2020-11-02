@@ -1,4 +1,4 @@
-//package game;
+package game;
 public class Sword extends Item{
 	
 	int room;

@@ -1,9 +1,8 @@
-package src;
+//package game;
 public class Monster extends Creature{
 	
-	String name;
 	int room;
-	int serial;
+    int serial;
 	
     public Monster(String _name, int _room, int _serial){
 		name = _name;
@@ -18,5 +17,9 @@ public class Monster extends Creature{
 
     void setID(int room, int serial){
         System.out.println("setID Monster room: " + room + " serial: " + serial);
+    }
+
+    int getRoom(){
+        return room;
     }
 }

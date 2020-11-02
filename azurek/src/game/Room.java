@@ -1,4 +1,4 @@
-//package game;
+package game;
 public class Room extends Structure{
     int id;
     Room(String s){

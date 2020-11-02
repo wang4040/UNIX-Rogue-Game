@@ -1,5 +1,12 @@
-package src;
+//package game;
 public class Displayable{
+    int Posx;
+    int Posy;
+	int width;
+	int height;
+    char Type;
+	String name;
+
     Displayable(){
         System.out.println("Displayable");
     }
@@ -24,6 +31,7 @@ public class Displayable{
     }
 
     void setType(char t){
+        Type = t;
         System.out.println("setType t: " + t);
     }
 
@@ -32,18 +40,53 @@ public class Displayable{
     }
 
     void SetPosX(int x){
+        Posx = x;
         System.out.println("SetPosX x: " + x);
     }
 
     void setPosY(int y){
+        Posy = y;
         System.out.println("setPosY y: " + y);
     }
 
     void SetWidth(int x){
+		width = x;
         System.out.println("SetWidth x: " + x);
     }
 
     void setHeight(int y){
+		height = y;
         System.out.println("setHeight y: " + y);
     }
+	
+	String getName( ) {
+		return name;
+	}
+	
+	int getPosX( ){
+        return Posx;
+    }
+
+    int getPosY( ){
+        return Posy;
+    }
+
+    int getWidth( ){
+		return width;
+    }
+
+    int getHeight( ){
+		return height;
+    }
+	
+	char getType( ) {
+		return Type;
+	}
+	
+	
+	
+	
+	
+	
+	
 }
