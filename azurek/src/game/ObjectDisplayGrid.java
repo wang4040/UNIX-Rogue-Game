@@ -9,6 +9,9 @@ import java.util.Stack;
 
 public class ObjectDisplayGrid extends JFrame implements KeyListener, InputSubject {
 	
+	private static final int DEBUG = 0;
+    private static final String CLASSID = ".ObjectDisplayGrid";
+	
 	int width;
 	int topHeight;
 	int gameHeight;
