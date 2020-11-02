@@ -80,6 +80,9 @@ public class ObjectDisplayGrid extends JFrame implements KeyListener, InputSubje
         if ((0 <= x) && (x < objectGrid.length)) {
             if ((0 <= y) && (y < objectGrid[0].length)) {
                 objectGrid[x][y].pop();
+                if (objectGrid[x][y].peek() == null){
+                    objectGrid[x][y].add(new Char(' '));
+                }
                 writeToTerminal(x, y);
             }
         }
