@@ -45,31 +45,39 @@ public class KeyStrokePrinter implements InputObserver, Runnable {
                     System.out.println(CLASSID + ".processInput peek is " + ch);
                 }
                 if (ch == 'h') {
-                    if (displayGrid.getObjectGrid()[displayGrid.getPlayerX() - 1][displayGrid.getPlayerY()].peek().getChar() == '.'){
-                        displayGrid.removeObjectToDisplay(displayGrid.getPlayerX(), displayGrid.getPlayerY());
-                        displayGrid.addObjectToDisplay(new Char('@'), displayGrid.getPlayerX() - 1, displayGrid.getPlayerY());
-                        displayGrid.setPlayerX(displayGrid.getPlayerX() - 1);
+                    if (displayGrid.getObjectGrid()[displayGrid.getPlayerX() - 1][displayGrid.getPlayerY()].empty() == false){
+                        if (displayGrid.getObjectGrid()[displayGrid.getPlayerX() - 1][displayGrid.getPlayerY()].peek().getChar() != 'X'){
+                            displayGrid.removeObjectToDisplay(displayGrid.getPlayerX(), displayGrid.getPlayerY());
+                            displayGrid.addObjectToDisplay(new Char('@'), displayGrid.getPlayerX() - 1, displayGrid.getPlayerY());
+                            displayGrid.setPlayerX(displayGrid.getPlayerX() - 1);
+                        }
                     }
                 }
                 else if(ch == 'j'){
-                    if (displayGrid.getObjectGrid()[displayGrid.getPlayerX() + 1][displayGrid.getPlayerY()].peek().getChar() != 'X'){
-                        displayGrid.removeObjectToDisplay(displayGrid.getPlayerX(), displayGrid.getPlayerY());
-                        displayGrid.addObjectToDisplay(new Char('@'), displayGrid.getPlayerX() + 1, displayGrid.getPlayerY());
-                        displayGrid.setPlayerX(displayGrid.getPlayerX() + 1);
-                    }                    
-                }
-                else if(ch == 'k'){
-                    if (displayGrid.getObjectGrid()[displayGrid.getPlayerX()][displayGrid.getPlayerY() + 1].peek().getChar() != 'X'){
-                        displayGrid.removeObjectToDisplay(displayGrid.getPlayerX(), displayGrid.getPlayerY());
-                        displayGrid.addObjectToDisplay(new Char('@'), displayGrid.getPlayerX(), displayGrid.getPlayerY() + 1);
-                        displayGrid.setPlayerY(displayGrid.getPlayerY() + 1);
+                    if (displayGrid.getObjectGrid()[displayGrid.getPlayerX() + 1][displayGrid.getPlayerY()].empty() == false){
+                        if (displayGrid.getObjectGrid()[displayGrid.getPlayerX() + 1][displayGrid.getPlayerY()].peek().getChar() != 'X'){
+                            displayGrid.removeObjectToDisplay(displayGrid.getPlayerX(), displayGrid.getPlayerY());
+                            displayGrid.addObjectToDisplay(new Char('@'), displayGrid.getPlayerX() + 1, displayGrid.getPlayerY());
+                            displayGrid.setPlayerX(displayGrid.getPlayerX() + 1);
+                        }
                     }                    
                 }
                 else if(ch == 'l'){
-                    if (displayGrid.getObjectGrid()[displayGrid.getPlayerX()][displayGrid.getPlayerY() - 1].peek().getChar() != 'X'){
-                        displayGrid.removeObjectToDisplay(displayGrid.getPlayerX(), displayGrid.getPlayerY());
-                        displayGrid.addObjectToDisplay(new Char('@'), displayGrid.getPlayerX(), displayGrid.getPlayerY() - 1);
-                        displayGrid.setPlayerY(displayGrid.getPlayerY() - 1);
+                    if (displayGrid.getObjectGrid()[displayGrid.getPlayerX()][displayGrid.getPlayerY() + 1].empty() == false){
+                            if (displayGrid.getObjectGrid()[displayGrid.getPlayerX()][displayGrid.getPlayerY() + 1].peek().getChar() != 'X'){
+                            displayGrid.removeObjectToDisplay(displayGrid.getPlayerX(), displayGrid.getPlayerY());
+                            displayGrid.addObjectToDisplay(new Char('@'), displayGrid.getPlayerX(), displayGrid.getPlayerY() + 1);
+                            displayGrid.setPlayerY(displayGrid.getPlayerY() + 1);
+                        }
+                    }                    
+                }
+                else if(ch == 'k'){
+                    if (displayGrid.getObjectGrid()[displayGrid.getPlayerX()][displayGrid.getPlayerY() - 1].empty() == false){
+                        if (displayGrid.getObjectGrid()[displayGrid.getPlayerX()][displayGrid.getPlayerY() - 1].peek().getChar() != 'X'){
+                            displayGrid.removeObjectToDisplay(displayGrid.getPlayerX(), displayGrid.getPlayerY());
+                            displayGrid.addObjectToDisplay(new Char('@'), displayGrid.getPlayerX(), displayGrid.getPlayerY() - 1);
+                            displayGrid.setPlayerY(displayGrid.getPlayerY() - 1);
+                        }
                     }                    
                 }
                 else {
