@@ -14,6 +14,9 @@ public class DungeonXMLHandler extends DefaultHandler {
 	ArrayList<Item> items = new ArrayList<Item>();
 	ArrayList<Player> players = new ArrayList<Player>();
 	ArrayList<Passage> passages = new ArrayList<Passage>();
+	ArrayList<Scroll> scrolls = new ArrayList<Scroll>();
+	ArrayList<Armor> armors = new ArrayList<Armor>();
+	ArrayList<Sword> swords = new ArrayList<Sword>();
 
 	private Dungeon dungeonBeingParsed = null;
 	private Room roomBeingParsed = null;
@@ -64,6 +67,18 @@ public class DungeonXMLHandler extends DefaultHandler {
 	public ArrayList<Passage> getPassages() {
 		return passages;
 	}
+
+	public ArrayList<Scroll> getScrolls() {
+		return scrolls;
+	}
+
+	public ArrayList<Armor> getArmors(){
+		return armors;
+	}
+
+	public ArrayList<Sword> getSwords(){
+		return swords;
+	}
 	
 	//implicit call to DefaultHandler
 	public DungeonXMLHandler() {
@@ -110,7 +125,7 @@ public class DungeonXMLHandler extends DefaultHandler {
 			newScroll = new Scroll(attributes.getValue("name"));
 			newScroll.setID(Integer.parseInt(attributes.getValue("room")), Integer.parseInt(attributes.getValue("serial")));
 			itemBeingParsed = newScroll;
-			items.add(newScroll);
+			scrolls.add(newScroll);
 		}else if(qName.equalsIgnoreCase("Armor")) {
 			newArmor = new Armor(attributes.getValue("name"));
 			newArmor.setID(Integer.parseInt(attributes.getValue("room")), Integer.parseInt(attributes.getValue("serial")));
@@ -118,8 +133,10 @@ public class DungeonXMLHandler extends DefaultHandler {
 				playerBeingParsed.setArmor(newArmor);
 				newArmor.setOwner(playerBeingParsed);
 			}
-			itemBeingParsed = newArmor;
-			items.add(newArmor);
+			else {
+				itemBeingParsed = newArmor;
+				armors.add(newArmor);
+			}
 		}else if(qName.equalsIgnoreCase("Sword")) {
 			newSword = new Sword(attributes.getValue("name"));
 			newSword.setID(Integer.parseInt(attributes.getValue("room")), Integer.parseInt(attributes.getValue("serial")));
@@ -127,8 +144,10 @@ public class DungeonXMLHandler extends DefaultHandler {
 				playerBeingParsed.setWeapon(newSword);
 				newSword.setOwner(playerBeingParsed);
 			}
-			itemBeingParsed = newSword;
-			items.add(newSword);
+			else {
+				itemBeingParsed = newSword;
+				swords.add(newSword);
+			}
 		}else if(qName.equalsIgnoreCase("ItemAction")) {
 			newItmAction = new ItemAction(itemBeingParsed);
 			itmactBeingParsed = newItmAction;
@@ -173,15 +192,16 @@ public class DungeonXMLHandler extends DefaultHandler {
 		//Scrolls aren't set for anyone
 		
 		if (bPosX){
+
 			if (itemBeingParsed != null){
 				itemBeingParsed.SetPosX(Integer.parseInt(data.toString()));
-				bPosX = false;
-			}else if (playerBeingParsed != null){
-				playerBeingParsed.SetPosX(Integer.parseInt(data.toString()));
 				bPosX = false;
 			}else if (monsterBeingParsed != null){
 				monsterBeingParsed.SetPosX(Integer.parseInt(data.toString()));
 				bPosX = false;
+			}else if (playerBeingParsed != null){
+					playerBeingParsed.SetPosX(Integer.parseInt(data.toString()));
+					bPosX = false;			
 			}else if (roomBeingParsed != null) {
 				roomBeingParsed.SetPosX(Integer.parseInt(data.toString()));
 				bPosX = false;
@@ -193,11 +213,11 @@ public class DungeonXMLHandler extends DefaultHandler {
 			if (itemBeingParsed != null){
 				itemBeingParsed.setPosY(Integer.parseInt(data.toString()));
 				bPosY = false;
-			}else if (playerBeingParsed != null){
-				playerBeingParsed.setPosY(Integer.parseInt(data.toString()));
-				bPosY = false;
 			}else if (monsterBeingParsed != null){
 				monsterBeingParsed.setPosY(Integer.parseInt(data.toString()));
+				bPosY = false;
+			}else if (playerBeingParsed != null){
+				playerBeingParsed.setPosY(Integer.parseInt(data.toString()));
 				bPosY = false;
 			}else if (roomBeingParsed != null) {
 				roomBeingParsed.setPosY(Integer.parseInt(data.toString()));
@@ -372,6 +392,8 @@ public class DungeonXMLHandler extends DefaultHandler {
 			itmactBeingParsed = null;
 		}else if (qName.equalsIgnoreCase("CreatureAction")){
 			crtactBeingParsed = null;
+		}else if (qName.equalsIgnoreCase("Scroll") || qName.equalsIgnoreCase("Sword") || qName.equalsIgnoreCase("Armor")){
+			itemBeingParsed = null;
 		}
 	}
 	@Override

@@ -7,7 +7,7 @@ public class Armor extends Item{
 	
     public Armor(String _name){
 		name = _name;
-		type = 'A';
+		type = ']';
         System.out.println("Construct Armor name is:" + name);
     }
 
@@ -20,5 +20,13 @@ public class Armor extends Item{
 		room = _room;
 		serial = _serial;
         System.out.println("SetID Armor room:" + room + "serial: " + serial);
+    }
+
+    int getRoom(){
+        return room;
+    }
+
+    char getType(){
+        return type;
     }
 }

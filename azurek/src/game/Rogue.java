@@ -26,6 +26,9 @@ public class Rogue implements Runnable{
 	static ArrayList<Monster> monsters;
 	static ArrayList<Player> players;
 	static ArrayList<Passage> passages;
+	static ArrayList<Scroll> scrolls;
+	static ArrayList<Armor> armors;
+	static ArrayList<Sword> swords;
 	static int width;
 	static int gameHeight;
 	static int topHeight;
@@ -74,6 +77,9 @@ public class Rogue implements Runnable{
 			monsters = handler.getMonsters();
 			players = handler.getPlayers();	
 			passages = handler.getPassages();	
+			scrolls = handler.getScrolls();
+			armors = handler.getArmors();
+			swords = handler.getSwords();
 			width = dungeons.get(0).getWidth();
 			gameHeight = dungeons.get(0).getGameHeight();
 			topHeight = dungeons.get(0).getTopHeight();
@@ -109,17 +115,51 @@ public class Rogue implements Runnable{
 		}
 		int roomX = 0;
 		int roomY = 0;
-		for (i = 0; i < items.size(); i++) {
+		/*for (i = 0; i < items.size(); i++) {
 			Char ch = new Char(items.get(i).getType());
 			for (j = 0; j < rooms.size(); j++){
-				if (monsters.isEmpty() == false){
-					if (rooms.get(j).getId() == monsters.get(i).getRoom()){
+				if (items.isEmpty() == false){
+					if (rooms.get(j).getId() == items.get(i).getRoom()){
 						roomX = rooms.get(j).getPosX();
 						roomY = rooms.get(j).getPosY(); 
 					}
-			}
+				}
 			}
 			displayGrid.addObjectToDisplay(ch, items.get(i).getPosX() + roomX, topHeight + items.get(i).getPosY() + roomY);
+		}*/
+
+		for (i = 0; i < scrolls.size(); i++) {
+			Char ch = new Char(scrolls.get(i).getType());
+			for (j = 0; j < rooms.size(); j++){
+				if (rooms.get(j).getId() == scrolls.get(i).getRoom()){
+					roomX = rooms.get(j).getPosX();
+					roomY = rooms.get(j).getPosY();
+				}
+			}
+
+			displayGrid.addObjectToDisplay(ch, scrolls.get(i).getPosX() + roomX, topHeight + scrolls.get(i).getPosY() + roomY);
+		}
+		for (i = 0; i < armors.size(); i++) {
+			Char ch = new Char(armors.get(i).getType());
+			for (j = 0; j < rooms.size(); j++){
+				if (rooms.get(j).getId() == armors.get(i).getRoom()){
+					roomX = rooms.get(j).getPosX();
+					roomY = rooms.get(j).getPosY();
+				}
+			}
+
+			displayGrid.addObjectToDisplay(ch, armors.get(i).getPosX() + roomX, topHeight + armors.get(i).getPosY() + roomY);
+		}
+		for (i = 0; i < swords.size(); i++) {
+			Char ch = new Char(swords.get(i).getType());
+			for (j = 0; j < rooms.size(); j++){
+				if (rooms.get(j).getId() == swords.get(i).getRoom()){
+					roomX = rooms.get(j).getPosX();
+					roomY = rooms.get(j).getPosY();
+				}
+			}
+
+			displayGrid.addObjectToDisplay(ch, swords.get(i).getPosX() + roomX, topHeight + armors.get(i).getPosY() + roomY);
 		}
 		for (i = 0; i < monsters.size(); i++) {
 			Char ch = new Char(monsters.get(i).getType());
