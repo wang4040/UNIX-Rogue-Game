@@ -53,7 +53,7 @@ public class KeyStrokePrinter implements InputObserver, Runnable {
                         }
                     }
                 }
-                else if(ch == 'j'){
+                else if(ch == 'l'){
                     if (displayGrid.getObjectGrid()[displayGrid.getPlayerX() + 1][displayGrid.getPlayerY()].empty() == false){
                         if (displayGrid.getObjectGrid()[displayGrid.getPlayerX() + 1][displayGrid.getPlayerY()].peek().getChar() != 'X'){
                             displayGrid.removeObjectToDisplay(displayGrid.getPlayerX(), displayGrid.getPlayerY());
@@ -62,7 +62,7 @@ public class KeyStrokePrinter implements InputObserver, Runnable {
                         }
                     }                    
                 }
-                else if(ch == 'l'){
+                else if(ch == 'j'){
                     if (displayGrid.getObjectGrid()[displayGrid.getPlayerX()][displayGrid.getPlayerY() + 1].empty() == false){
                             if (displayGrid.getObjectGrid()[displayGrid.getPlayerX()][displayGrid.getPlayerY() + 1].peek().getChar() != 'X'){
                             displayGrid.removeObjectToDisplay(displayGrid.getPlayerX(), displayGrid.getPlayerY());
