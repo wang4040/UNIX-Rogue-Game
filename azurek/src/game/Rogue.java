@@ -112,10 +112,12 @@ public class Rogue implements Runnable{
 		for (i = 0; i < items.size(); i++) {
 			Char ch = new Char(items.get(i).getType());
 			for (j = 0; j < rooms.size(); j++){
-				if (rooms.get(j).getId() == monsters.get(i).getRoom()){
-					roomX = rooms.get(j).getPosX();
-					roomY = rooms.get(j).getPosY(); 
-				}
+				if (monsters.isEmpty() == false){
+					if (rooms.get(j).getId() == monsters.get(i).getRoom()){
+						roomX = rooms.get(j).getPosX();
+						roomY = rooms.get(j).getPosY(); 
+					}
+			}
 			}
 			displayGrid.addObjectToDisplay(ch, items.get(i).getPosX() + roomX, topHeight + items.get(i).getPosY() + roomY);
 		}
@@ -162,9 +164,11 @@ public class Rogue implements Runnable{
 			}
 		}
 		for (j = 0; j < rooms.size(); j++){
-			if (rooms.get(j).getId() == monsters.get(i).getRoom()){
-				roomX = rooms.get(j).getPosX();
-				roomY = rooms.get(j).getPosY();
+			if (monsters.isEmpty() == false){
+				if (rooms.get(j).getId() == monsters.get(i).getRoom()){
+					roomX = rooms.get(j).getPosX();
+					roomY = rooms.get(j).getPosY();
+				}
 			}
 		}
 		displayGrid.addObjectToDisplay(new Char('@'), players.get(0).getPosX() + roomX, topHeight + players.get(0).getPosY() + roomY);
