@@ -4,7 +4,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class KeyStrokePrinter implements InputObserver, Runnable {
 
-    private static int DEBUG = 1;
+    private static int DEBUG = 0;
     private static String CLASSID = "KeyStrokePrinter";
     private static Queue<Character> inputQueue = null;
     private ObjectDisplayGrid displayGrid;
@@ -44,11 +44,32 @@ public class KeyStrokePrinter implements InputObserver, Runnable {
                 if (DEBUG > 1) {
                     System.out.println(CLASSID + ".processInput peek is " + ch);
                 }
-                if (ch == 'X') {
-                    System.out.println("got an X, ending input checking");
-                    return false;
-                } else {
-                    System.out.println("character " + ch + " entered on the keyboard");
+                if (ch == 'h') {
+                    if (displayGrid.getObjectGrid()[displayGrid.getPlayerX() - 1][displayGrid.getPlayerY()].peek().getChar() != 'X'){
+                        displayGrid.removeObjectToDisplay(displayGrid.getPlayerX(), displayGrid.getPlayerY());
+                        displayGrid.addObjectToDisplay(new Char('@'), displayGrid.getPlayerX() - 1, displayGrid.getPlayerY());
+                    }
+                }
+                else if(ch == 'j'){
+                    if (displayGrid.getObjectGrid()[displayGrid.getPlayerX() + 1][displayGrid.getPlayerY()].peek().getChar() != 'X'){
+                        displayGrid.removeObjectToDisplay(displayGrid.getPlayerX(), displayGrid.getPlayerY());
+                        displayGrid.addObjectToDisplay(new Char('@'), displayGrid.getPlayerX() + 1, displayGrid.getPlayerY());
+                    }                    
+                }
+                else if(ch == 'k'){
+                    if (displayGrid.getObjectGrid()[displayGrid.getPlayerX()][displayGrid.getPlayerY() + 1].peek().getChar() != 'X'){
+                        displayGrid.removeObjectToDisplay(displayGrid.getPlayerX(), displayGrid.getPlayerY());
+                        displayGrid.addObjectToDisplay(new Char('@'), displayGrid.getPlayerX(), displayGrid.getPlayerY() + 1);
+                    }                    
+                }
+                else if(ch == 'l'){
+                    if (displayGrid.getObjectGrid()[displayGrid.getPlayerX()][displayGrid.getPlayerY() - 1].peek().getChar() != 'X'){
+                        displayGrid.removeObjectToDisplay(displayGrid.getPlayerX(), displayGrid.getPlayerY());
+                        displayGrid.addObjectToDisplay(new Char('@'), displayGrid.getPlayerX(), displayGrid.getPlayerY() - 1);
+                    }                    
+                }
+                else {
+                    //System.out.println("character " + ch + " entered on the keyboard");
                 }
             }
         }
