@@ -51,8 +51,6 @@ public class Rogue implements Runnable{
             saxParser.parse(new File(fileName), handler);
 			// This will change depending on what kind of XML we are parsing
 
-
-
 			// This will change depending on what kind of XML we are parsing
 			ArrayList<Room> rooms = handler.getRooms();
 			ArrayList<Dungeon> dungeons = handler.getDungeons();
@@ -74,7 +72,6 @@ public class Rogue implements Runnable{
 			
 			
 			
-			
 			//BELOW IS TEST CODE TO DISPLAY EVERYTHING
 			displayGrid.initializeDisplay();
 			int i, j, m, n, k;
@@ -87,16 +84,16 @@ public class Rogue implements Runnable{
 			for (i = 0; i < rooms.size(); i++) {
 				//basically just for loop across to print '-', and for loop down to print '|', super easy
 				for(m = rooms.get(i).getPosX(); m < (rooms.get(i).getPosX() + rooms.get(i).getWidth() - 1); m++) {
-					displayGrid.addObjectToDisplay(dash, m, rooms.get(i).getPosY());
-					displayGrid.addObjectToDisplay(dash, m, rooms.get(i).getPosY() + rooms.get(i).getHeight() - 1);
+					displayGrid.addObjectToDisplay(dash, m, topHeight + rooms.get(i).getPosY());
+					displayGrid.addObjectToDisplay(dash, m, topHeight + rooms.get(i).getPosY() + rooms.get(i).getHeight() - 1);
 				}
 				for(n = rooms.get(i).getPosY(); n <= (rooms.get(i).getPosY() + rooms.get(i).getHeight() - 1); n++) {
-					displayGrid.addObjectToDisplay(dash, rooms.get(i).getPosX(), n);
-					displayGrid.addObjectToDisplay(dash, rooms.get(i).getPosX() + rooms.get(i).getWidth() - 1, n);
+					displayGrid.addObjectToDisplay(dash, rooms.get(i).getPosX(), topHeight + n);
+					displayGrid.addObjectToDisplay(dash, rooms.get(i).getPosX() + rooms.get(i).getWidth() - 1, topHeight + n);
 				}
 				for(j = rooms.get(i).getPosX() + 1; j < (rooms.get(i).getPosX() + rooms.get(i).getWidth() - 1); j++) {
 					for(k = rooms.get(i).getPosY() + 1; k < (rooms.get(i).getPosY() + rooms.get(i).getHeight() - 1); k++){
-						displayGrid.addObjectToDisplay(dot, j, k);
+						displayGrid.addObjectToDisplay(dot, j, topHeight + k);
 					}
 				}
 			}
@@ -112,7 +109,7 @@ public class Rogue implements Runnable{
 						roomY = rooms.get(j).getPosY(); 
 					}
 				}
-				displayGrid.addObjectToDisplay(ch, items.get(i).getPosX() + roomX, items.get(i).getPosY() + roomY);
+				displayGrid.addObjectToDisplay(ch, items.get(i).getPosX() + roomX, topHeight + items.get(i).getPosY() + roomY);
 			}
 			//print all monsters
 			for (i = 0; i < monsters.size(); i++) {
@@ -123,7 +120,7 @@ public class Rogue implements Runnable{
 						roomY = rooms.get(j).getPosY(); 
 					}
 				}
-				displayGrid.addObjectToDisplay(ch, monsters.get(i).getPosX() + roomX, monsters.get(i).getPosY() + roomY);
+				displayGrid.addObjectToDisplay(ch, monsters.get(i).getPosX() + roomX, topHeight + monsters.get(i).getPosY() + roomY);
 			}
 			//print all passages
 			for (i = 0; i < passages.size(); i++) {
@@ -132,29 +129,29 @@ public class Rogue implements Runnable{
 				int numCorners = cornersPosX.size();
 
 				//Use for loop to display passage such that beginning and end are +, and everything in between is #, connecting all the corners
-				displayGrid.addObjectToDisplay(plus, cornersPosX.get(0), cornersPosY.get(0)); //prints first corner as plus
+				displayGrid.addObjectToDisplay(plus, cornersPosX.get(0), topHeight + cornersPosY.get(0)); //prints first corner as plus
 				for (j = 0; j < (numCorners - 1); j++) { //for loop that doesn't print current corner, but the next corner and the path towards it
 					if (cornersPosX.get(j) < cornersPosX.get(j + 1)) {
 						for (m = cornersPosX.get(j) + 1; m < cornersPosX.get(j + 1); m++) {
-							displayGrid.addObjectToDisplay(hash, m, cornersPosY.get(j));
+							displayGrid.addObjectToDisplay(hash, m, topHeight + cornersPosY.get(j));
 						}
 					}else if (cornersPosX.get(j) > cornersPosX.get(j + 1)) {
 						for (m = cornersPosX.get(j) - 1; m > cornersPosX.get(j + 1); m--) {
-							displayGrid.addObjectToDisplay(hash, m, cornersPosY.get(j));
+							displayGrid.addObjectToDisplay(hash, m, topHeight + cornersPosY.get(j));
 						}
 					}else if (cornersPosY.get(j) < cornersPosY.get(j + 1)) {
 						for (n = cornersPosY.get(j) + 1; n < cornersPosY.get(j + 1); n++) {
-							displayGrid.addObjectToDisplay(hash, cornersPosX.get(j), n);
+							displayGrid.addObjectToDisplay(hash, cornersPosX.get(j), topHeight + n);
 						}
 					}else if (cornersPosY.get(j) > cornersPosY.get(j + 1)) {
 						for (n = cornersPosY.get(j) - 1; n > cornersPosY.get(j + 1); n--) {
-							displayGrid.addObjectToDisplay(hash, cornersPosX.get(j), n);
+							displayGrid.addObjectToDisplay(hash, cornersPosX.get(j), topHeight + n);
 						}
 					}
 					if (j == (numCorners - 2)) { //if the next corner is the final one, print plus instead
-						displayGrid.addObjectToDisplay(plus, cornersPosX.get(j + 1), cornersPosY.get(j + 1));
+						displayGrid.addObjectToDisplay(plus, cornersPosX.get(j + 1), topHeight + cornersPosY.get(j + 1));
 					}else {
-						displayGrid.addObjectToDisplay(hash, cornersPosX.get(j + 1), cornersPosY.get(j + 1));
+						displayGrid.addObjectToDisplay(hash, cornersPosX.get(j + 1), topHeight + cornersPosY.get(j + 1));
 					}
 				}
 			}
@@ -165,9 +162,10 @@ public class Rogue implements Runnable{
 					roomY = rooms.get(j).getPosY(); 
 				}
 			}
-			displayGrid.addObjectToDisplay(new Char('@'), players.get(0).getPosX() + roomX, players.get(0).getPosY() + roomY);
-	} catch (ParserConfigurationException | SAXException | IOException e) {
+			displayGrid.addObjectToDisplay(new Char('@'), players.get(0).getPosX() + roomX, topHeight + players.get(0).getPosY() + roomY);
+			
+		}catch (ParserConfigurationException | SAXException | IOException e) {
 		e.printStackTrace(System.out);
-	}
+		}
     }
 }
