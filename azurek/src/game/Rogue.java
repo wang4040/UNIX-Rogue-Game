@@ -165,7 +165,7 @@ public class Rogue implements Runnable{
 			displayGrid.addObjectToDisplay(new Char('@'), players.get(0).getPosX() + roomX, topHeight + players.get(0).getPosY() + roomY);
 			
 		}catch (ParserConfigurationException | SAXException | IOException e) {
-		e.printStackTrace(System.out);
+			e.printStackTrace(System.out);
 		}
     }
 }
