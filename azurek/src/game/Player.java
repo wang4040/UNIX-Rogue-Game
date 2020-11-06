@@ -2,7 +2,8 @@ package game;
 public class Player extends Creature{
 	
 	int room;
-	int serial;
+    int serial;
+    int maxHit;
 	
 	public Player(String _name, int _room, int _serial){
 		name = _name;
@@ -17,5 +18,13 @@ public class Player extends Creature{
 
     void setArmor(Item armor){
         System.out.println("setArmor Player");
+    }
+
+    void setMaxHit(int _maxHit){
+        maxHit = _maxHit;
+    }
+
+    int getMaxHit(){
+        return maxHit;
     }
 }

@@ -115,19 +115,8 @@ public class Rogue implements Runnable{
 		}
 		int roomX = 0;
 		int roomY = 0;
-		/*for (i = 0; i < items.size(); i++) {
-			Char ch = new Char(items.get(i).getType());
-			for (j = 0; j < rooms.size(); j++){
-				if (items.isEmpty() == false){
-					if (rooms.get(j).getId() == items.get(i).getRoom()){
-						roomX = rooms.get(j).getPosX();
-						roomY = rooms.get(j).getPosY(); 
-					}
-				}
-			}
-			displayGrid.addObjectToDisplay(ch, items.get(i).getPosX() + roomX, topHeight + items.get(i).getPosY() + roomY);
-		}*/
 
+		//This blocks prints out all scrolls in the dungeon
 		for (i = 0; i < scrolls.size(); i++) {
 			Char ch = new Char(scrolls.get(i).getType());
 			for (j = 0; j < rooms.size(); j++){
@@ -136,8 +125,8 @@ public class Rogue implements Runnable{
 					roomY = rooms.get(j).getPosY();
 				}
 			}
-
 			displayGrid.addObjectToDisplay(ch, scrolls.get(i).getPosX() + roomX, topHeight + scrolls.get(i).getPosY() + roomY);
+		//This block prints ou all armor in the dungeon
 		}
 		for (i = 0; i < armors.size(); i++) {
 			Char ch = new Char(armors.get(i).getType());
@@ -147,9 +136,9 @@ public class Rogue implements Runnable{
 					roomY = rooms.get(j).getPosY();
 				}
 			}
-
 			displayGrid.addObjectToDisplay(ch, armors.get(i).getPosX() + roomX, topHeight + armors.get(i).getPosY() + roomY);
 		}
+		//This block prints out all swords in the dungoen
 		for (i = 0; i < swords.size(); i++) {
 			Char ch = new Char(swords.get(i).getType());
 			for (j = 0; j < rooms.size(); j++){
@@ -158,9 +147,9 @@ public class Rogue implements Runnable{
 					roomY = rooms.get(j).getPosY();
 				}
 			}
-
 			displayGrid.addObjectToDisplay(ch, swords.get(i).getPosX() + roomX, topHeight + armors.get(i).getPosY() + roomY);
 		}
+		//This block prints out all monsters in the dungeon
 		for (i = 0; i < monsters.size(); i++) {
 			Char ch = new Char(monsters.get(i).getType());
 			for (j = 0; j < rooms.size(); j++){
@@ -171,6 +160,8 @@ public class Rogue implements Runnable{
 			}
 			displayGrid.addObjectToDisplay(ch, monsters.get(i).getPosX() + roomX, topHeight + monsters.get(i).getPosY() + roomY);
 		}
+
+		//This stuff prints out all the passages
 		for (i = 0; i < passages.size(); i++) {
 			ArrayList<Integer> cornersPosX = passages.get(i).getCornerPosX();
 			ArrayList<Integer> cornersPosY = passages.get(i).getCornerPosY();
@@ -225,5 +216,18 @@ public class Rogue implements Runnable{
         rogueThread.join();
         rogue.keyStrokePrinter.join();
 		
-    }
+	}
+	
+
+	public static void CombatSimulator(int PosX, int PosY){
+		int monsterSpot; //The spot in the arrayLst where the monster in combat is
+		int i;
+		for (i = 0; i < monsters.length(); i++){
+			if (monsters.get(i).getPosX() == players.get(0).getPosX() && (monsters.get(i).getPosY() == players.get(0).getPosY())){
+				monsterSpot = i;
+				break;
+			}
+		}
+		
+	}
 }

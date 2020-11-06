@@ -3,6 +3,7 @@ public class Monster extends Creature{
 	
 	int room;
     int serial;
+    int maxHit;
 	
     public Monster(String _name, int _room, int _serial){
 		name = _name;
@@ -21,5 +22,13 @@ public class Monster extends Creature{
 
     int getRoom(){
         return room;
+    }
+
+    void setMaxHit(int _maxHit){
+        maxHit = _maxHit;
+    }
+
+    int getMaxHit(){
+        return maxHit;
     }
 }
