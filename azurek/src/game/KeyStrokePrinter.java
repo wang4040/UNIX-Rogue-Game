@@ -47,9 +47,20 @@ public class KeyStrokePrinter implements InputObserver, Runnable {
                 if (ch == 'h') {
                     if (displayGrid.getObjectGrid()[displayGrid.getPlayerX() - 1][displayGrid.getPlayerY()].empty() == false){
                         if (displayGrid.getObjectGrid()[displayGrid.getPlayerX() - 1][displayGrid.getPlayerY()].peek().getChar() != 'X'){
-                            displayGrid.removeObjectToDisplay(displayGrid.getPlayerX(), displayGrid.getPlayerY());
-                            displayGrid.addObjectToDisplay(new Char('@'), displayGrid.getPlayerX() - 1, displayGrid.getPlayerY());
-                            displayGrid.setPlayerX(displayGrid.getPlayerX() - 1);
+                            if (displayGrid.getObjectGrid()[displayGrid.getPlayerX() - 1][displayGrid.getPlayerY()].peek().getChar() == 'S'){
+                                Rogue.CombatSimulator(displayGrid.getPlayerX() - 1, displayGrid.getPlayerY());
+                            }
+                            else if (displayGrid.getObjectGrid()[displayGrid.getPlayerX() - 1][displayGrid.getPlayerY()].peek().getChar() == 'T'){
+                                Rogue.CombatSimulator(displayGrid.getPlayerX() - 1, displayGrid.getPlayerY());
+                            }
+                            else if (displayGrid.getObjectGrid()[displayGrid.getPlayerX() - 1][displayGrid.getPlayerY()].peek().getChar() == 'H'){
+                                Rogue.CombatSimulator(displayGrid.getPlayerX() - 1, displayGrid.getPlayerY());
+                            }
+                            else{
+                                displayGrid.removeObjectToDisplay(displayGrid.getPlayerX(), displayGrid.getPlayerY());
+                                displayGrid.addObjectToDisplay(new Char('@'), displayGrid.getPlayerX() - 1, displayGrid.getPlayerY());
+                                displayGrid.setPlayerX(displayGrid.getPlayerX() - 1);
+                            }
                         }
                     }
                 }

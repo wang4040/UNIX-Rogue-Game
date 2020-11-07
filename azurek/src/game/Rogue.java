@@ -5,6 +5,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 import java.util.*;
+import java.util.Random;
 
 import org.xml.sax.SAXException;
 public class Rogue implements Runnable{
@@ -205,6 +206,8 @@ public class Rogue implements Runnable{
 		displayGrid.addObjectToDisplay(new Char('@'), players.get(0).getPosX() + roomX, topHeight + players.get(0).getPosY() + roomY);
 		displayGrid.setPlayerX(players.get(0).getPosX() + roomX);
 		displayGrid.setPlayerY(topHeight + players.get(0).getPosY() + roomY);
+		updateTopDisplay();
+
 		
 		
         Thread rogueThread = new Thread(rogue);
@@ -217,17 +220,77 @@ public class Rogue implements Runnable{
         rogue.keyStrokePrinter.join();
 		
 	}
-	
 
-	public static void CombatSimulator(int PosX, int PosY){
-		int monsterSpot; //The spot in the arrayLst where the monster in combat is
+
+	public static void CombatSimulator(int x, int y){
+		int monsterSpot = 0; //The spot in the arrayLst where the monster in combat is
 		int i;
-		for (i = 0; i < monsters.length(); i++){
-			if (monsters.get(i).getPosX() == players.get(0).getPosX() && (monsters.get(i).getPosY() == players.get(0).getPosY())){
+		for (i = 0; i < monsters.size(); i++){
+			if ((monsters.get(i).getPosX() == x) && (monsters.get(i).getPosY() == y)){
 				monsterSpot = i;
 				break;
 			}
-		}
+		}	
+
+		int damageToPlayer = damageCalc(monsters.get(monsterSpot).getMaxHit());
+		int damageToMonster= damageCalc(players.get(0).getMaxHit());
 		
+		players.get(0).setHp(players.get(0).getHp() - damageToPlayer); //update player hp
+		monsters.get(monsterSpot).setHp(monsters.get(monsterSpot).getHp() - damageToMonster); //update monster hp
+
+		updateTopDisplay();
+		displayCombat(damageToMonster, damageToPlayer, monsters.get(monsterSpot).getType());
+
+		if (players.get(0).getHp() <= 0)
+			playerDeath();
+		if (monsters.get(monsterSpot).getHp() <= 0)
+			monsterDeath(monsterSpot);	
+	}
+
+	//This function calculate damage done and return said amount of damage
+	private static int damageCalc(int maxHit){
+		Random rand = new Random();
+		return rand.nextInt(maxHit + 1);
+	}
+
+	//This function updates the display with a given hp value
+	private static void updateTopDisplay(){
+		String msg = "HP: " + Integer.toString(players.get(0).getHp()) + "  core:  0";
+		int i;
+		for (i = 0; i < msg.length(); i++){
+			displayGrid.addObjectToDisplay(new Char(msg.charAt(i)), i, 0);
+		}
+	}
+
+	public static void displayMessage(String msg){
+		int i;
+		for (i = 0; i < msg.length(); i++){
+			displayGrid.addObjectToDisplay(new Char(msg.charAt(i)), i, gameHeight + topHeight);
+		}
+	}
+
+	//This method displays damage done to the monster and damage done to the player
+	private static void displayCombat(int damageToMonster, int damageToPlayer, char type){
+		String monsterMsg;
+		if (type == 'S')
+			monsterMsg = "Damage done to Snake: " + Integer.toString(damageToMonster);
+		else if (type== 'T')
+			monsterMsg = "Damage done to Troll: " + Integer.toString(damageToMonster);
+		else
+			monsterMsg = "Damage done to Hobgoblin: " + Integer.toString(damageToMonster);
+		
+		displayMessage(monsterMsg);
+	}
+
+	//Removes monster from the dungeon and displays appropriate message
+	private static void monsterDeath(int monsterSpot){
+		displayGrid.removeObjectToDisplay(monsters.get(monsterSpot).getPosX(), monsters.get(monsterSpot).getPosY());
+		displayGrid.addObjectToDisplay(new Char('.'), monsters.get(monsterSpot).getPosX(), monsters.get(monsterSpot).getPosY());
+	}
+
+	//Begins the process of ending the game
+	private static void playerDeath(){
+		String msg = "You lost buckaroo";
+		displayMessage(msg);
 	}
 }

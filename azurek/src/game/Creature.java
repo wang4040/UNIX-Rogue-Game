@@ -29,4 +29,8 @@ public class Creature extends Displayable{
 		ha = _ha;
         System.out.println("setHitAction Creature");
     }
+
+    int getHp(){
+        return hp;
+    }
 }

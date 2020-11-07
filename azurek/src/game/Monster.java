@@ -16,7 +16,9 @@ public class Monster extends Creature{
         System.out.println("setName Monster s: " + s);
     }
 
-    void setID(int room, int serial){
+    void setID(int _room, int _serial){
+        room = _room;
+        serial = _serial;
         System.out.println("setID Monster room: " + room + " serial: " + serial);
     }
 
@@ -30,5 +32,9 @@ public class Monster extends Creature{
 
     int getMaxHit(){
         return maxHit;
+    }
+
+    int getID(){
+        return serial;
     }
 }
