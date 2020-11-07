@@ -221,12 +221,21 @@ public class Rogue implements Runnable{
 		
 	}
 
-
-	public static void CombatSimulator(int x, int y){
+	//Return true if the player has died
+	public static boolean CombatSimulator(int x, int y){
 		int monsterSpot = 0; //The spot in the arrayLst where the monster in combat is
 		int i;
+		int j;
+		int roomX = 0;
+		int roomY = 0;
 		for (i = 0; i < monsters.size(); i++){
-			if ((monsters.get(i).getPosX() == x) && (monsters.get(i).getPosY() == y)){
+			for (j = 0; j < rooms.size(); j++){
+				if (rooms.get(j).getId() == monsters.get(i).getRoom()){
+					roomX = rooms.get(j).getPosX();
+					roomY = rooms.get(j).getPosY();
+				}
+			}
+			if (((monsters.get(i).getPosX() + roomX) == x) && ((monsters.get(i).getPosY() + roomY + topHeight) == y)){
 				monsterSpot = i;
 				break;
 			}
@@ -241,10 +250,14 @@ public class Rogue implements Runnable{
 		updateTopDisplay();
 		displayCombat(damageToMonster, damageToPlayer, monsters.get(monsterSpot).getType());
 
-		if (players.get(0).getHp() <= 0)
+		if (players.get(0).getHp() <= 0){
 			playerDeath();
+			return true;
+		}
 		if (monsters.get(monsterSpot).getHp() <= 0)
-			monsterDeath(monsterSpot);	
+			monsterDeath(monsterSpot, roomX, roomY);
+		
+		return false;
 	}
 
 	//This function calculate damage done and return said amount of damage
@@ -263,7 +276,11 @@ public class Rogue implements Runnable{
 	}
 
 	public static void displayMessage(String msg){
-		int i;
+		int i = 0;
+		while (displayGrid.getObjectGrid()[i][gameHeight + topHeight].empty() == false){
+			displayGrid.removeObjectToDisplay(i, gameHeight + topHeight);
+			i++;
+		}
 		for (i = 0; i < msg.length(); i++){
 			displayGrid.addObjectToDisplay(new Char(msg.charAt(i)), i, gameHeight + topHeight);
 		}
@@ -274,7 +291,7 @@ public class Rogue implements Runnable{
 		String monsterMsg;
 		if (type == 'S')
 			monsterMsg = "Damage done to Snake: " + Integer.toString(damageToMonster);
-		else if (type== 'T')
+		else if (type == 'T')
 			monsterMsg = "Damage done to Troll: " + Integer.toString(damageToMonster);
 		else
 			monsterMsg = "Damage done to Hobgoblin: " + Integer.toString(damageToMonster);
@@ -283,9 +300,17 @@ public class Rogue implements Runnable{
 	}
 
 	//Removes monster from the dungeon and displays appropriate message
-	private static void monsterDeath(int monsterSpot){
-		displayGrid.removeObjectToDisplay(monsters.get(monsterSpot).getPosX(), monsters.get(monsterSpot).getPosY());
-		displayGrid.addObjectToDisplay(new Char('.'), monsters.get(monsterSpot).getPosX(), monsters.get(monsterSpot).getPosY());
+	private static void monsterDeath(int monsterSpot, int roomX, int roomY){
+		String msg;
+		displayGrid.removeObjectToDisplay(monsters.get(monsterSpot).getPosX() + roomX, monsters.get(monsterSpot).getPosY() + roomY + topHeight);
+		displayGrid.addObjectToDisplay(new Char('.'), monsters.get(monsterSpot).getPosX() + roomX, monsters.get(monsterSpot).getPosY() + roomY + topHeight);
+		if (monsters.get(monsterSpot).getType() == 'S')
+			msg = "You have defeated the Snake!";
+		else if (monsters.get(monsterSpot).getType() == 'T')
+			msg = "You have defeated the Troll!";
+		else
+			msg = "You have defeated the Hobgoblin!";
+		displayMessage(msg);
 	}
 
 	//Begins the process of ending the game

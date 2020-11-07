@@ -13,7 +13,7 @@ public class Dungeon{
 		gameHeight = _gameHeight;
 		bottomHeight = _bottomHeight;
 		topHeight = _topHeight;
-		System.out.println("construct Dungeon with name: " + name + " width: " + width + " gameHeight: " + gameHeight);
+		//System.out.println("construct Dungeon with name: " + name + " width: " + width + " gameHeight: " + gameHeight);
     }
 
 	int getWidth( ) {
@@ -33,23 +33,23 @@ public class Dungeon{
 	}
 
     void getDungeon(String name, int width, int gameHeight){
-        System.out.println("getDungeon name: " + name + " width: " + width + " gameHeight: " + gameHeight);
+        //System.out.println("getDungeon name: " + name + " width: " + width + " gameHeight: " + gameHeight);
     }
 
     void addRoom(Room r){
-        System.out.println("addRoom r: " + r);
+        //System.out.println("addRoom r: " + r);
     }
 
     void addCreature(Creature c){
-        System.out.println("addCreature");
+        //System.out.println("addCreature");
     }
 
     void addPassage(Passage passage){
-        System.out.println("addPassage");
+        //System.out.println("addPassage");
     }
 
     void addItem(Item item){
-        System.out.println("addItem");
+        //System.out.println("addItem");
     }
 
 }

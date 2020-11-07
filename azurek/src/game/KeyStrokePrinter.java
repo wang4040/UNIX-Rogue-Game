@@ -34,7 +34,7 @@ public class KeyStrokePrinter implements InputObserver, Runnable {
     private boolean processInput() {
 
         char ch;
-
+        boolean dead = false;
         boolean processing = true;
         while (processing) {
             if (inputQueue.peek() == null) {
@@ -48,13 +48,13 @@ public class KeyStrokePrinter implements InputObserver, Runnable {
                     if (displayGrid.getObjectGrid()[displayGrid.getPlayerX() - 1][displayGrid.getPlayerY()].empty() == false){
                         if (displayGrid.getObjectGrid()[displayGrid.getPlayerX() - 1][displayGrid.getPlayerY()].peek().getChar() != 'X'){
                             if (displayGrid.getObjectGrid()[displayGrid.getPlayerX() - 1][displayGrid.getPlayerY()].peek().getChar() == 'S'){
-                                Rogue.CombatSimulator(displayGrid.getPlayerX() - 1, displayGrid.getPlayerY());
+                                dead = Rogue.CombatSimulator(displayGrid.getPlayerX() - 1, displayGrid.getPlayerY());
                             }
                             else if (displayGrid.getObjectGrid()[displayGrid.getPlayerX() - 1][displayGrid.getPlayerY()].peek().getChar() == 'T'){
-                                Rogue.CombatSimulator(displayGrid.getPlayerX() - 1, displayGrid.getPlayerY());
+                                dead = Rogue.CombatSimulator(displayGrid.getPlayerX() - 1, displayGrid.getPlayerY());
                             }
                             else if (displayGrid.getObjectGrid()[displayGrid.getPlayerX() - 1][displayGrid.getPlayerY()].peek().getChar() == 'H'){
-                                Rogue.CombatSimulator(displayGrid.getPlayerX() - 1, displayGrid.getPlayerY());
+                                dead = Rogue.CombatSimulator(displayGrid.getPlayerX() - 1, displayGrid.getPlayerY());
                             }
                             else{
                                 displayGrid.removeObjectToDisplay(displayGrid.getPlayerX(), displayGrid.getPlayerY());
@@ -67,27 +67,60 @@ public class KeyStrokePrinter implements InputObserver, Runnable {
                 else if(ch == 'l'){
                     if (displayGrid.getObjectGrid()[displayGrid.getPlayerX() + 1][displayGrid.getPlayerY()].empty() == false){
                         if (displayGrid.getObjectGrid()[displayGrid.getPlayerX() + 1][displayGrid.getPlayerY()].peek().getChar() != 'X'){
-                            displayGrid.removeObjectToDisplay(displayGrid.getPlayerX(), displayGrid.getPlayerY());
-                            displayGrid.addObjectToDisplay(new Char('@'), displayGrid.getPlayerX() + 1, displayGrid.getPlayerY());
-                            displayGrid.setPlayerX(displayGrid.getPlayerX() + 1);
+                            if (displayGrid.getObjectGrid()[displayGrid.getPlayerX() + 1][displayGrid.getPlayerY()].peek().getChar() == 'S'){
+                                dead = Rogue.CombatSimulator(displayGrid.getPlayerX() + 1, displayGrid.getPlayerY());
+                            }
+                            else if (displayGrid.getObjectGrid()[displayGrid.getPlayerX() + 1][displayGrid.getPlayerY()].peek().getChar() == 'T'){
+                                dead = Rogue.CombatSimulator(displayGrid.getPlayerX() + 1, displayGrid.getPlayerY());
+                            }
+                            else if (displayGrid.getObjectGrid()[displayGrid.getPlayerX() + 1][displayGrid.getPlayerY()].peek().getChar() == 'H'){
+                                dead = Rogue.CombatSimulator(displayGrid.getPlayerX() + 1, displayGrid.getPlayerY());
+                            }
+                            else{
+                                displayGrid.removeObjectToDisplay(displayGrid.getPlayerX(), displayGrid.getPlayerY());
+                                displayGrid.addObjectToDisplay(new Char('@'), displayGrid.getPlayerX() + 1, displayGrid.getPlayerY());
+                                displayGrid.setPlayerX(displayGrid.getPlayerX() + 1);
+                            }
                         }
                     }                    
                 }
                 else if(ch == 'j'){
                     if (displayGrid.getObjectGrid()[displayGrid.getPlayerX()][displayGrid.getPlayerY() + 1].empty() == false){
-                            if (displayGrid.getObjectGrid()[displayGrid.getPlayerX()][displayGrid.getPlayerY() + 1].peek().getChar() != 'X'){
-                            displayGrid.removeObjectToDisplay(displayGrid.getPlayerX(), displayGrid.getPlayerY());
-                            displayGrid.addObjectToDisplay(new Char('@'), displayGrid.getPlayerX(), displayGrid.getPlayerY() + 1);
-                            displayGrid.setPlayerY(displayGrid.getPlayerY() + 1);
+                        if (displayGrid.getObjectGrid()[displayGrid.getPlayerX()][displayGrid.getPlayerY() + 1].peek().getChar() != 'X'){
+                            if (displayGrid.getObjectGrid()[displayGrid.getPlayerX()][displayGrid.getPlayerY() + 1].peek().getChar() == 'S'){
+                                dead = Rogue.CombatSimulator(displayGrid.getPlayerX(), displayGrid.getPlayerY() + 1);
+                            }
+                            else if (displayGrid.getObjectGrid()[displayGrid.getPlayerX()][displayGrid.getPlayerY() + 1].peek().getChar() == 'T'){
+                                dead = Rogue.CombatSimulator(displayGrid.getPlayerX(), displayGrid.getPlayerY() + 1);
+                            }
+                            else if (displayGrid.getObjectGrid()[displayGrid.getPlayerX()][displayGrid.getPlayerY() + 1].peek().getChar() == 'H'){
+                                dead = Rogue.CombatSimulator(displayGrid.getPlayerX(), displayGrid.getPlayerY() + 1);
+                            }
+                            else {
+                                displayGrid.removeObjectToDisplay(displayGrid.getPlayerX(), displayGrid.getPlayerY());
+                                displayGrid.addObjectToDisplay(new Char('@'), displayGrid.getPlayerX(), displayGrid.getPlayerY() + 1);
+                                displayGrid.setPlayerY(displayGrid.getPlayerY() + 1);
+                            }
                         }
                     }                    
                 }
                 else if(ch == 'k'){
                     if (displayGrid.getObjectGrid()[displayGrid.getPlayerX()][displayGrid.getPlayerY() - 1].empty() == false){
                         if (displayGrid.getObjectGrid()[displayGrid.getPlayerX()][displayGrid.getPlayerY() - 1].peek().getChar() != 'X'){
-                            displayGrid.removeObjectToDisplay(displayGrid.getPlayerX(), displayGrid.getPlayerY());
-                            displayGrid.addObjectToDisplay(new Char('@'), displayGrid.getPlayerX(), displayGrid.getPlayerY() - 1);
-                            displayGrid.setPlayerY(displayGrid.getPlayerY() - 1);
+                            if (displayGrid.getObjectGrid()[displayGrid.getPlayerX()][displayGrid.getPlayerY() - 1].peek().getChar() == 'S'){
+                                dead = Rogue.CombatSimulator(displayGrid.getPlayerX(), displayGrid.getPlayerY() - 1);
+                            }
+                            else if (displayGrid.getObjectGrid()[displayGrid.getPlayerX()][displayGrid.getPlayerY() - 1].peek().getChar() == 'T'){
+                                dead = Rogue.CombatSimulator(displayGrid.getPlayerX(), displayGrid.getPlayerY() - 1);
+                            }
+                            else if (displayGrid.getObjectGrid()[displayGrid.getPlayerX()][displayGrid.getPlayerY() - 1].peek().getChar() == 'H'){
+                                dead = Rogue.CombatSimulator(displayGrid.getPlayerX(), displayGrid.getPlayerY() - 1);
+                            }
+                            else {
+                                displayGrid.removeObjectToDisplay(displayGrid.getPlayerX(), displayGrid.getPlayerY());
+                                displayGrid.addObjectToDisplay(new Char('@'), displayGrid.getPlayerX(), displayGrid.getPlayerY() - 1);
+                                displayGrid.setPlayerY(displayGrid.getPlayerY() - 1);
+                            }
                         }
                     }                    
                 }
@@ -96,7 +129,10 @@ public class KeyStrokePrinter implements InputObserver, Runnable {
                 }
             }
         }
-        return true;
+        if (dead == true)
+            return false;
+        else
+            return true;
     }
 
     @Override

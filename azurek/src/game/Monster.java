@@ -9,17 +9,17 @@ public class Monster extends Creature{
 		name = _name;
 		room = _room;
 		serial = _serial;
-        System.out.println("Construct Monster name: " + name + " room: " + room + " serial: " + serial);
+        //System.out.println("Construct Monster name: " + name + " room: " + room + " serial: " + serial);
     }
 
     void setName(String s){
-        System.out.println("setName Monster s: " + s);
+        //System.out.println("setName Monster s: " + s);
     }
 
     void setID(int _room, int _serial){
         room = _room;
         serial = _serial;
-        System.out.println("setID Monster room: " + room + " serial: " + serial);
+        //System.out.println("setID Monster room: " + room + " serial: " + serial);
     }
 
     int getRoom(){

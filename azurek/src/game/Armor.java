@@ -8,18 +8,18 @@ public class Armor extends Item{
     public Armor(String _name){
 		name = _name;
 		type = ']';
-        System.out.println("Construct Armor name is:" + name);
+        //System.out.println("Construct Armor name is:" + name);
     }
 
     void setName(String s){
 		name = s;
-        System.out.println("setName Armor input is: " + s);
+        //System.out.println("setName Armor input is: " + s);
     }
 
     void setID(int _room, int _serial){
 		room = _room;
 		serial = _serial;
-        System.out.println("SetID Armor room:" + room + "serial: " + serial);
+        //System.out.println("SetID Armor room:" + room + "serial: " + serial);
     }
 
     int getRoom(){

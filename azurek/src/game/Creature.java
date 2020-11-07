@@ -7,27 +7,27 @@ public class Creature extends Displayable{
 	CreatureAction ha;
 	
     public Creature(){
-        System.out.println("Construct Creature");
+        //System.out.println("Construct Creature");
     }
 
     void setHp(int h){
 		hp = h;
-        System.out.println("setHp Creature h: " + hp);
+        //System.out.println("setHp Creature h: " + hp);
     }
 
     void setHpMoves(int _hpm){
 		hpm = _hpm;
-        System.out.println("setHpMoves Creature hmp: " + hpm);
+        //System.out.println("setHpMoves Creature hmp: " + hpm);
     }
 
     void setDeathAction(CreatureAction _da){
 		da = _da;
-        System.out.println("setDeathAction Creature");
+        //System.out.println("setDeathAction Creature");
     }
 
     void setHitAction(CreatureAction _ha){
 		ha = _ha;
-        System.out.println("setHitAction Creature");
+        //System.out.println("setHitAction Creature");
     }
 
     int getHp(){

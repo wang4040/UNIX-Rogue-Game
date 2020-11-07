@@ -8,13 +8,13 @@ public class Sword extends Item{
     public Sword(String _name){
 		name = _name;
 		type = ')';
-        System.out.println("Construct Sword name: " + name);
+        //System.out.println("Construct Sword name: " + name);
     }
 
     void setID(int _room, int _serial){
 		room = _room;
 		serial = _serial;
-        System.out.println("setID Sword room: " + room + " serial: " + serial);
+        //System.out.println("setID Sword room: " + room + " serial: " + serial);
     }
 
     int getRoom(){
