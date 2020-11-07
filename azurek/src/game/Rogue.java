@@ -207,6 +207,8 @@ public class Rogue implements Runnable{
 		displayGrid.setPlayerX(players.get(0).getPosX() + roomX);
 		displayGrid.setPlayerY(topHeight + players.get(0).getPosY() + roomY);
 		updateTopDisplay();
+		displayMessageInfo("");
+		displayMessagePack("");
 
 		
 		
@@ -275,14 +277,26 @@ public class Rogue implements Runnable{
 		}
 	}
 
-	public static void displayMessage(String msg){
-		int i = 0;
-		while (displayGrid.getObjectGrid()[i][gameHeight + topHeight].empty() == false){
-			displayGrid.removeObjectToDisplay(i, gameHeight + topHeight);
+	public static void displayMessagePack(String msg){
+		String pack = "Pack: " + msg;
+		int i;
+		for (i = 0; i < pack.length(); i++){
+			displayGrid.addObjectToDisplay(new Char(pack.charAt(i)), i, gameHeight + topHeight + bottomHeight - 3);
+		}
+		while (displayGrid.getObjectGrid()[i][gameHeight + topHeight + bottomHeight - 3].empty() == false){
+			displayGrid.removeObjectToDisplay(i, gameHeight + topHeight + bottomHeight - 3);
 			i++;
 		}
-		for (i = 0; i < msg.length(); i++){
-			displayGrid.addObjectToDisplay(new Char(msg.charAt(i)), i, gameHeight + topHeight);
+	}
+	public static void displayMessageInfo(String msg){
+		String info = "Info: " + msg;
+		int i;
+		for (i = 0; i < info.length(); i++){
+			displayGrid.addObjectToDisplay(new Char(info.charAt(i)), i, gameHeight + topHeight + bottomHeight - 1);
+		}
+		while (displayGrid.getObjectGrid()[i][gameHeight + topHeight + bottomHeight - 1].empty() == false){
+			displayGrid.removeObjectToDisplay(i, gameHeight + topHeight + bottomHeight - 1);
+			i++;
 		}
 	}
 
@@ -296,7 +310,7 @@ public class Rogue implements Runnable{
 		else
 			monsterMsg = "Damage done to Hobgoblin: " + Integer.toString(damageToMonster);
 		
-		displayMessage(monsterMsg);
+		displayMessageInfo(monsterMsg);
 	}
 
 	//Removes monster from the dungeon and displays appropriate message
@@ -310,12 +324,12 @@ public class Rogue implements Runnable{
 			msg = "You have defeated the Troll!";
 		else
 			msg = "You have defeated the Hobgoblin!";
-		displayMessage(msg);
+		displayMessageInfo(msg);
 	}
 
 	//Begins the process of ending the game
 	private static void playerDeath(){
 		String msg = "You lost buckaroo";
-		displayMessage(msg);
+		displayMessageInfo(msg);
 	}
 }
