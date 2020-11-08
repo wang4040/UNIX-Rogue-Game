@@ -296,7 +296,7 @@ public class Rogue implements Runnable{
 			displayGrid.addObjectToDisplay(new Char(info.charAt(i)), i, gameHeight + topHeight + bottomHeight - 1);
 		}
 		for (i=info.length(); i < previousMsgLen; i++){
-			displayGrid.removeObjectToDisplay(i, gameHeight + topHeight + bottomHeight - 1);
+			displayGrid.clearObjectDisplay(i, gameHeight + topHeight + bottomHeight - 1);
 		}
 		/*while (displayGrid.getObjectGrid()[i][gameHeight + topHeight + bottomHeight - 1].empty() == false){
 			displayGrid.removeObjectToDisplay(i, gameHeight + topHeight + bottomHeight - 1);
