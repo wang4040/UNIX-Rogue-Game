@@ -33,7 +33,8 @@ public class Rogue implements Runnable{
 	static int width;
 	static int gameHeight;
 	static int topHeight;
-	static int bottomHeight;	
+	static int bottomHeight;
+	static int previousMsgLen = 0;	
 
 
     public Rogue(int width, int topHeight, int gameHeight, int bottomHeight){
@@ -294,10 +295,13 @@ public class Rogue implements Runnable{
 		for (i = 0; i < info.length(); i++){
 			displayGrid.addObjectToDisplay(new Char(info.charAt(i)), i, gameHeight + topHeight + bottomHeight - 1);
 		}
-		while (displayGrid.getObjectGrid()[i][gameHeight + topHeight + bottomHeight - 1].empty() == false){
+		for (i=info.length(); i < previousMsgLen; i++){
+			displayGrid.removeObjectToDisplay(i, gameHeight + topHeight + bottomHeight - 1);
+		}
+		/*while (displayGrid.getObjectGrid()[i][gameHeight + topHeight + bottomHeight - 1].empty() == false){
 			displayGrid.removeObjectToDisplay(i, gameHeight + topHeight + bottomHeight - 1);
 			i++;
-		}
+		}*/
 	}
 
 	//This method displays damage done to the monster and damage done to the player
