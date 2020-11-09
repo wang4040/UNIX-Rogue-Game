@@ -1,7 +1,7 @@
 package game;
 public class Scroll extends Item{
+	
 	int room;
-    int serial;
     char type;
 	
     public Scroll(String _name){
@@ -23,5 +23,4 @@ public class Scroll extends Item{
     char getType(){
         return type;
     }
-
 }

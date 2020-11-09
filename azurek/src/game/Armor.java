@@ -2,7 +2,6 @@ package game;
 public class Armor extends Item{
 	
 	int room;
-    int serial;
     char type;
 	
     public Armor(String _name){

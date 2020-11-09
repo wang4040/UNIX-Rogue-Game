@@ -352,13 +352,7 @@ public class Rogue implements Runnable{
 		if (currItem == ']') {
 			//nested for loop to find the armor we're on
 			for (i = 0; i < armors.size(); i++){
-				for (j = 0; j < rooms.size(); j++){
-					if (rooms.get(j).getId() == armors.get(i).getRoom()){
-						roomX = rooms.get(j).getPosX();
-						roomY = rooms.get(j).getPosY();
-					}
-				}
-				if (((armors.get(i).getPosX() + roomX) == x) && ((armors.get(i).getPosY() + roomY + topHeight) == y)){
+				if ((armors.get(i).getUniPosX() == x) && (armors.get(i).getUniPosY() == y)){
 					armorSpot = i;
 					break;
 				}
@@ -367,40 +361,59 @@ public class Rogue implements Runnable{
 			displayGrid.removeObjectToDisplay(x, y); //removes the armor from the display
 		}else if (currItem == ')') {
 			for (i = 0; i < swords.size(); i++){
-				for (j = 0; j < rooms.size(); j++){
-					if (rooms.get(j).getId() == swords.get(i).getRoom()){
-						roomX = rooms.get(j).getPosX();
-						roomY = rooms.get(j).getPosY();
-					}
-				}
-				if (((swords.get(i).getPosX() + roomX) == x) && ((swords.get(i).getPosY() + roomY + topHeight) == y)){
+				if ((swords.get(i).getUniPosX() == x) && (swords.get(i).getUniPosY() == y)){
 					swordSpot = i;
 					break;
 				}
 			}
 			pack.add(swords.get(swordSpot));
-			displayGrid.removeObjectToDisplay(x, y); //removes the armor from the display
+			displayGrid.removeObjectToDisplay(x, y); //removes the sword from the display
 		}else if (currItem == '?') {
 			for (i = 0; i < scrolls.size(); i++){
-				for (j = 0; j < rooms.size(); j++){
-					if (rooms.get(j).getId() == scrolls.get(i).getRoom()){
-						roomX = rooms.get(j).getPosX();
-						roomY = rooms.get(j).getPosY();
-					}
-				}
-				if (((scrolls.get(i).getPosX() + roomX) == x) && ((scrolls.get(i).getPosY() + roomY + topHeight) == y)){
+				if ((scrolls.get(i).getUniPosX() == x) && (scrolls.get(i).getUniPosY() == y)){
 					scrollSpot = i;
 					break;
 				}
 			}
 			pack.add(scrolls.get(scrollSpot));
-			displayGrid.removeObjectToDisplay(x, y); //removes the armor from the display
+			displayGrid.removeObjectToDisplay(x, y); //removes the scroll from the display
 		}
 		displayGrid.addObjectToDisplay(new Char('@'), x, y); //add the player icon back
 	}
 
 	public static void dropItem(int itemToDrop){
-
+		int x = displayGrid.getPlayerX();
+		int y = displayGrid.getPlayerY();
+		displayGrid.removeObjectToDisplay(x, y); //pop the player icon first
+		displayGrid.addObjectToDisplay(new Char(pack.get(itemToDrop).getType()), x, y);
+		//find the object in the original arraylist and update uniPosX and uniPosY
+		int i;
+		if (pack.get(itemToDrop).getType() == ']') {
+			for(i = 0; i < armors.size(); i++) {
+				if (armors.get(i).getSerial() == pack.get(itemToDrop).getSerial()) {
+					break;
+				}
+			}
+			armors.get(i).setUniPosX(x); //updates universal coordinates for the item in its own arraylist
+			armors.get(i).setUniPosY(y);
+		}else if(pack.get(itemToDrop).getType() == ')') {
+			for(i = 0; i < swords.size(); i++) {
+				if (swords.get(i).getSerial() == pack.get(itemToDrop).getSerial()) {
+					break;
+				}
+			}
+			swords.get(i).setUniPosX(x); //updates universal coordinates for the item in its own arraylist
+			swords.get(i).setUniPosY(y);
+		}else if(pack.get(itemToDrop).getType() == '?') {
+			for(i = 0; i < scrolls.size(); i++) {
+				if (scrolls.get(i).getSerial() == pack.get(itemToDrop).getSerial()) {
+					break;
+				}
+			}
+			scrolls.get(i).setUniPosX(x); //updates universal coordinates for the item in its own arraylist
+			scrolls.get(i).setUniPosY(y);
+		}
+		pack.remove(itemToDrop);
 	}
 
 	public static void displayInventory(){

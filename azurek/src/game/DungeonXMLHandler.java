@@ -193,9 +193,9 @@ public class DungeonXMLHandler extends DefaultHandler {
 		//Scrolls aren't set for anyone
 		
 		if (bPosX){
-
 			if (itemBeingParsed != null){
 				itemBeingParsed.SetPosX(Integer.parseInt(data.toString()));
+				itemBeingParsed.setUniPosX(Integer.parseInt(data.toString()) + roomBeingParsed.getPosX());
 				bPosX = false;
 			}else if (monsterBeingParsed != null){
 				monsterBeingParsed.SetPosX(Integer.parseInt(data.toString()));
@@ -213,6 +213,7 @@ public class DungeonXMLHandler extends DefaultHandler {
 		}else if (bPosY){
 			if (itemBeingParsed != null){
 				itemBeingParsed.setPosY(Integer.parseInt(data.toString()));
+				itemBeingParsed.setUniPosY(Integer.parseInt(data.toString()) + roomBeingParsed.getPosY() + dungeonBeingParsed.getTopHeight());
 				bPosY = false;
 			}else if (monsterBeingParsed != null){
 				monsterBeingParsed.setPosY(Integer.parseInt(data.toString()));
