@@ -149,11 +149,12 @@ public class KeyStrokePrinter implements InputObserver, Runnable {
 		boolean processing = true;
 		while (processing) {
 			if (inputQueue.peek() == null) {
-				processing = false;
+				processing = true;
 			}else if (((int) inputQueue.peek() > 57) || ((int) inputQueue.peek() < 48)){
-				processing = false;
+                processing = false;
 			}else {
-				Rogue.dropItem((int)(inputQueue.poll()) - (int)'0');
+                Rogue.dropItem((int)(inputQueue.poll()) - (int)'0');
+                processing = false;
 			}
 		}
 	}
