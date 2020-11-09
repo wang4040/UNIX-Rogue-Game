@@ -127,7 +127,7 @@ public class KeyStrokePrinter implements InputObserver, Runnable {
                 else if (ch == 'p'){
                     Rogue.pickupItem(players.get(0).getPlayerX(), players.get(0).getPlayerY());
                 }
-                else if (ch == 'I'){
+                else if (ch == 'i'){
                     Rogue.displayInventory();
                 }
                 else if (ch == 'd'){
