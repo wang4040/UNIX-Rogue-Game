@@ -302,6 +302,7 @@ public class Rogue implements Runnable{
 			displayGrid.removeObjectToDisplay(i, gameHeight + topHeight + bottomHeight - 1);
 			i++;
 		}*/
+		previousMsgLen = info.length();
 	}
 
 	//This method displays damage done to the monster and damage done to the player
