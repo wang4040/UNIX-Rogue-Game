@@ -30,7 +30,7 @@ public class Rogue implements Runnable{
 	static ArrayList<Scroll> scrolls;
 	static ArrayList<Armor> armors;
 	static ArrayList<Sword> swords;
-	static ArrayList<Item> pack;
+	static ArrayList<Item> pack = new ArrayList<Item>();
 	static int width;
 	static int gameHeight;
 	static int topHeight;
@@ -339,11 +339,16 @@ public class Rogue implements Runnable{
 		displayMessageInfo(msg);
 	}
 
-	private static void pickupItem(int x, int y){
+	public static void pickupItem(int x, int y){
 
 		displayGrid.removeObjectToDisplay(x, y); //pop the player icon first
 		char currItem = displayGrid.getObjectGrid()[x][y].peek().getChar();
-		int i, j, armorSpot, swordSpot, scrollSpot;
+		int i, j, armorSpot, swordSpot, scrollSpot, roomX, roomY;
+		roomX = 0;
+		roomY = 0;
+		armorSpot = 0;
+		swordSpot = 0;
+		scrollSpot = 0;
 		if (currItem == ']') {
 			//nested for loop to find the armor we're on
 			for (i = 0; i < armors.size(); i++){
@@ -359,6 +364,7 @@ public class Rogue implements Runnable{
 				}
 			}
 			pack.add(armors.get(armorSpot));
+			displayGrid.removeObjectToDisplay(x, y); //removes the armor from the display
 		}else if (currItem == ')') {
 			for (i = 0; i < swords.size(); i++){
 				for (j = 0; j < rooms.size(); j++){
@@ -373,6 +379,7 @@ public class Rogue implements Runnable{
 				}
 			}
 			pack.add(swords.get(swordSpot));
+			displayGrid.removeObjectToDisplay(x, y); //removes the armor from the display
 		}else if (currItem == '?') {
 			for (i = 0; i < scrolls.size(); i++){
 				for (j = 0; j < rooms.size(); j++){
@@ -387,16 +394,34 @@ public class Rogue implements Runnable{
 				}
 			}
 			pack.add(scrolls.get(scrollSpot));
+			displayGrid.removeObjectToDisplay(x, y); //removes the armor from the display
 		}
-		displayGrid.removeObjectDisplay(x, y); //removes the armor from the display
 		displayGrid.addObjectToDisplay(new Char('@'), x, y); //add the player icon back
 	}
 
-	private static void dropItem(int itemToDrop){
+	public static void dropItem(int itemToDrop){
 
 	}
 
-	private static void displayInventory(){
-
+	public static void displayInventory(){
+		int i;
+		String msg = "";
+		for (i = 0; i < pack.size() - 1; i++){
+			if (pack.get(i).getType() == ']')
+				msg += (char)(i + (int)'0') + ": Armor , ";
+			else if (pack.get(i).getType() == ')')
+				msg += (char)(i + (int)'0') + ": Sword , ";
+			else
+				msg += (char)(i + (int)'0') + ": Scroll , ";
+		}
+		if (pack.size() != 0){
+			if (pack.get(i).getType() == ']')
+			msg += (char)(i + (int)'0') + ": Armor";
+		else if (pack.get(i).getType() == ')')
+			msg += (char)(i + (int)'0') + ": Sword";
+		else
+			msg += (char)(i + (int)'0') + ": Scroll";
+		}
+		displayMessagePack(msg);
 	}
 }
