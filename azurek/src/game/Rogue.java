@@ -30,6 +30,7 @@ public class Rogue implements Runnable{
 	static ArrayList<Scroll> scrolls;
 	static ArrayList<Armor> armors;
 	static ArrayList<Sword> swords;
+	static ArrayList<Item> pack;
 	static int width;
 	static int gameHeight;
 	static int topHeight;
@@ -340,6 +341,55 @@ public class Rogue implements Runnable{
 
 	private static void pickupItem(int x, int y){
 
+		displayGrid.removeObjectToDisplay(x, y); //pop the player icon first
+		char currItem = displayGrid.getObjectGrid()[x][y].peek().getChar();
+		int i, j, armorSpot, swordSpot, scrollSpot;
+		if (currItem == ']') {
+			//nested for loop to find the armor we're on
+			for (i = 0; i < armors.size(); i++){
+				for (j = 0; j < rooms.size(); j++){
+					if (rooms.get(j).getId() == armors.get(i).getRoom()){
+						roomX = rooms.get(j).getPosX();
+						roomY = rooms.get(j).getPosY();
+					}
+				}
+				if (((armors.get(i).getPosX() + roomX) == x) && ((armors.get(i).getPosY() + roomY + topHeight) == y)){
+					armorSpot = i;
+					break;
+				}
+			}
+			pack.add(armors.get(armorSpot));
+		}else if (currItem == ')') {
+			for (i = 0; i < swords.size(); i++){
+				for (j = 0; j < rooms.size(); j++){
+					if (rooms.get(j).getId() == swords.get(i).getRoom()){
+						roomX = rooms.get(j).getPosX();
+						roomY = rooms.get(j).getPosY();
+					}
+				}
+				if (((swords.get(i).getPosX() + roomX) == x) && ((swords.get(i).getPosY() + roomY + topHeight) == y)){
+					swordSpot = i;
+					break;
+				}
+			}
+			pack.add(swords.get(swordSpot));
+		}else if (currItem == '?') {
+			for (i = 0; i < scrolls.size(); i++){
+				for (j = 0; j < rooms.size(); j++){
+					if (rooms.get(j).getId() == scrolls.get(i).getRoom()){
+						roomX = rooms.get(j).getPosX();
+						roomY = rooms.get(j).getPosY();
+					}
+				}
+				if (((scrolls.get(i).getPosX() + roomX) == x) && ((scrolls.get(i).getPosY() + roomY + topHeight) == y)){
+					scrollSpot = i;
+					break;
+				}
+			}
+			pack.add(scrolls.get(scrollSpot));
+		}
+		displayGrid.removeObjectDisplay(x, y); //removes the armor from the display
+		displayGrid.addObjectToDisplay(new Char('@'), x, y); //add the player icon back
 	}
 
 	private static void dropItem(int itemToDrop){

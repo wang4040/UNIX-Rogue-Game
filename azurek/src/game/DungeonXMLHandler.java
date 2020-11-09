@@ -134,7 +134,6 @@ public class DungeonXMLHandler extends DefaultHandler {
 				newArmor.setOwner(playerBeingParsed);
 			}
 			else {
-				
 				armors.add(newArmor);
 			}
 			itemBeingParsed = newArmor;
