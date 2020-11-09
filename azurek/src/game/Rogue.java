@@ -414,6 +414,7 @@ public class Rogue implements Runnable{
 			scrolls.get(i).setUniPosY(y);
 		}
 		pack.remove(itemToDrop);
+		displayGrid.addObjectToDisplay(new Char('@'), x, y);
 	}
 
 	public static void displayInventory(){

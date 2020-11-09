@@ -17,11 +17,11 @@ public class Item extends Displayable{
 		uniPosY = y;
 	}
 	
-	int getUniPosX(int x) {
+	int getUniPosX() {
 		return uniPosX;
 	}
 	
-	int getUniPosY(int y) {
+	int getUniPosY() {
 		return uniPosY;
 	}
 	
