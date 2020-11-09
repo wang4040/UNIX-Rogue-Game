@@ -124,6 +124,15 @@ public class KeyStrokePrinter implements InputObserver, Runnable {
                         }
                     }                    
                 }
+                else if (ch == 'p'){
+                    Rogue.pickupItem(players.get(0).getPlayerX(), players.get(0).getPlayerY());
+                }
+                else if (ch == 'I'){
+                    Rogue.displayInventory();
+                }
+                else if (ch == 'd'){
+                    dropCommand();
+                }
                 else {
                     System.out.println("character " + ch + " entered on the keyboard");
                 }
@@ -134,6 +143,21 @@ public class KeyStrokePrinter implements InputObserver, Runnable {
         else
             return true;
     }
+
+   private void dropCommand(){
+    boolean dead = false;
+    boolean processing = true;
+    while (processing) {
+        if (inputQueue.peek() == null) {
+            processing = false;
+        }
+        else if (((int) inputQueue.peek() > 57) || ((int) inputQueue.peek() < 48)){
+            processing = false;
+        }
+        else {
+            Rogue.dropItem(Integer.parseInt(inputQueue.poll()));
+        }
+   }
 
     @Override
     public void run() {

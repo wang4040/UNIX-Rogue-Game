@@ -337,4 +337,16 @@ public class Rogue implements Runnable{
 		String msg = "You lost buckaroo";
 		displayMessageInfo(msg);
 	}
+
+	private static void pickupItem(int x, int y){
+
+	}
+
+	private static void dropItem(int itemToDrop){
+
+	}
+
+	private static void displayInventory(){
+
+	}
 }
