@@ -180,4 +180,12 @@ public class ObjectDisplayGrid extends JFrame implements KeyListener, InputSubje
         return PosY;
     }
 
+    int getGameWidth(){
+        return width;
+    }
+
+    int getGameHeight(){
+        return height;
+    }
+
 }
