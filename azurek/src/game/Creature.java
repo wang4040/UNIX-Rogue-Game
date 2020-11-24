@@ -5,7 +5,8 @@ import java.util.ArrayList;
 public class Creature extends Displayable{
 	
 	int hp;
-	int hpm;
+    int hpm;
+    int room;
 	ArrayList<CreatureAction> da = new ArrayList<CreatureAction>();
     ArrayList<CreatureAction> ha = new ArrayList<CreatureAction>();
 	
@@ -60,9 +61,9 @@ public class Creature extends Displayable{
     void doDeathAction(){
         if (da.isEmpty() == true)
             return;
-            
+
         for (int i = 0; i < da.size(); i++){
-            if (da.get(i).getAction().equals("ChangeDisplayType"))
+            if (da.get(i).getAction().equals("ChangeDisplayedType"))
                 da.get(i).ChangedDisplayedType("Useless", da.get(i).creature);
             else if (da.get(i).getAction().equals("Remove"))
                 da.get(i).Remove("Useless", da.get(i).creature);
@@ -78,5 +79,9 @@ public class Creature extends Displayable{
 
     int getHp(){
         return hp;
+    }
+
+    int getRoom(){
+        return room;
     }
 }

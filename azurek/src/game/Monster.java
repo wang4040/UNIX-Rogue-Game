@@ -1,7 +1,7 @@
 package game;
 public class Monster extends Creature{
 	
-	int room;
+	
     int serial;
     int maxHit;
 	
@@ -22,9 +22,7 @@ public class Monster extends Creature{
         //System.out.println("setID Monster room: " + room + " serial: " + serial);
     }
 
-    int getRoom(){
-        return room;
-    }
+
 
     void setMaxHit(int _maxHit){
         maxHit = _maxHit;

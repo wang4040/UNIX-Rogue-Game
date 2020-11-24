@@ -64,6 +64,7 @@ public class KeyStrokePrinter implements InputObserver, Runnable {
                                 displayGrid.removeObjectToDisplay(displayGrid.getPlayerX(), displayGrid.getPlayerY());
                                 displayGrid.addObjectToDisplay(new Char('@'), displayGrid.getPlayerX() - 1, displayGrid.getPlayerY());
                                 displayGrid.setPlayerX(displayGrid.getPlayerX() - 1);
+                                Rogue.getPlayers().get(0).SetPosX(displayGrid.getPlayerX());
                                 hpMoveCounter++;
                                 hpMoveCounter = Rogue.checkHpMoves(hpMoveCounter);
                                 hallucinateMoveCounter++;
@@ -87,6 +88,7 @@ public class KeyStrokePrinter implements InputObserver, Runnable {
                                 displayGrid.removeObjectToDisplay(displayGrid.getPlayerX(), displayGrid.getPlayerY());
                                 displayGrid.addObjectToDisplay(new Char('@'), displayGrid.getPlayerX() + 1, displayGrid.getPlayerY());
                                 displayGrid.setPlayerX(displayGrid.getPlayerX() + 1);
+                                Rogue.getPlayers().get(0).SetPosX(displayGrid.getPlayerX());
                                 hpMoveCounter++;
                                 hpMoveCounter = Rogue.checkHpMoves(hpMoveCounter);
                                 hallucinateMoveCounter++;                                
@@ -110,6 +112,7 @@ public class KeyStrokePrinter implements InputObserver, Runnable {
                                 displayGrid.removeObjectToDisplay(displayGrid.getPlayerX(), displayGrid.getPlayerY());
                                 displayGrid.addObjectToDisplay(new Char('@'), displayGrid.getPlayerX(), displayGrid.getPlayerY() + 1);
                                 displayGrid.setPlayerY(displayGrid.getPlayerY() + 1);
+                                Rogue.getPlayers().get(0).setPosY(displayGrid.getPlayerY());
                                 hpMoveCounter++;
                                 hpMoveCounter = Rogue.checkHpMoves(hpMoveCounter);
                                 hallucinateMoveCounter++;                                
@@ -133,6 +136,7 @@ public class KeyStrokePrinter implements InputObserver, Runnable {
                                 displayGrid.removeObjectToDisplay(displayGrid.getPlayerX(), displayGrid.getPlayerY());
                                 displayGrid.addObjectToDisplay(new Char('@'), displayGrid.getPlayerX(), displayGrid.getPlayerY() - 1);
                                 displayGrid.setPlayerY(displayGrid.getPlayerY() - 1);
+                                Rogue.getPlayers().get(0).setPosY(displayGrid.getPlayerY());
                                 hpMoveCounter++;
                                 hpMoveCounter = Rogue.checkHpMoves(hpMoveCounter);
                                 hallucinateMoveCounter++;                                

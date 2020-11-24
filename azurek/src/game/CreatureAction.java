@@ -51,7 +51,18 @@ public class CreatureAction extends Action{
 
     void ChangedDisplayedType(String name, Creature owner){
         //System.out.println("ChangedDisplayedType CreatureAction name: " + name);
-
+        int roomX = 0;
+        int roomY = 0;
+        int i;
+        for(i = 0; i < Rogue.rooms.size(); i++){
+            if (Rogue.rooms.get(i).getId() == owner.getRoom()){
+                roomX = Rogue.rooms.get(i).getPosX();
+                roomY = Rogue.rooms.get(i).getPosY();
+            }
+        }
+        ObjectDisplayGrid displayGrid = Rogue.getDisplayGrid();
+        displayGrid.removeObjectToDisplay(owner.getPosX() + roomX, owner.getPosY() + roomY + Rogue.getTopHeight());
+        displayGrid.addObjectToDisplay(new Char(charValue), owner.getPosX() + roomX, owner.getPosY() + roomY + Rogue.getTopHeight());
         Rogue.displayMessageInfo(message);
     }
 

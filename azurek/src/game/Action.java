@@ -1,6 +1,7 @@
 package game;
 public class Action {
     int intValue;
+    char charValue;
     String message;
     void setMessage(String msg){
         //System.out.println("setMessage Action msg is: " + msg);
@@ -14,5 +15,6 @@ public class Action {
 
     void setCharValue(char c){
         //System.out.println("SetCharValue Action char c is: " + c);
+        charValue = c;
     }
 }

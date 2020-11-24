@@ -43,8 +43,16 @@ public class Rogue implements Runnable{
 		displayGrid = new ObjectDisplayGrid(width, topHeight, gameHeight, bottomHeight);
     }
 
-	public ObjectDisplayGrid getDisplayGrid( ) {
+	public static ObjectDisplayGrid getDisplayGrid( ) {
 		return displayGrid;
+	}
+	
+	public static int getTopHeight(){
+		return topHeight;
+	}
+
+	public static ArrayList<Player> getPlayers(){
+		return players;
 	}
 
     public void run(){ //This is used when threads are used and inputs are read
