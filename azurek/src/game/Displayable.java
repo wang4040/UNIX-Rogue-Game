@@ -5,6 +5,7 @@ public class Displayable{
 	int width;
 	int height;
     char Type;
+	int intVal;
 	String name;
 
     Displayable(){
@@ -36,8 +37,12 @@ public class Displayable{
     }
 
     void setIntValue(int v){
-        //System.out.println("setIntValue v: " + v);
+        intVal = v;
     }
+	
+	int getIntValue( ) {
+		return intVal;
+	}
 
     void SetPosX(int x){
         Posx = x;

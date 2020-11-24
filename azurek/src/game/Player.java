@@ -4,6 +4,8 @@ public class Player extends Creature{
 	int room;
     int serial;
     int maxHit;
+	Item weapon;
+	Item armor;
 	
 	public Player(String _name, int _room, int _serial){
 		name = _name;
@@ -12,13 +14,21 @@ public class Player extends Creature{
         //System.out.println("Construct Player name: " + name + " room: " + room + " serial: " + serial);
 	}
 	
-    void setWeapon(Item sword){
-        //System.out.println("setWeapon Player");
+    void setWeapon(Item _sword){
+        sword = _sword;
     }
 
-    void setArmor(Item armor){
-        //System.out.println("setArmor Player");
+    void setArmor(Item _armor){
+        armor = _armor;
     }
+	
+	Item getWeapon( ){
+		return weapon;
+	}
+	
+	Item getArmor( ){
+		return armor;
+	}
 
     void setMaxHit(int _maxHit){
         maxHit = _maxHit;
