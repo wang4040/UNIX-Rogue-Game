@@ -58,7 +58,7 @@ public class Rogue implements Runnable{
         switch (args.length) {
         // note that the relative file path may depend on what IDE you are
 		// using.  This worked for NetBeans.
-        case 1: fileName = "xmlfiles/" + args[0];
+        case 1: fileName = "xmlFiles/" + args[0];
 			break;
         default: System.out.println("java Rogue <xmlfilename>");
 			return;
@@ -272,7 +272,7 @@ public class Rogue implements Runnable{
 		}
 		if (monsters.get(monsterSpot).getHp() <= 0){
 			//monsterDeath(monsterSpot, roomX, roomY);
-			monster.get(monsterSpot).doDeathAction();
+			monsters.get(monsterSpot).doDeathAction();
 		}
 		
 		return false;
@@ -334,7 +334,7 @@ public class Rogue implements Runnable{
 	}
 
 	//Removes monster from the dungeon and displays appropriate message
-	private static void monsterDeath(Monster monster, int roomX, int roomY){
+	public static void monsterDeath(Monster monster, int roomX, int roomY){
 		//String msg;
 		displayGrid.removeObjectToDisplay(monster.getPosX() + roomX, monster.getPosY() + roomY + topHeight);
 		displayGrid.addObjectToDisplay(new Char('.'), monster.getPosX() + roomX, monster.getPosY() + roomY + topHeight);

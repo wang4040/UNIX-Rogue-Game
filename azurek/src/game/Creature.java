@@ -39,7 +39,7 @@ public class Creature extends Displayable{
         
         for (int i = 0; i < ha.size(); i++){
             if (ha.get(i).action == "ChangeDisplayType")
-                ha.get(i).ChangeDisplayType("Useless", ha.get(i).creature);
+                ha.get(i).ChangedDisplayedType("Useless", ha.get(i).creature);
             else if (ha.get(i).action == "Remove")
                 ha.get(i).Remove("Useless", ha.get(i).creature);
             else if (ha.get(i).action == "Teleport")
@@ -59,7 +59,7 @@ public class Creature extends Displayable{
         
         for (int i = 0; i < da.size(); i++){
             if (da.get(i).action == "ChangeDisplayType")
-                da.get(i).ChangeDisplayType("Useless", da.get(i).creature);
+                da.get(i).ChangedDisplayedType("Useless", da.get(i).creature);
             else if (da.get(i).action == "Remove")
                 da.get(i).Remove("Useless", da.get(i).creature);
             else if (da.get(i).action == "Teleport")

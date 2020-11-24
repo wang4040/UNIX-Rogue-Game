@@ -13,15 +13,17 @@ public class CreatureAction extends Action{
 
     void Remove(String name, Creature owner){
         //System.out.println("Remove CreatureAction name: " + name);
-        int roomX;
-        int roomY;
+        int roomX = 0;
+        int roomY = 0;
+        Monster monster = (Monster) owner;
+        int j;
         for (j = 0; j < Rogue.rooms.size(); j++){
-            if (rooms.get(j).getId() == (Monster)creature.getRoom()){
+            if (Rogue.rooms.get(j).getId() == monster.getRoom()){
                 roomX = Rogue.rooms.get(j).getPosX();
                 roomY = Rogue.rooms.get(j).getPosY();
             }
         }
-        Rogue.monsterDeath((Monster) owner, roomX, roomY);
+        Rogue.monsterDeath(monster, roomX, roomY);
         Rogue.displayMessageInfo(message);
     }
 

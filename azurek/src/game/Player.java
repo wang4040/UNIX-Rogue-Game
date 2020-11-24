@@ -15,7 +15,7 @@ public class Player extends Creature{
 	}
 	
     void setWeapon(Item _sword){
-        sword = _sword;
+        weapon = _sword;
     }
 
     void setArmor(Item _armor){
