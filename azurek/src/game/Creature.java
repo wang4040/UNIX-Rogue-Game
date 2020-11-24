@@ -3,8 +3,8 @@ public class Creature extends Displayable{
 	
 	int hp;
 	int hpm;
-	CreatureAction da;
-	CreatureAction ha;
+	ArrayList<CreatureAction> da = new ArrayList<CreatureAction>();
+    ArrayList<CreatureAction> ha = new ArrayList<CreatureAction>();
 	
     public Creature(){
         //System.out.println("Construct Creature");
@@ -21,12 +21,12 @@ public class Creature extends Displayable{
     }
 
     void setDeathAction(CreatureAction _da){
-		da = _da;
+		da.add(_da);
         //System.out.println("setDeathAction Creature");
     }
 
     void setHitAction(CreatureAction _ha){
-		ha = _ha;
+		ha.add(_ha);
         //System.out.println("setHitAction Creature");
     }
 

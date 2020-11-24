@@ -4,10 +4,11 @@ public class Item extends Displayable{
 	int uniPosX;
 	int uniPosY;
 	int serial;
+	ArrayList<ItemAction> ia = new ArrayList<ItemAction>();
 
     void setOwner(Creature owner){
         //System.out.println("setOwner Creature for item: " + owner);
-    }
+	}
 	
 	void setUniPosX(int x) {
 		uniPosX = x;
@@ -28,4 +29,9 @@ public class Item extends Displayable{
 	int getSerial() {
 		return serial;
 	}
+
+	void addItemAction(ItemAction _ia){
+		ia.add(_ia);
+	}
+
 }
