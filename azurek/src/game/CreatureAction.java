@@ -2,8 +2,11 @@ package game;
 public class CreatureAction extends Action{
     String action;
     Creature creature;
-    CreatureAction(Creature owner, String _action){
+    CreatureAction(Creature owner){
         creature = owner;
+    }
+
+    void setAction(String _action){
         action = _action;
     }
 
