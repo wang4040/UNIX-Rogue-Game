@@ -334,17 +334,17 @@ public class Rogue implements Runnable{
 	}
 
 	//Removes monster from the dungeon and displays appropriate message
-	private static void monsterDeath(int monsterSpot, int roomX, int roomY){
-		String msg;
-		displayGrid.removeObjectToDisplay(monsters.get(monsterSpot).getPosX() + roomX, monsters.get(monsterSpot).getPosY() + roomY + topHeight);
-		displayGrid.addObjectToDisplay(new Char('.'), monsters.get(monsterSpot).getPosX() + roomX, monsters.get(monsterSpot).getPosY() + roomY + topHeight);
-		if (monsters.get(monsterSpot).getType() == 'S')
+	private static void monsterDeath(Monster monster, int roomX, int roomY){
+		//String msg;
+		displayGrid.removeObjectToDisplay(monster.getPosX() + roomX, monster.getPosY() + roomY + topHeight);
+		displayGrid.addObjectToDisplay(new Char('.'), monster.getPosX() + roomX, monster.getPosY() + roomY + topHeight);
+		/*if (monsters.get(monsterSpot).getType() == 'S')
 			msg = "You have defeated the Snake!";
 		else if (monsters.get(monsterSpot).getType() == 'T')
 			msg = "You have defeated the Troll!";
 		else
 			msg = "You have defeated the Hobgoblin!";
-		displayMessageInfo(msg);
+		displayMessageInfo(msg);*/
 	}
 
 	//Begins the process of ending the game
