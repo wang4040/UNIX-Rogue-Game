@@ -161,6 +161,8 @@ public class DungeonXMLHandler extends DefaultHandler {
 			itemBeingParsed = newSword;
 		}else if(qName.equalsIgnoreCase("ItemAction")) {
 			newItmAction = new ItemAction(itemBeingParsed);
+			newItmAction.setAction(attributes.getValue("name"));
+			itemBeingParsed.addItemAction(newItmAction);
 			itmactBeingParsed = newItmAction;
 		}else if(qName.equalsIgnoreCase("Passage")) {
 			newPassage = new Passage();

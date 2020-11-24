@@ -20,12 +20,12 @@ public class Creature extends Displayable{
         //System.out.println("setHpMoves Creature hmp: " + hpm);
     }
 
-    void setDeathAction(CreatureAction _da){
+    void addDeathAction(CreatureAction _da){
 		da.add(_da);
         //System.out.println("setDeathAction Creature");
     }
 
-    void setHitAction(CreatureAction _ha){
+    void addHitAction(CreatureAction _ha){
 		ha.add(_ha);
         //System.out.println("setHitAction Creature");
     }
