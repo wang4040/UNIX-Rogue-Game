@@ -12,7 +12,7 @@ public class CreatureAction extends Action{
 
 
     void Remove(String name, Creature owner){
-        //System.out.println("Remove CreatureAction name: " + name);
+        System.out.println("Remove CreatureAction type: " + owner.getType());
         int roomX = 0;
         int roomY = 0;
         Monster monster = (Monster) owner;

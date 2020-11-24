@@ -117,17 +117,18 @@ public class DungeonXMLHandler extends DefaultHandler {
 			if(monsterBeingParsed != null) {
 				newCrtAction = new CreatureAction(monsterBeingParsed);
 				newCrtAction.setAction(attributes.getValue("name"));
-				if(attributes.getValue("type") == "death") {
+				if(attributes.getValue("type").equals("death")) {
+					System.out.println("got new death action");
 					monsterBeingParsed.addDeathAction(newCrtAction);
-				}else if(attributes.getValue("type") == "hit") {
+				}else if(attributes.getValue("type").equals("hit")) {
 					monsterBeingParsed.addHitAction(newCrtAction);
 				}
 				crtactBeingParsed = newCrtAction;
 			}else if(playerBeingParsed != null) {
 				newCrtAction = new CreatureAction(playerBeingParsed);
-				if(attributes.getValue("type") == "death") {
+				if(attributes.getValue("type").equals("death")) {
 					playerBeingParsed.addDeathAction(newCrtAction);
-				}else if(attributes.getValue("type") == "hit") {
+				}else if(attributes.getValue("type").equals("hit")) {
 					playerBeingParsed.addHitAction(newCrtAction);
 				}
 				crtactBeingParsed = newCrtAction;
