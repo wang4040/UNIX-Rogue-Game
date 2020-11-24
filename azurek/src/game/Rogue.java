@@ -400,4 +400,18 @@ public class Rogue implements Runnable{
 		}
 		displayMessagePack(msg);
 	}
+
+	public static void IncrementHP(){
+		players.get(0).setHp(players.get(0).getHp() + 1);
+		updateTopDisplay();
+	}
+
+	public static int checkHpMoves(int counter){
+		if (players.get(0).getHpMoves() <= counter){
+			IncrementHP();
+			return 0;
+		}
+		else
+			return counter;
+	}
 }
