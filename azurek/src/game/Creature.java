@@ -38,17 +38,17 @@ public class Creature extends Displayable{
             return;
         
         for (int i = 0; i < ha.size(); i++){
-            if (ha.get(i).action == "ChangeDisplayType")
+            if (ha.get(i).getAction().equals("ChangeDisplayType"))
                 ha.get(i).ChangedDisplayedType("Useless", ha.get(i).creature);
-            else if (ha.get(i).action == "Remove")
+            else if (ha.get(i).getAction().equals("Remove"))
                 ha.get(i).Remove("Useless", ha.get(i).creature);
-            else if (ha.get(i).action == "Teleport")
+            else if (ha.get(i).getAction().equals("Teleport"))
                 ha.get(i).Teleport("Useless", ha.get(i).creature);
-            else if (ha.get(i).action == "UpdateDisplay")
+            else if (ha.get(i).getAction().equals("UpdateDisplay"))
                 ha.get(i).UpdateDisplay("Useless", ha.get(i).creature);
-            else if (ha.get(i).action == "YouWin")
+            else if (ha.get(i).getAction().equals("YouWin"))
                 ha.get(i).UpdateDisplay("Useless", ha.get(i).creature);
-            
+   
         }
 
     }
@@ -56,17 +56,17 @@ public class Creature extends Displayable{
     void doDeathAction(){
         if (da.isEmpty() == true)
             return;
-        
+            
         for (int i = 0; i < da.size(); i++){
-            if (da.get(i).action == "ChangeDisplayType")
+            if (da.get(i).getAction().equals("ChangeDisplayType"))
                 da.get(i).ChangedDisplayedType("Useless", da.get(i).creature);
-            else if (da.get(i).action == "Remove")
+            else if (da.get(i).getAction().equals("Remove"))
                 da.get(i).Remove("Useless", da.get(i).creature);
-            else if (da.get(i).action == "Teleport")
+            else if (da.get(i).getAction().equals("Teleport"))
                 da.get(i).Teleport("Useless", da.get(i).creature);
-            else if (da.get(i).action == "UpdateDisplay")
+            else if (da.get(i).getAction().equals("UpdateDisplay"))
                 da.get(i).UpdateDisplay("Useless", da.get(i).creature);
-            else if (da.get(i).action == "YouWin")
+            else if (da.get(i).getAction().equals("YouWin"))
                 da.get(i).UpdateDisplay("Useless", da.get(i).creature);
             
         }

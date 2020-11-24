@@ -263,7 +263,7 @@ public class Rogue implements Runnable{
 		updateTopDisplay();
 		displayCombat(damageToMonster, damageToPlayer, monsters.get(monsterSpot).getType());
 		players.get(0).doHitAction();
-		players.get(0).doDeathAction();
+		monsters.get(monsterSpot).doHitAction();
 
 		if (players.get(0).getHp() <= 0){
 			//playerDeath();
