@@ -30,6 +30,8 @@ public class Creature extends Displayable{
         //System.out.println("setHitAction Creature");
     }
 
+
+
     int getHp(){
         return hp;
     }

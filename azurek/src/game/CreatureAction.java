@@ -1,7 +1,10 @@
 package game;
 public class CreatureAction extends Action{
-    CreatureAction(Creature owner){
-        //System.out.println("CreatureAction");
+    String action;
+    Creature creature;
+    CreatureAction(Creature owner, String _action){
+        creature = owner;
+        action = _action;
     }
 
     /*void Remove(String name, Creature owner){
