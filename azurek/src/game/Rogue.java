@@ -466,16 +466,27 @@ public class Rogue implements Runnable{
 	}
 
 	public static void takeOutWeapon(int weaponSpot){
-		if (weaponSpot < pack.size())
-			players.get(0).setWeapon(pack.get(weaponSpot));
+		if (weaponSpot < pack.size()){
+			if (pack.get(weaponSpot).getType() == ')')
+				players.get(0).setWeapon(pack.get(weaponSpot));
+		}
 	}
 
 	public static void wearItem(int itemSpot){
-		if (itemSpot < pack.size())
-			players.get(0).setArmor(pack.get(itemSpot));
+		if (itemSpot < pack.size()){
+			if (pack.get(itemSpot).getType() == ']')
+				players.get(0).setArmor(pack.get(itemSpot));
+		}
 	}
 	
 	public static void changeArmor(){
 		players.get(0).setArmor(null);
+	}
+
+	public static void readScroll(int scrollSpot){
+		if (scrollSpot < pack.size()){
+			if (pack.get(scrollSpot).getType() == '?')
+				pack.get(scrollSpot).doItemAction();
+		}
 	}
 }
