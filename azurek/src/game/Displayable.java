@@ -1,5 +1,7 @@
 package game;
 public class Displayable{
+	int uniPosX;
+	int uniPosY;
     int Posx;
     int Posy;
 	int width;
@@ -88,7 +90,21 @@ public class Displayable{
 		return Type;
 	}
 	
+	void setUniPosX(int x) {
+		uniPosX = x;
+	}
 	
+	void setUniPosY(int y) {
+		uniPosY = y;
+	}
+	
+	int getUniPosX() {
+		return uniPosX;
+	}
+	
+	int getUniPosY() {
+		return uniPosY;
+	}
 	
 	
 	

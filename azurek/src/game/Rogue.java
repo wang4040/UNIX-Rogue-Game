@@ -51,6 +51,14 @@ public class Rogue implements Runnable{
 		return topHeight;
 	}
 
+	public static int getGH(){
+		return gameHeight;
+	}
+	
+	public static int getW(){
+		return width;
+	}	
+
 	public static ArrayList<Player> getPlayers(){
 		return players;
 	}

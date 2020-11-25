@@ -1,4 +1,6 @@
 package game;
+import java.util.Random;
+
 public class CreatureAction extends Action{
     String action;
     Creature creature;
@@ -45,7 +47,25 @@ public class CreatureAction extends Action{
 
     void Teleport(String name, Creature owner){
         //System.out.println("Teleport Creature Action name: " + name);
-
+		int rand = new Random()
+		int newX = rand.nextInt(Rogue.getW());
+		int newY = rand.nextInt(Rogue.getGH());
+		
+		while(1) {
+			if(Rogue.getDisplayGrid().getTop(newX, newY+Rogue.getTopHeight).getChar() == '.') {
+				System.out.println("found period");
+				Char c = Rogue.getDisplayGrid().getTop(owner.getRoom().getPosX()+owner.getPosX(), owner.getRoom().getPosY()+owner.getPosY()+Rogue.getTopHeight());
+				Rogue.getDisplayGrid().removeObjectToDisplay(owner.getRoom().getPosX()+owner.getPosX(), owner.getRoom().getPosY()+owner.getPosY()+Rogue.getTopHeight());
+				owner.setUniPosX(newX);
+				owner.setUniPosY(newY+Rogue.getTopHeight);
+				Rogue.getDisplayGrid().addObjectToDisplay(c, newX, newY+Rogue.getTopHeight,);
+				break;
+			}else {
+				newX = rand.nextInt(Rogue.getW());
+				newY = rand.nextInt(Rogue.getGH());
+			}
+		}
+		
         Rogue.displayMessageInfo(message);
     }
 

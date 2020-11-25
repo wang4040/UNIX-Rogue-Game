@@ -4,8 +4,6 @@ import java.util.ArrayList;
 
 public class Item extends Displayable{
 
-	int uniPosX;
-	int uniPosY;
 	int serial;
 	ArrayList<ItemAction> ia = new ArrayList<ItemAction>();
 	Creature _owner;
@@ -13,22 +11,6 @@ public class Item extends Displayable{
     void setOwner(Creature owner){
 		//System.out.println("setOwner Creature for item: " + owner);
 		_owner = owner;
-	}
-	
-	void setUniPosX(int x) {
-		uniPosX = x;
-	}
-	
-	void setUniPosY(int y) {
-		uniPosY = y;
-	}
-	
-	int getUniPosX() {
-		return uniPosX;
-	}
-	
-	int getUniPosY() {
-		return uniPosY;
 	}
 	
 	int getSerial() {
