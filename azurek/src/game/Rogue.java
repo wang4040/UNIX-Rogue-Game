@@ -271,7 +271,11 @@ public class Rogue implements Runnable{
 		}	
 
 		int damageToPlayer = damageCalc(monsters.get(monsterSpot).getMaxHit());
-		int damageToMonster= damageCalc(players.get(0).getMaxHit());
+		if (players.get(0).getArmor() != null)
+			damageToPlayer -= players.get(0).getArmor().getIntValue();
+		int damageToMonster = damageCalc(players.get(0).getMaxHit());
+		if (players.get(0).getWeapon() != null)
+			damageToMonster += players.get(0).getWeapon().getIntValue();
 		
 		players.get(0).setHp(players.get(0).getHp() - damageToPlayer); //update player hp
 		monsters.get(monsterSpot).setHp(monsters.get(monsterSpot).getHp() - damageToMonster); //update monster hp
@@ -391,6 +395,15 @@ public class Rogue implements Runnable{
 		itemGrid[x][y].push(pack.get(itemToDrop));
 		itemGrid[x][y].peek().setUniPosX(x);
 		itemGrid[x][y].peek().setUniPosY(y);
+		if (pack.get(itemToDrop).getType() == ')'){
+			if (pack.get(itemToDrop).getName().equals(players.get(0).getWeapon().getName())){
+				players.get(0).setWeapon(null);
+			}
+		}
+		else if (pack.get(itemToDrop).getType() == ']'){
+			if (pack.get(itemToDrop).getName().equals(players.get(0).getArmor().getName()))
+				players.get(0).setArmor(null);
+		}
 		pack.remove(itemToDrop);
 		displayGrid.addObjectToDisplay(new Char('@'), x, y);
 	}
