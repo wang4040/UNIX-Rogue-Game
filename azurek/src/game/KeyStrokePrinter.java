@@ -283,7 +283,7 @@ public class KeyStrokePrinter implements InputObserver, Runnable {
 				processing = true;
 			}else if (((int) inputQueue.peek() > 57) || ((int) inputQueue.peek() < 48)){
                 processing = false;
-                //Rogue.readScroll(((int) inputQueue.peek()) - ((int) '0')); //TODO implement readScroll
+                //Rogue.readScroll(((int) inputQueue.poll()) - ((int) '0')); //TODO implement readScroll
 			}else {
                 processing = false;
 			}
@@ -298,7 +298,7 @@ public class KeyStrokePrinter implements InputObserver, Runnable {
 				processing = true;
 			}else if (((int) inputQueue.peek() > 57) || ((int) inputQueue.peek() < 48)){
                 processing = false;
-                //Rogue.takeOutWeapon(((int) inputQueue.peek()) - ((int) '0')); //TODO implement takeOutWeapon
+                //Rogue.takeOutWeapon(((int) inputQueue.poll()) - ((int) '0')); //TODO implement takeOutWeapon
 			}else {
                 processing = false;
 			}
@@ -313,7 +313,7 @@ public class KeyStrokePrinter implements InputObserver, Runnable {
 				processing = true;
 			}else if (((int) inputQueue.peek() > 57) || ((int) inputQueue.peek() < 48)){
                 processing = false;
-                //Rogue.wearItem(((int) inputQueue.peek()) - ((int) '0')); //TODO implement wearItem
+                //Rogue.wearItem(((int) inputQueue.poll()) - ((int) '0')); //TODO implement wearItem
 			}else {
                 processing = false;
 			}
