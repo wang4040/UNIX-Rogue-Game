@@ -41,6 +41,9 @@ public class CreatureAction extends Action{
 
     void UpdateDisplay(String name, Creature owner){
         //System.out.println("UpdateDisplay CreatureAction name: " + name);
+		if(owner.getType() == '@') {
+			Rogue.updateTopDisplay();
+		}
 
         Rogue.displayMessageInfo(message);
     }
