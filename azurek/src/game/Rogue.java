@@ -473,5 +473,9 @@ public class Rogue implements Runnable{
 	public static void wearItem(int itemSpot){
 		if (itemSpot < pack.size())
 			players.get(0).setArmor(pack.get(itemSpot));
-	} 
+	}
+	
+	public static void changeArmor(){
+		players.get(0).setArmor(null);
+	}
 }

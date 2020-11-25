@@ -160,7 +160,7 @@ public class KeyStrokePrinter implements InputObserver, Runnable {
                     helpCommand();
                 }
                 else if (ch == 'c'){
-                    //Rogue.changeArmor(); //TODO make changeArmor
+                    Rogue.changeArmor(); //TODO make changeArmor
                 }
                 else if (ch == 'E'){
                     dead = endCommand();
