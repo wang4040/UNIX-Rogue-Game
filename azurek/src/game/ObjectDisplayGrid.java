@@ -105,7 +105,7 @@ public class ObjectDisplayGrid extends JFrame implements KeyListener, InputSubje
 		if ((0 <= x) && (x < objectGrid.length)) {
             if ((0 <= y) && (y < objectGrid[0].length)) {
 				if(objectGrid[x][y].empty() == true) {
-					return null;
+					return new Char(' ');
 				}else {
 					return objectGrid[x][y].peek();
 				}

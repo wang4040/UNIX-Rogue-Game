@@ -50,15 +50,24 @@ public class CreatureAction extends Action{
 		Random rand = new Random();
 		int newX = rand.nextInt(Rogue.getW());
 		int newY = rand.nextInt(Rogue.getGH());
+		int roomX = 0;
+        int roomY = 0;
+        int i;
+        for(i = 0; i < Rogue.rooms.size(); i++){
+            if (Rogue.rooms.get(i).getId() == owner.getRoom()){
+                roomX = Rogue.rooms.get(i).getPosX();
+                roomY = Rogue.rooms.get(i).getPosY();
+            }
+        }
+		Char c = Rogue.getDisplayGrid().getTop( roomX + owner.getPosX(), roomY + owner.getPosY() + Rogue.getTopHeight() );
+		Rogue.getDisplayGrid().removeObjectToDisplay( roomX + owner.getPosX(), roomY + owner.getPosY() + Rogue.getTopHeight() );
 		
 		while(true) {
-			System.out.println("entering loop");
 			if(Rogue.getDisplayGrid().getTop(newX, newY+Rogue.getTopHeight()).getChar() == '.') {
-				System.out.println("found period");
-				Char c = Rogue.getDisplayGrid().getTop( owner.getRoom().getPosX() + owner.getPosX(), owner.getRoom().getPosY() + owner.getPosY() + Rogue.getTopHeight() );
-				Rogue.getDisplayGrid().removeObjectToDisplay( owner.getRoom().getPosX() + owner.getPosX(), owner.getRoom().getPosY() + owner.getPosY() + Rogue.getTopHeight() );
 				owner.setUniPosX(newX);
 				owner.setUniPosY(newY+Rogue.getTopHeight());
+				owner.SetPosX(newX - roomX);
+				owner.setPosY(newY - roomY);
 				Rogue.getDisplayGrid().addObjectToDisplay(c, newX, newY+Rogue.getTopHeight());
 				break;
 			}else {

@@ -214,8 +214,8 @@ public class DungeonXMLHandler extends DefaultHandler {
 				monsterBeingParsed.SetPosX(Integer.parseInt(data.toString()));
 				bPosX = false;
 			}else if (playerBeingParsed != null){
-					playerBeingParsed.SetPosX(Integer.parseInt(data.toString()));
-					bPosX = false;			
+				playerBeingParsed.SetPosX(Integer.parseInt(data.toString()));
+				bPosX = false;			
 			}else if (roomBeingParsed != null) {
 				roomBeingParsed.SetPosX(Integer.parseInt(data.toString()));
 				bPosX = false;
