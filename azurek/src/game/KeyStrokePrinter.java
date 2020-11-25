@@ -165,6 +165,15 @@ public class KeyStrokePrinter implements InputObserver, Runnable {
                 else if (ch == 'E'){
                     dead = endCommand();
                 }
+                else if (ch == 'r'){
+                    readCommand();
+                }
+                else if (ch == 'T'){
+                    takeCommand();
+                }
+                else if (ch == 'w'){
+                    wearCommand();
+                }
                 else {
                     System.out.println("character " + ch + " entered on the keyboard");
                 }
@@ -264,6 +273,51 @@ public class KeyStrokePrinter implements InputObserver, Runnable {
             }
         }
         return false;
+    }
+
+	private void readCommand(){
+		boolean dead = false;
+		boolean processing = true;
+		while (processing) {
+			if (inputQueue.peek() == null) {
+				processing = true;
+			}else if (((int) inputQueue.peek() > 57) || ((int) inputQueue.peek() < 48)){
+                processing = false;
+                //Rogue.readScroll(((int) inputQueue.peek()) - ((int) '0')); //TODO implement readScroll
+			}else {
+                processing = false;
+			}
+		}
+    }
+
+	private void takeCommand(){
+		boolean dead = false;
+		boolean processing = true;
+		while (processing) {
+			if (inputQueue.peek() == null) {
+				processing = true;
+			}else if (((int) inputQueue.peek() > 57) || ((int) inputQueue.peek() < 48)){
+                processing = false;
+                //Rogue.takeOutWeapon(((int) inputQueue.peek()) - ((int) '0')); //TODO implement takeOutWeapon
+			}else {
+                processing = false;
+			}
+		}
+    }
+
+	private void wearCommand(){
+		boolean dead = false;
+		boolean processing = true;
+		while (processing) {
+			if (inputQueue.peek() == null) {
+				processing = true;
+			}else if (((int) inputQueue.peek() > 57) || ((int) inputQueue.peek() < 48)){
+                processing = false;
+                //Rogue.wearItem(((int) inputQueue.peek()) - ((int) '0')); //TODO implement wearItem
+			}else {
+                processing = false;
+			}
+		}
     }
 
     @Override
