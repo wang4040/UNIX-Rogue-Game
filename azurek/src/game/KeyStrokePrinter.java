@@ -220,7 +220,22 @@ public class KeyStrokePrinter implements InputObserver, Runnable {
                 processing = false;
                 inputQueue.remove();
                 Rogue.displayMessageInfo("Wear item");
-            }               
+            }
+            else if (inputQueue.peek() == 'c'){
+                processing = false;
+                inputQueue.remove();
+                Rogue.displayMessageInfo("Change, or take off armor");
+            }
+            else if (inputQueue.peek() == 'd'){
+                processing = false;
+                inputQueue.remove();
+                Rogue.displayMessageInfo("Drop");
+            }
+            else if (inputQueue.peek() == 'E'){
+                processing = false;
+                inputQueue.remove();
+                Rogue.displayMessageInfo("End game");
+            }                        
             else {
                 processing = false;
 			}
