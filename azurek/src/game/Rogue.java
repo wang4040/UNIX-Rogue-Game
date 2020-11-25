@@ -410,10 +410,30 @@ public class Rogue implements Runnable{
 		for (i = 0; i < pack.size() - 1; i++){
 			msg += (char) (i + '0') + ":";
 			msg += pack.get(i).getName();
+			if ((pack.get(i).getType() ==  ')') && (players.get(0).getWeapon() != null)){
+				if (pack.get(i).getName().equals(players.get(0).getWeapon().getName())){
+					msg += "(w)";
+				}
+			}
+			else if ((pack.get(i).getType() ==  ']') && (players.get(0).getArmor() != null)){
+				if (pack.get(i).getName().equals(players.get(0).getArmor().getName())){
+					msg += "(a)";
+				}
+			}
 			msg += ", ";
 		}
 		msg += (char) (i + '0') + ":";
 		msg += pack.get(i).getName();
+		if ((pack.get(i).getType() ==  ')') && (players.get(0).getWeapon() != null)){
+			if (pack.get(i).getName().equals(players.get(0).getWeapon().getName())){
+				msg += "(w)";
+			}
+		}
+		else if ((pack.get(i).getType() ==  ']') && (players.get(0).getArmor() != null)){
+			if (pack.get(i).getName().equals(players.get(0).getArmor().getName())){
+				msg += "(a)";
+			}
+		}
 		
 		displayMessagePack(msg);
 	}
@@ -431,4 +451,14 @@ public class Rogue implements Runnable{
 		else
 			return counter;
 	}
+
+	public static void takeOutWeapon(int weaponSpot){
+		if (weaponSpot < pack.size())
+			players.get(0).setWeapon(pack.get(weaponSpot));
+	}
+
+	public static void wearItem(int itemSpot){
+		if (itemSpot < pack.size())
+			players.get(0).setArmor(pack.get(itemSpot));
+	} 
 }
