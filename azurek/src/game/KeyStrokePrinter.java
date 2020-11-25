@@ -159,6 +159,12 @@ public class KeyStrokePrinter implements InputObserver, Runnable {
                 else if (ch == 'H'){
                     helpCommand();
                 }
+                else if (ch == 'c'){
+                    //Rogue.changeArmor(); //TODO make changeArmor
+                }
+                else if (ch == 'E'){
+                    dead = endCommand();
+                }
                 else {
                     System.out.println("character " + ch + " entered on the keyboard");
                 }
@@ -240,7 +246,25 @@ public class KeyStrokePrinter implements InputObserver, Runnable {
                 processing = false;
 			}
 		}
-	}
+    }
+
+	private boolean endCommand(){
+		boolean dead = false;
+		boolean processing = true;
+		while (processing) {
+			if (inputQueue.peek() == null) {
+				processing = true;
+			}else if ((inputQueue.peek() == 'Y') || (inputQueue.peek() == 'y')){
+                processing = false;
+                Rogue.displayMessageInfo("Game ended due to command E");
+                return true;
+
+			}else {
+                processing = false;
+            }
+        }
+        return false;
+    }
 
     @Override
     public void run() {
