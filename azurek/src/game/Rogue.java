@@ -301,7 +301,7 @@ public class Rogue implements Runnable{
 	}
 
 	//This function updates the display with a given hp value
-	private static void updateTopDisplay(){
+	public static void updateTopDisplay(){
 		String msg = "HP: " + Integer.toString(players.get(0).getHp()) + "  Score:  0";
 		int i;
 		for (i = 0; i < msg.length(); i++){
@@ -393,6 +393,13 @@ public class Rogue implements Runnable{
 		itemGrid[x][y].peek().setUniPosY(y);
 		pack.remove(itemToDrop);
 		displayGrid.addObjectToDisplay(new Char('@'), x, y);
+	}
+	
+	public static void emptyPack() {
+		int i;
+		for(i = 0; i < pack.size(); i++) {
+			dropItem(0);
+		}
 	}
 
 	public static void displayInventory(){

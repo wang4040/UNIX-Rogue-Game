@@ -101,19 +101,19 @@ public class CreatureAction extends Action{
 
     void EndGame(String name, Creature owner){
         //System.out.println("EndGame CreatureAction name: " + name);
-
+		
         Rogue.displayMessageInfo(message);
     }
 
     void DropPack(String name, Creature owner){
         //System.out.println("DropPack CreatureAction name: " + name);
-
+		Rogue.dropItem(0);
         Rogue.displayMessageInfo(message);
     } 
 
     void EmptyPack(String name, Creature owner){
-
-
+		
+		Rogue.emptyPack();
         Rogue.displayMessageInfo(message);
     }
 }
