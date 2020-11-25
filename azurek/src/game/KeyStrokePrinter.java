@@ -153,6 +153,12 @@ public class KeyStrokePrinter implements InputObserver, Runnable {
                 else if (ch == 'd'){
                     dropCommand();
                 }
+                else if (ch == '?'){
+                    Rogue.displayMessageInfo("? H i p r T w");
+                }
+                else if (ch == 'H'){
+                    helpCommand();
+                }
                 else {
                     System.out.println("character " + ch + " entered on the keyboard");
                 }
@@ -174,6 +180,48 @@ public class KeyStrokePrinter implements InputObserver, Runnable {
                 processing = false;
 			}else {
                 Rogue.dropItem((int)(inputQueue.poll()) - (int)'0');
+                processing = false;
+			}
+		}
+    }
+    
+	private void helpCommand(){
+		boolean dead = false;
+		boolean processing = true;
+		while (processing) {
+			if (inputQueue.peek() == null) {
+				processing = true;
+			}else if (inputQueue.peek() == '?'){
+                processing = false;
+                inputQueue.remove();
+                Rogue.displayMessageInfo("show the different commands in the info section of the display.");
+            }
+            else if (inputQueue.peek() == 'i'){
+                processing = false;
+                inputQueue.remove();
+                Rogue.displayMessageInfo("Show or display the inventory");
+            }
+            else if (inputQueue.peek() == 'p'){
+                processing = false;
+                inputQueue.remove();
+                Rogue.displayMessageInfo("Pick up an item from the dungeon floor");
+            }
+            else if (inputQueue.peek() == 'r'){
+                processing = false;
+                inputQueue.remove();
+                Rogue.displayMessageInfo("Read an item");
+            }
+            else if (inputQueue.peek() == 'T'){
+                processing = false;
+                inputQueue.remove();
+                Rogue.displayMessageInfo("Take out a weapon");
+            }
+            else if (inputQueue.peek() == 'w'){
+                processing = false;
+                inputQueue.remove();
+                Rogue.displayMessageInfo("Wear item");
+            }               
+            else {
                 processing = false;
 			}
 		}
