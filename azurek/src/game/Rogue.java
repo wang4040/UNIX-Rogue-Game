@@ -405,22 +405,16 @@ public class Rogue implements Runnable{
 	public static void displayInventory(){
 		int i;
 		String msg = "";
+		if (pack.size() == 0)
+			return;
 		for (i = 0; i < pack.size() - 1; i++){
-			if (pack.get(i).getType() == ']')
-				msg += (char)(i + (int)'0') + ": Armor , ";
-			else if (pack.get(i).getType() == ')')
-				msg += (char)(i + (int)'0') + ": Sword , ";
-			else
-				msg += (char)(i + (int)'0') + ": Scroll , ";
+			msg += (char) (i + '0') + ":";
+			msg += pack.get(i).getName();
+			msg += ", ";
 		}
-		if (pack.size() != 0){
-			if (pack.get(i).getType() == ']')
-			msg += (char)(i + (int)'0') + ": Armor";
-		else if (pack.get(i).getType() == ')')
-			msg += (char)(i + (int)'0') + ": Sword";
-		else
-			msg += (char)(i + (int)'0') + ": Scroll";
-		}
+		msg += (char) (i + '0') + ":";
+		msg += pack.get(i).getName();
+		
 		displayMessagePack(msg);
 	}
 
