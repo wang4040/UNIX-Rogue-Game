@@ -38,7 +38,7 @@ public class Creature extends Displayable{
         //System.out.println("setHitAction Creature");
     }
 
-    void doHitAction(){
+    void doHitAction() {
         if (ha.isEmpty() == true)
             return;
         
@@ -52,7 +52,13 @@ public class Creature extends Displayable{
             else if (ha.get(i).getAction().equals("UpdateDisplay"))
                 ha.get(i).UpdateDisplay("Useless", ha.get(i).creature);
             else if (ha.get(i).getAction().equals("YouWin"))
-                ha.get(i).UpdateDisplay("Useless", ha.get(i).creature);
+                ha.get(i).YouWin("Useless", ha.get(i).creature);
+            else if (ha.get(i).getAction().equals("DropPack"))
+                ha.get(i).DropPack("Useless", ha.get(i).creature);
+            else if (ha.get(i).getAction().equals("EmptyPack"))
+                ha.get(i).EmptyPack("Useless", ha.get(i).creature);
+            else if (ha.get(i).getAction().equals("EndGame"))
+                ha.get(i).EndGame("Useless", ha.get(i).creature);
    
         }
 
@@ -72,7 +78,13 @@ public class Creature extends Displayable{
             else if (da.get(i).getAction().equals("UpdateDisplay"))
                 da.get(i).UpdateDisplay("Useless", da.get(i).creature);
             else if (da.get(i).getAction().equals("YouWin"))
-                da.get(i).UpdateDisplay("Useless", da.get(i).creature);
+                da.get(i).YouWin("Useless", da.get(i).creature);
+            else if (da.get(i).getAction().equals("DropPack"))
+                da.get(i).DropPack("Useless", da.get(i).creature);
+            else if (da.get(i).getAction().equals("EmptyPack"))
+                da.get(i).EmptyPack("Useless", da.get(i).creature);
+            else if (da.get(i).getAction().equals("EndGame"))
+                da.get(i).EndGame("Useless", da.get(i).creature);
             
         }
     }

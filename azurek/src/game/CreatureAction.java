@@ -44,8 +44,8 @@ public class CreatureAction extends Action{
 		if(owner.getType() == '@') {
 			Rogue.updateTopDisplay();
 		}
-
-        Rogue.displayMessageInfo(message);
+        if (message != null)
+            Rogue.displayMessageInfo(message);
     }
 
     void Teleport(String name, Creature owner){
@@ -101,7 +101,7 @@ public class CreatureAction extends Action{
 
     void EndGame(String name, Creature owner){
         //System.out.println("EndGame CreatureAction name: " + name);
-		
+        KeyStrokePrinter.setDead();
         Rogue.displayMessageInfo(message);
     }
 

@@ -8,14 +8,24 @@ public class KeyStrokePrinter implements InputObserver, Runnable {
 
     private static int DEBUG = 0;
     private int hpMoveCounter = 0;
-    private int hallucinateMoveCounter = 0;
+    private static int hallucinateMoveCounter = -1;
     private static String CLASSID = "KeyStrokePrinter";
     private static Queue<Character> inputQueue = null;
     private ObjectDisplayGrid displayGrid;
+    private static boolean dead;
+    private static boolean halluc;
 
     public KeyStrokePrinter(ObjectDisplayGrid grid) {
         inputQueue = new ConcurrentLinkedQueue<>();
         displayGrid = grid;
+    }
+
+    public static void setDead(){
+        dead = true;
+    }
+    
+    public static  void setHallucinateMoveCounter(int moves) {
+        hallucinateMoveCounter = moves;
     }
 
     @Override
@@ -38,7 +48,7 @@ public class KeyStrokePrinter implements InputObserver, Runnable {
     private boolean processInput() {
 
         char ch;
-        boolean dead = false;
+        dead = false;
         boolean processing = true;
         while (processing) {
             if (inputQueue.peek() == null) {
@@ -67,7 +77,8 @@ public class KeyStrokePrinter implements InputObserver, Runnable {
                                 Rogue.getPlayers().get(0).SetPosX(displayGrid.getPlayerX());
                                 hpMoveCounter++;
                                 hpMoveCounter = Rogue.checkHpMoves(hpMoveCounter);
-                                hallucinateMoveCounter++;
+                                hallucinateMoveCounter--;
+                                hallucinateMoveCounter = Rogue.checkHallucinateMoves(hallucinateMoveCounter);
                             }
                         }
                     }
@@ -91,7 +102,8 @@ public class KeyStrokePrinter implements InputObserver, Runnable {
                                 Rogue.getPlayers().get(0).SetPosX(displayGrid.getPlayerX());
                                 hpMoveCounter++;
                                 hpMoveCounter = Rogue.checkHpMoves(hpMoveCounter);
-                                hallucinateMoveCounter++;                                
+                                hallucinateMoveCounter--;     
+                                hallucinateMoveCounter = Rogue.checkHallucinateMoves(hallucinateMoveCounter);                           
                             }
                         }
                     }                    
@@ -115,7 +127,8 @@ public class KeyStrokePrinter implements InputObserver, Runnable {
                                 Rogue.getPlayers().get(0).setPosY(displayGrid.getPlayerY());
                                 hpMoveCounter++;
                                 hpMoveCounter = Rogue.checkHpMoves(hpMoveCounter);
-                                hallucinateMoveCounter++;                                
+                                hallucinateMoveCounter--;     
+                                hallucinateMoveCounter = Rogue.checkHallucinateMoves(hallucinateMoveCounter);                           
                             }
                         }
                     }                    
@@ -139,7 +152,8 @@ public class KeyStrokePrinter implements InputObserver, Runnable {
                                 Rogue.getPlayers().get(0).setPosY(displayGrid.getPlayerY());
                                 hpMoveCounter++;
                                 hpMoveCounter = Rogue.checkHpMoves(hpMoveCounter);
-                                hallucinateMoveCounter++;                                
+                                hallucinateMoveCounter--;      
+                                hallucinateMoveCounter = Rogue.checkHallucinateMoves(hallucinateMoveCounter);                          
                             }
                         }
                     }                    
@@ -286,7 +300,7 @@ public class KeyStrokePrinter implements InputObserver, Runnable {
                 
 			}else {
                 processing = false;
-                //Rogue.readScroll((int)(inputQueue.poll()) - (int)'0'); //TODO implement readScroll
+                Rogue.readScroll((int)(inputQueue.poll()) - (int)'0');
 			}
 		}
     }

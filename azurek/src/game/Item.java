@@ -26,7 +26,7 @@ public class Item extends Displayable{
 			return;
 
 		for (int i = 0; i <ia.size(); i++){
-			if (ia.get(i).action == "Hallucinate")
+			if (ia.get(i).action.equals("Hallucinate"))
 				ia.get(i).Hallucinate(_owner);
 			else
 				ia.get(i).BlessCurseOwner(_owner);

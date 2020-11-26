@@ -63,6 +63,10 @@ public class Rogue implements Runnable{
 		return players;
 	}
 
+	public static ArrayList<Item> getPack(){
+		return pack;
+	}
+
     public void run(){ //This is used when threads are used and inputs are read
 		
     }
@@ -401,8 +405,10 @@ public class Rogue implements Runnable{
 			}
 		}
 		else if (pack.get(itemToDrop).getType() == ']'){
-			if (pack.get(itemToDrop).getName().equals(players.get(0).getArmor().getName()))
-				players.get(0).setArmor(null);
+			if (players.get(0).getArmor() != null){
+				if (pack.get(itemToDrop).getName().equals(players.get(0).getArmor().getName()))
+					players.get(0).setArmor(null);
+			}
 		}
 		pack.remove(itemToDrop);
 		displayGrid.addObjectToDisplay(new Char('@'), x, y);
@@ -418,8 +424,10 @@ public class Rogue implements Runnable{
 	public static void displayInventory(){
 		int i;
 		String msg = "";
-		if (pack.size() == 0)
+		if (pack.size() == 0){
+			displayMessagePack("");
 			return;
+		}
 		for (i = 0; i < pack.size() - 1; i++){
 			msg += (char) (i + '0') + ":";
 			msg += pack.get(i).getName();
@@ -487,6 +495,20 @@ public class Rogue implements Runnable{
 		if (scrollSpot < pack.size()){
 			if (pack.get(scrollSpot).getType() == '?')
 				pack.get(scrollSpot).doItemAction();
+				pack.remove(scrollSpot);
 		}
+	}
+
+	public static int checkHallucinateMoves(int moves){
+		if (moves > 0){
+			hallucinateStep();
+			return moves - 1;
+		}
+		else
+			return -1;
+	}
+
+	public static void hallucinateStep(){
+
 	}
 }

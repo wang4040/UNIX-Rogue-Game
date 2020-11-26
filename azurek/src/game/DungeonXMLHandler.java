@@ -136,14 +136,15 @@ public class DungeonXMLHandler extends DefaultHandler {
 		}else if(qName.equalsIgnoreCase("Scroll")) {
 			newScroll = new Scroll(attributes.getValue("name"));
 			newScroll.setID(Integer.parseInt(attributes.getValue("room")), Integer.parseInt(attributes.getValue("serial")));
-			itemBeingParsed = newScroll;
+			itemBeingParsed = newScroll; 
 			scrolls.add(newScroll);
 		}else if(qName.equalsIgnoreCase("Armor")) {
 			newArmor = new Armor(attributes.getValue("name"));
 			newArmor.setID(Integer.parseInt(attributes.getValue("room")), Integer.parseInt(attributes.getValue("serial")));
 			if(playerBeingParsed != null) {
-				playerBeingParsed.setArmor(newArmor);
+				//playerBeingParsed.setArmor(newArmor);
 				newArmor.setOwner(playerBeingParsed);
+				Rogue.getPack().add(newArmor);
 			}
 			else {
 				armors.add(newArmor);
@@ -153,8 +154,9 @@ public class DungeonXMLHandler extends DefaultHandler {
 			newSword = new Sword(attributes.getValue("name"));
 			newSword.setID(Integer.parseInt(attributes.getValue("room")), Integer.parseInt(attributes.getValue("serial")));
 			if(playerBeingParsed != null) {
-				playerBeingParsed.setWeapon(newSword);
+				//playerBeingParsed.setWeapon(newSword);
 				newSword.setOwner(playerBeingParsed);
+				Rogue.getPack().add(newSword);
 			}
 			else {
 				swords.add(newSword);
