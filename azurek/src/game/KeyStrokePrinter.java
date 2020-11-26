@@ -25,7 +25,7 @@ public class KeyStrokePrinter implements InputObserver, Runnable {
     }
     
     public static  void setHallucinateMoveCounter(int moves) {
-        hallucinateMoveCounter = moves;
+        hallucinateMoveCounter = moves + 1;
     }
 
     @Override

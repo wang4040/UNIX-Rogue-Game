@@ -1,6 +1,8 @@
 package game;
 import java.io.File;
 import java.io.IOException;
+
+import javax.lang.model.util.ElementScanner6;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
@@ -502,7 +504,12 @@ public class Rogue implements Runnable{
 	public static int checkHallucinateMoves(int moves){
 		if (moves > 0){
 			hallucinateStep();
-			return moves - 1;
+			System.out.println("test");
+			return moves;
+		}
+		else if(moves == 0){
+			restoreDisplay();
+			return -1;	
 		}
 		else
 			return -1;
@@ -511,4 +518,37 @@ public class Rogue implements Runnable{
 	public static void hallucinateStep(){
 
 	}
+
+	public static Char getRandomChar(){
+		Random rand = new Random();
+		int randomValue = rand.nextInt(9);
+		if (randomValue == 0)
+			return new Char('.');
+		else if (randomValue == 1)
+			return new Char('X');
+		else if (randomValue == 2)
+			return new Char('#');
+		else if (randomValue == 3)
+			return new Char('+');
+		else if (randomValue == 4)
+			return new Char(')');
+		else if (randomValue == 5)
+			return new Char(']');
+		else if (randomValue == 6)
+			return new Char('?');
+		else if (randomValue == 7)
+			return new Char('H');
+		else if (randomValue == 8)
+			return new Char('T');
+		else if (randomValue == 9)
+			return new Char('S');
+		else
+			return new Char('S');
+	}
+
+	public static void restoreDisplay(){
+
+	}
+
+
 }

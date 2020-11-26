@@ -122,7 +122,7 @@ public class ObjectDisplayGrid extends JFrame implements KeyListener, InputSubje
         terminal.repaint();
     }
 	
-    Stack<Char>[][] getObjectGrid(){
+    public Stack<Char>[][] getObjectGrid(){
 		
         return objectGrid;
     }
